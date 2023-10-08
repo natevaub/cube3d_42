@@ -1,9 +1,8 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include "../libs/mlx_linux/mlx.h"
+#include "../includes/cube.h"
 
-int	main(void)
+int	main( int ac, char **av )
 {
+	ft_printf("Hey cube3D\n");
 	// void	*mlx;
 	// void	*mlx_win;
 
