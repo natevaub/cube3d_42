@@ -6,13 +6,13 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:34:03 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/01/11 21:04:52 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:06:30 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *string)
+size_t	ft_gnl_strlen(const char *string)
 {
 	int	index;
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *string)
 	return (index);
 }
 
-char	*ft_strjoin(char *s1, char *s2, int s2_size)
+char	*ft_gnl_strjoin(char *s1, char *s2, int s2_size)
 {
 	char	*joined_str;
 	size_t	s2_len;
@@ -33,7 +33,7 @@ char	*ft_strjoin(char *s1, char *s2, int s2_size)
 	i = 0;
 	ii = 0;
 	s2_len = s2_size;
-	total = ft_strlen(s1) + s2_len;
+	total = ft_gnl_strlen(s1) + s2_len;
 	joined_str = (char *)malloc(sizeof(char) * total + 1);
 	if (joined_str == NULL)
 		return (NULL);
@@ -48,7 +48,7 @@ char	*ft_strjoin(char *s1, char *s2, int s2_size)
 	return (joined_str);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_gnl_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	size_t	j;
@@ -72,7 +72,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-void	ft_bzero(void *s, size_t n)
+void	ft_gnl_bzero(void *s, size_t n)
 {
 	unsigned char	*ptr;
 
@@ -83,13 +83,13 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_gnl_calloc(size_t count, size_t size)
 {
 	void	*str;
 
 	str = (void *)malloc(count * size);
 	if (!str)
 		return (0);
-	ft_bzero(str, count * size);
+	ft_gnl_bzero(str, count * size);
 	return (str);
 }

@@ -1,0 +1,9 @@
+✅❌
+
+PARSING
+
+Validity of the map
+	:	4 Textures -> (NO, SO, WE, EA) ./path_to_texture
+	:	Floor Color -> F 200, 100, 0
+	:	Ceiling Color -> C 200, 100, 0
+	:	Map

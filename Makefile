@@ -33,9 +33,15 @@ LIBPRINTF_DIRECTORY		:=			$(LIB_DIRECTORY)ftprintf/
 
 MAIN_FILE				:=			main.c
 
-MAIN_FILE				:=			$(addprefix $(OBJS_PATH)/, $(MAIN_FILE:.c=.o))
+PARSING_FILES			:=			map_check.c			\
+									map_open.c			\
+									map_texture.c		\
 
-OBJS					:=			$(MAIN_FILE)
+MAIN_FILE				:=			$(addprefix $(OBJS_PATH)/, $(MAIN_FILE:.c=.o))
+PARSING_FILES			:=			$(addprefix $(OBJS_PATH)/parsing/, $(PARSING_FILES:.c=.o))
+
+OBJS					:=			$(MAIN_FILE)				\
+									$(PARSING_FILES)			\
 
 LIBS					:=			-L$(LIB_DIRECTORY) -lft -lftprintf
 
