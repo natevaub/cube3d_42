@@ -1,5 +1,18 @@
 #include "../../includes/cube.h"
 
+/**
+ * Parse the East Texture element from a line and store it in the map structure.
+ *
+ * This function parses a line of input containing information about the East
+ * Texture element, validates the existence of the texture file, and stores
+ * the path to the East Texture in the 'map' structure if valid.
+ *
+ * @param line A string containing the input line to be parsed.
+ * @param map A pointer to the 't_map' structure where the East Texture path
+ *            will be stored if valid.
+ *
+ * @return 1 if the East Texture was successfully parsed and stored, 0 otherwise.
+ */
 int	parseEastTexture(char *line, t_map *map)
 {
 	char	**texture_info;

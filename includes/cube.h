@@ -23,5 +23,11 @@ int		parseEastTexture(char *line, t_map *map);
 int		count_split_elements(char **tab);
 int		ft_strcmp(char *s1, char *s2);
 void	free_split(char **split);
+int		count_occurences(char *str, char c);
+
+int		parseFloor(char *line, t_map *map);
+int		validFloorColor(char *floorValues, t_map *map);
+int		helper_validFloorColor(char **floorValues, t_map *map);
+
 
 #endif
