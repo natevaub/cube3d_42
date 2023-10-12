@@ -6,84 +6,89 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 17:58:34 by nvaubien          #+#    #+#             */
-/*   Updated: 2022/11/09 16:10:22 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/10/12 01:54:41 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	size_t	count_strings(char const *s, char c)
+static size_t	count_words(char const *s, char c)
 {
-	size_t	idx;
 	size_t	count;
+	size_t	i;
 
 	count = 0;
-	idx = 0;
-	while (s[idx])
+	i = 0;
+	while (*(s + i))
 	{
-		if (s[idx] != c && (s[idx + 1] == c || s[idx + 1] == '\0'))
+		if (*(s + i) != c)
+		{
 			count++;
-		idx++;
+			while (*(s + i) && *(s + i) != c)
+				i++;
+		}
+		else if (*(s + i) == c)
+			i++;
 	}
 	return (count);
 }
 
-static	char	**gen_memory_strings(char const *s, char c)
+static size_t	get_word_len(char const *s, char c)
 {
-	char	**strings;
-	size_t	count;
+	size_t	i;
 
-	count = count_strings(s, c);
-	strings = malloc(sizeof(char *) * (count + 1));
-	if (strings == NULL)
-		return (NULL);
-	return (strings);
+	i = 0;
+	while (*(s + i) && *(s + i) != c)
+		i++;
+	return (i);
 }
 
-static	size_t	find_next_valid(char const *s, char c, size_t idx)
+static void	free_array(size_t i, char **array)
 {
-	while (s[idx] == c)
+	while (i > 0)
 	{
-		idx++;
+		i--;
+		free(*(array + i));
 	}
-	return (idx);
+	free(array);
 }
 
-static	size_t	len_str(char const *s, char c, size_t idx)
+static char	**split(char const *s, char c, char **array, size_t words_count)
 {
-	size_t	count;
+	size_t	i;
+	size_t	j;
 
-	count = 0;
-	while (s[idx] != c && s[idx] != '\0')
+	i = 0;
+	j = 0;
+	while (i < words_count)
 	{
-		count++;
-		idx++;
+		while (*(s + j) && *(s + j) == c)
+			j++;
+		*(array + i) = ft_substr(s, j, get_word_len(&*(s + j), c));
+		if (!*(array + i))
+		{
+			free_array(i, array);
+			return (NULL);
+		}
+		while (*(s + j) && *(s + j) != c)
+			j++;
+		i++;
 	}
-	return (count);
+	*(array + i) = NULL;
+	return (array);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**strings;
-	size_t	i;
-	size_t	stri;
-	size_t	curri;
+	char	**array;
+	size_t	words;
 
-	stri = 0;
-	i = 0;
-	strings = gen_memory_strings(s, c);
-	if (!strings)
-		return (0);
-	while (i < ft_strlen(s))
-	{
-		i = find_next_valid(s, c, i);
-		if (!s[i])
-			break ;
-		curri = len_str(s, c, i);
-		strings[stri] = ft_substr(s, i, curri);
-		stri++;
-		i += curri;
-	}
-	strings[stri] = 0;
-	return (strings);
+	if (!s)
+		return (NULL);
+	words = count_words(s, c);
+	array = (char **)malloc(sizeof(char *) * (words + 1));
+	if (!array)
+		return (NULL);
+	array = split(s, c, array, words);
+	return (array);
 }

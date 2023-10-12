@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 18:15:02 by nvaubien          #+#    #+#             */
-/*   Updated: 2022/11/07 15:38:52 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/10/12 01:13:08 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,8 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*fct)(void *), void (*del)(void *));
+
+
+char	*get_next_line(int fd);
 
 #endif

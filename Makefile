@@ -1,5 +1,5 @@
 CC						:=			gcc
-# CFLAGS					:=			-Wall -Wextra -Werror
+CFLAGS					:=		-fsanitize=address
 
 
 NAME					:=			cube3D
