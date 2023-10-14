@@ -5,8 +5,8 @@ CFLAGS					:=		-fsanitize=address
 NAME					:=			cube3D
 
 UNAME_S					:= $(shell uname -s)
-MLX_LINUX 				:= ../libs/mlx_linux
-MLX						:= ../libs/liblmx
+MLX_LINUX 				:= ./libs/mlx_linux
+MLX						:= ./libs/libmlx
 ###													###
 ifeq ($(UNAME_S), Linux)
 	LINUX_MLX				:= -L$(MLX_LINUX) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
@@ -61,8 +61,21 @@ $(LIBPRINTF):
 	@echo "$(CYAN)✔️  Compilation Done$(RESET)"
 	@cp libs/ftprintf/libftprintf.a .
 
+ifeq ($(UNAME_S), Linux)
+mlx:
+	@echo "$(GREEN)Compilating MlX$(RESET)"
+	@$(MAKE) -sC $(MLX_LINUX)
+	@echo "$(CYAN)✔️  Compilation Done$(RESET)"
+endif
+ifeq ($(UNAME_S), Darwin)
+mlx:
+	@echo "$(GREEN)Compilating MLX$(RESET)"
+	@$(MAKE) -sC $(MLX)
+	@echo "$(CYAN)✔️  Compilation Done$(RESET)"
+endif
+
 ##
-$(NAME):	$(LIBFT) $(LIBPRINTF) $(OBJS)
+$(NAME):	$(LIBFT) $(LIBPRINTF) $(OBJS) mlx
 			@echo "$(GREEN)Compilating cube3D$(RESET)"
 			@$(CC) $(CFLAGS) -Llibs/ftprintf -Llibs/libft -o $@ $(OBJS) $(LIBS) $(LINK_FLAGS)
 			@echo "$(CYAN)✔️  Compilation Done$(RESET)"
@@ -76,17 +89,30 @@ $(OBJS_PATH)/%.o:	$(SRCS_PATH)/%.c
 					@$(CC) $(CFLAGS) $(INCS_PATH) -c $< -o $@
 
 clean:
-			@echo "$(RED) Cleaning Directory /libs/libftprintf$(RESET)"
-			@$(MAKE) -sC $(LIBPRINTF_DIRECTORY) clean
-			@echo "$(RED) Cleaning Directory /libs/libft$(RESET)"
-			@$(MAKE) -sC $(LIBFT_DIRECTORY) clean
-			@echo "$(RED) Cleaning Directory /objs$(RESET)"
-			@rm -rf $(OBJS_PATH)
+ifeq ($(UNAME_S), Linux)
+	@echo "$(RED) Cleaning Directory /libs/libftprintf$(RESET)"
+	@$(MAKE) -sC $(LIBPRINTF_DIRECTORY) clean
+	@echo "$(RED) Cleaning Directory /libs/libft$(RESET)"
+	@$(MAKE) -sC $(LIBFT_DIRECTORY) clean
+	@echo "$(RED) Cleaning Directory /objs$(RESET)"
+	@rm -rf $(OBJS_PATH)
+	@$(MAKE) -sC $(MLX_LINUX) clean
+endif
+ifeq ($(UNAME_S), Darwin)
+	@echo "$(RED) Cleaning Directory /libs/libftprintf$(RESET)"
+	@$(MAKE) -sC $(LIBPRINTF_DIRECTORY) clean
+	@echo "$(RED) Cleaning Directory /libs/libft$(RESET)"
+	@$(MAKE) -sC $(LIBFT_DIRECTORY) clean
+	@echo "$(RED) Cleaning Directory /objs$(RESET)"
+	@rm -rf $(OBJS_PATH)
+	@$(MAKE) -sC $(MLX) clean
+endif
 
 fclean:		clean
 			@$(MAKE) -sC $(LIBFT_DIRECTORY) fclean
 			@$(MAKE) -sC $(LIBPRINTF_DIRECTORY) fclean
 			@echo "$(RED) rm libft.a libftprintf.a cube3D$(RESET)"
+			@rm -rf libmlx.a
 			@rm -f libft.a
 			@rm -f libftprintf.a
 			@rm -rf $(NAME)

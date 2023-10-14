@@ -10,7 +10,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#include "../libs/mlx_linux/mlx.h"
+// #include "../libs/mlx_linux/mlx.h"
+#include "../libs/libmlx/mlx.h"
 #include "../libs/ftprintf/ft_printf.h"
 #include "../libs/libft/libft.h"
 #include "../includes/struct.h"

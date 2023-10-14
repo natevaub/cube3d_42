@@ -42,12 +42,12 @@ int	map_valid_char( char **map )
 
 int	map_valid_config( char **map )
 {
-
+	return (0);
 }
 
 char	**map_transform( char **map )
 {
-
+	return (0);
 }
 
 void	init_helper_vars( t_help_vars *vars )
