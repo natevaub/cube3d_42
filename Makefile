@@ -89,21 +89,16 @@ $(OBJS_PATH)/%.o:	$(SRCS_PATH)/%.c
 					@$(CC) $(CFLAGS) $(INCS_PATH) -c $< -o $@
 
 clean:
-ifeq ($(UNAME_S), Linux)
 	@echo "$(RED) Cleaning Directory /libs/libftprintf$(RESET)"
 	@$(MAKE) -sC $(LIBPRINTF_DIRECTORY) clean
 	@echo "$(RED) Cleaning Directory /libs/libft$(RESET)"
 	@$(MAKE) -sC $(LIBFT_DIRECTORY) clean
 	@echo "$(RED) Cleaning Directory /objs$(RESET)"
+ifeq ($(UNAME_S), Linux)
 	@rm -rf $(OBJS_PATH)
 	@$(MAKE) -sC $(MLX_LINUX) clean
 endif
 ifeq ($(UNAME_S), Darwin)
-	@echo "$(RED) Cleaning Directory /libs/libftprintf$(RESET)"
-	@$(MAKE) -sC $(LIBPRINTF_DIRECTORY) clean
-	@echo "$(RED) Cleaning Directory /libs/libft$(RESET)"
-	@$(MAKE) -sC $(LIBFT_DIRECTORY) clean
-	@echo "$(RED) Cleaning Directory /objs$(RESET)"
 	@rm -rf $(OBJS_PATH)
 	@$(MAKE) -sC $(MLX) clean
 endif
