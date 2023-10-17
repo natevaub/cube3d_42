@@ -50,3 +50,12 @@ int	count_occurences(char *str, char c)
 	}
 	return (count);
 }
+
+void	print_int_values(char *str) {
+	if (!str) {
+		return;
+	}
+	for (int i = 0; i < ft_strlen(str); i++) {
+		ft_printf("%d ", str[i]);
+	}
+}

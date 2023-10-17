@@ -34,16 +34,17 @@ int	openCubFile(char *path)
 int	parseCubElements(int fd, t_map *map)
 {
 	char	*current_line;
+	int		i = 0;
 
 	while ((current_line = get_next_line(fd)) != NULL)
 	{
-		ft_printf("Current Line Parsed = %s\n", current_line);
+		ft_printf("Line Parsed = %s ---> i = %d\n", current_line, i);
 		parseEastTexture(current_line, map);
-		// parseWestTexture(current_line, map);
-		// parseNorthTexture(current_line, map);
-		// parseSouthTexture(current_line, map);
-		// parseFloor(current_line, map);
-		// parseCeiling(current_line, map);
+		parseWestTexture(current_line, map);
+		parseNorthTexture(current_line, map);
+		parseSouthTexture(current_line, map);
+		parseFloor(current_line, map);
+		parseCeiling(current_line, map);
 		free(current_line);
 	}
 	return (0);

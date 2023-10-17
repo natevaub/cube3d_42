@@ -1,5 +1,7 @@
 ✅❌
 
+./cube3D /Users/nvaubien/42projects/cube3d_42/maps/easy.cub
+
 PARSING
 
 Validity of the map

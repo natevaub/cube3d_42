@@ -32,6 +32,7 @@ int		count_split_elements(char **tab);
 int		ft_strcmp(char *s1, char *s2);
 void	free_split(char **split);
 int		count_occurences(char *str, char c);
+void	print_int_values(char *str);
 
 int		parseFloor(char *line, t_map *map);
 int		parseCeiling(char *line, t_map *map);

@@ -22,7 +22,10 @@ int	parseEastTexture(char *line, t_map *map)
 	texture_info = ft_split(line, ' ');
 	if (texture_info == NULL)
 		return (0);
-	// texture_info[1] = ft_strtrim(texture_info[1], "\n");
+	print_int_values(texture_info[1]);
+	texture_info[1] = ft_strtrim(texture_info[1], "\n");
+	ft_printf("\n");
+	print_int_values(texture_info[1]);
 	ft_printf("EA Texture: %s\n", texture_info[1]);
 	count_info = count_split_elements(texture_info);
 	ft_printf("Info = %d\n", count_info);
@@ -30,7 +33,8 @@ int	parseEastTexture(char *line, t_map *map)
 	{
 		if (ft_strcmp(texture_info[0], "EA") == 0)
 		{
-			/* Function to check that files extension is .xpm */
+			ft_printf("EA Texture being parsed\n");
+			print_int_values(texture_info[1]);
 			if (access(texture_info[1], F_OK) == 0)
 			{
 				map->ea = ft_strdup(texture_info[1]);
@@ -58,7 +62,7 @@ int	parseWestTexture(char *line, t_map *map)
 	int		existing_file;
 
 	texture_info = ft_split(line, ' ');
-	// texture_info[1] = ft_strtrim(texture_info[1], "\n");
+	texture_info[1] = ft_strtrim(texture_info[1], "\n");
 	// ft_printf("WE Texture: %s\n", texture_info[1]);
 	count_info = count_split_elements(texture_info);
 	if (count_info == 2)
@@ -93,7 +97,7 @@ int	parseNorthTexture(char *line, t_map *map)
 	int		existing_file;
 
 	texture_info = ft_split(line, ' ');
-	// texture_info[1] = ft_strtrim(texture_info[1], "\n");
+	texture_info[1] = ft_strtrim(texture_info[1], "\n");
 	// ft_printf("NO Texture: %s\n", texture_info[1]);
 	count_info = count_split_elements(texture_info);
 	if (count_info == 2)
@@ -128,7 +132,7 @@ int	parseSouthTexture(char *line, t_map *map)
 	int		existing_file;
 
 	texture_info = ft_split(line, ' ');
-	// texture_info[1] = ft_strtrim(texture_info[1], "\n");
+	texture_info[1] = ft_strtrim(texture_info[1], "\n");
 	// ft_printf("SO Texture: %s\n", texture_info[1]);
 	count_info = count_split_elements(texture_info);
 	if (count_info == 2)

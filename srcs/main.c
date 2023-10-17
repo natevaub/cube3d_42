@@ -63,27 +63,27 @@ void	free_map(t_map *map)
 
 int	main( int ac, char **av )
 {
-	// t_map	map;
+	t_map	map;
 
-	// init_map(&map);
+	init_map(&map);
 
-	// cubParsing(av[1], &map);
+	cubParsing(av[1], &map);
 
-	// printMap(&map);
+	printMap(&map);
 
-	// free_map(&map);
+	free_map(&map);
 
-	void *mlx; // The magical mlx pointer
-	void *win; // The window pointer
+	// void *mlx; // The magical mlx pointer
+	// void *win; // The window pointer
 
-	// Initialize mlx
-	mlx = mlx_init();
+	// // Initialize mlx
+	// mlx = mlx_init();
 
-	// Create a window
-	win = mlx_new_window(mlx, 800, 600, "My First mlx Window");
+	// // Create a window
+	// win = mlx_new_window(mlx, 800, 600, "My First mlx Window");
 
-	// The window will stay open until you close it
-	mlx_loop(mlx);
+	// // The window will stay open until you close it
+	// mlx_loop(mlx);
 
 	return (0);
 }

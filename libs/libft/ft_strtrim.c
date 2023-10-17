@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 06:55:20 by nvaubien          #+#    #+#             */
-/*   Updated: 2022/11/08 14:38:40 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/10/17 17:02:30 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		size_malloc;
 	size_t	start;
 
+	if (!s1 || !set)
+		return (NULL);
 	start = start_trim(s1, set);
 	size_malloc = end_trim(s1, set) - start_trim(s1, set) + 1;
 	strtrim = ft_substr(s1, start, size_malloc);

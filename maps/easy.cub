@@ -1,7 +1,7 @@
-   EA     /home/nate/Workspace/42projects/cube3d_42/textures/xpm/1.xpm
-   NO     /home/nate/Workspace/42projects/cube3d_42/textures/xpm/1.xpm
-WE     /home/nate/Workspace/42projects/cube3d_42/textures/xpm/1.xpm
-SO    /home/nate/Workspace/42projects/cube3d_42/textures/xpm/1.xpm
+         WE  ./textures/xpm/1.xpm
+   EA     ./textures/xpm/1.xpm
+   SO     ./textures/xpm/1.xpm
+NO     ./textures/xpm/1.xpm
            F 250,0,0
 C                 125,1,1
 	

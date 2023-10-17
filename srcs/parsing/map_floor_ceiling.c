@@ -6,18 +6,24 @@ int	parseFloor(char *line, t_map *map)
 	int		count_info;
 
 	floor_info = ft_split(line, ' ');
+	floor_info[1] = ft_strtrim(floor_info[1], "\n");
 	count_info = count_split_elements(floor_info);
 	if (count_info == 2)
 	{
+		ft_printf("parseFloor = [ %s ]", floor_info[0]);
+		ft_printf("Valid number of arguments\n");
 		if (ft_strcmp(floor_info[0], "F") == 0)
 		{
+			ft_printf("Floor color\n");
 			if (validFloorColor(floor_info[1], map) == 1)
 			{
+				ft_printf("Success\n");
 				free_split(floor_info);
 				return (1);
 			}
 			else
 			{
+				ft_printf("Ceiling color not valid\n");
 				free_split(floor_info);
 				return (0);
 			}
@@ -29,28 +35,34 @@ int	parseFloor(char *line, t_map *map)
 
 int	parseCeiling(char *line, t_map *map)
 {
-	char	**floor_info;
+	char	**ceiling_info;
 	int		count_info;
 
-	floor_info = ft_split(line, ' ');
-	count_info = count_split_elements(floor_info);
+	ceiling_info = ft_split(line, ' ');
+	ceiling_info[1] = ft_strtrim(ceiling_info[1], "\n");
+	count_info = count_split_elements(ceiling_info);
 	if (count_info == 2)
 	{
-		if (ft_strcmp(floor_info[0], "C") == 0)
+		ft_printf("parseCeiling = [ %s ]", ceiling_info[0]);
+		ft_printf("Valid number of arguments\n");
+		if (ft_strcmp(ceiling_info[0], "C") == 0)
 		{
-			if (validCeilingColor(floor_info[1], map) == 1)
+			ft_printf("Ceiling color\n");
+			if (validCeilingColor(ceiling_info[1], map) == 1)
 			{
-				free_split(floor_info);
+				ft_printf("Success\n");
+				free_split(ceiling_info);
 				return (1);
 			}
 			else
 			{
-				free_split(floor_info);
+				ft_printf("Ceiling color not valid\n");
+				free_split(ceiling_info);
 				return (0);
 			}
 		}
 	}
-	free_split(floor_info);
+	free_split(ceiling_info);
 	return (0);
 }
 
