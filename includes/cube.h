@@ -44,5 +44,8 @@ int		helper_validCeilingColor(char **floorValues, t_map *map);
 int		openCubFile(char *path);
 int		parseCubElements(int fd, t_map *map);
 int		cubParsing(char *path, t_map *map);
+int		mapStart(char *line);
+int		unwantedElements(char *line);
+int		isMapValid(t_map *map);
 
 #endif

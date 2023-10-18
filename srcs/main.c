@@ -33,6 +33,12 @@ void	init_map(t_map *map)
 	map->no = NULL;
 	map->we = NULL;
 	map->ea = NULL;
+	map->count_no = 0;
+	map->count_ea = 0;
+	map->count_so = 0;
+	map->count_we = 0;
+	map->count_floor = 0;
+	map->count_ceiling = 0;
 	map->floor_R = -1;
 	map->floor_G = -1;
 	map->floor_B = -1;
@@ -71,7 +77,7 @@ int	main( int ac, char **av )
 
 	printMap(&map);
 
-	free_map(&map);
+	// free_map(&map);
 
 	// void *mlx; // The magical mlx pointer
 	// void *win; // The window pointer

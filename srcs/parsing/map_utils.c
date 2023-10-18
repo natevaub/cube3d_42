@@ -30,9 +30,11 @@ void free_split(char **split)
 	while (split[i] != NULL)
 	{
 		free(split[i]);
+		split[i] = NULL;
 		i++;
 	}
 	free(split);
+	split = NULL;
 }
 
 int	count_occurences(char *str, char c)

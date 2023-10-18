@@ -2,6 +2,9 @@
 
 ./cube3D /Users/nvaubien/42projects/cube3d_42/maps/easy.cub
 
+make re && valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./cube3D /home/nate/Workspace/42projects/cube3d_42/maps/easy.cub
+
+
 PARSING
 
 Validity of the map

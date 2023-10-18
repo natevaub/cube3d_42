@@ -22,35 +22,29 @@ int	parseEastTexture(char *line, t_map *map)
 	texture_info = ft_split(line, ' ');
 	if (texture_info == NULL)
 		return (0);
-	print_int_values(texture_info[1]);
 	texture_info[1] = ft_strtrim(texture_info[1], "\n");
-	ft_printf("\n");
-	print_int_values(texture_info[1]);
-	ft_printf("EA Texture: %s\n", texture_info[1]);
 	count_info = count_split_elements(texture_info);
-	ft_printf("Info = %d\n", count_info);
-	if (count_info == 2)
+	ft_printf("textture name = %s count_info: %d\n", texture_info[0], count_info);
+	if (ft_strcmp(texture_info[0], "EA") == 0)
 	{
-		if (ft_strcmp(texture_info[0], "EA") == 0)
+		map->count_ea++;
+		if (count_info == 2)
 		{
-			ft_printf("EA Texture being parsed\n");
-			print_int_values(texture_info[1]);
+			ft_printf("OK\n");
 			if (access(texture_info[1], F_OK) == 0)
 			{
+				ft_printf("OKK\n");
 				map->ea = ft_strdup(texture_info[1]);
 				free_split(texture_info);
-				ft_printf("Success\n");
 				return (1);
 			}
 			else
 			{
 				free_split(texture_info);
-				ft_printf("Texture not found\n");
 				return(0);
 			}
 		}
 	}
-	ft_printf("Bad arguments\n");
 	free_split(texture_info);
 	return (0);
 }
@@ -62,31 +56,30 @@ int	parseWestTexture(char *line, t_map *map)
 	int		existing_file;
 
 	texture_info = ft_split(line, ' ');
+	if (texture_info == NULL)
+		return (0);
 	texture_info[1] = ft_strtrim(texture_info[1], "\n");
-	// ft_printf("WE Texture: %s\n", texture_info[1]);
 	count_info = count_split_elements(texture_info);
-	if (count_info == 2)
+	if (ft_strcmp(texture_info[0], "WE") == 0)
 	{
-		if (ft_strcmp(texture_info[0], "WE") == 0)
+		map->count_we++;
+		if (count_info == 2)
 		{
-			/* Function to check that files extension is .xpm */
 			if (access(texture_info[1], F_OK) == 0)
 			{
 				map->we = ft_strdup(texture_info[1]);
 				free_split(texture_info);
-				// ft_printf("Success\n");
 				return (1);
 			}
 			else
 			{
 				free_split(texture_info);
-				// ft_printf("Texture not found\n");
 				return(0);
 			}
 		}
 	}
-	// ft_printf("Bad arguments\n");
 	free_split(texture_info);
+	// free(texture_info);
 	return (0);
 }
 
@@ -97,31 +90,30 @@ int	parseNorthTexture(char *line, t_map *map)
 	int		existing_file;
 
 	texture_info = ft_split(line, ' ');
+	if (texture_info == NULL)
+		return (0);
 	texture_info[1] = ft_strtrim(texture_info[1], "\n");
-	// ft_printf("NO Texture: %s\n", texture_info[1]);
 	count_info = count_split_elements(texture_info);
-	if (count_info == 2)
+	if (ft_strcmp(texture_info[0], "NO") == 0)
 	{
-		if (ft_strcmp(texture_info[0], "NO") == 0)
+		map->count_no++;
+		if (count_info == 2)
 		{
-			/* Function to check that files extension is .xpm */
 			if (access(texture_info[1], F_OK) == 0)
 			{
 				map->no = ft_strdup(texture_info[1]);
 				free_split(texture_info);
-				// ft_printf("Success\n");
 				return (1);
 			}
 			else
 			{
 				free_split(texture_info);
-				// ft_printf("Texture not found\n");
 				return(0);
 			}
 		}
 	}
-	// ft_printf("Bad arguments\n");
 	free_split(texture_info);
+	// free(texture_info);
 	return (0);
 }
 
@@ -132,30 +124,29 @@ int	parseSouthTexture(char *line, t_map *map)
 	int		existing_file;
 
 	texture_info = ft_split(line, ' ');
+	if (texture_info == NULL)
+		return (0);
 	texture_info[1] = ft_strtrim(texture_info[1], "\n");
-	// ft_printf("SO Texture: %s\n", texture_info[1]);
 	count_info = count_split_elements(texture_info);
-	if (count_info == 2)
+	if (ft_strcmp(texture_info[0], "SO") == 0)
 	{
-		if (ft_strcmp(texture_info[0], "SO") == 0)
+		map->count_so++;
+		if (count_info == 2)
 		{
-			/* Function to check that files extension is .xpm */
 			if (access(texture_info[1], F_OK) == 0)
 			{
 				map->so = ft_strdup(texture_info[1]);
 				free_split(texture_info);
-				// ft_printf("Success\n");
 				return (1);
 			}
 			else
 			{
 				free_split(texture_info);
-				// ft_printf("Texture not found\n");
 				return(0);
 			}
 		}
 	}
-	// ft_printf("Bad arguments\n");
 	free_split(texture_info);
+	// free(texture_info);
 	return (0);
 }
