@@ -37,16 +37,22 @@ int	openCubFile(char *path)
 int	parseCubElements(int fd, t_map *map)
 {
 	char	*current_line;
+	char	*line;
 	int		i = 0;
 	int		start = 0;
 
 	/* Iterate through the .cub file until it reaches the map */
-	while ((current_line = get_next_line(fd)) != NULL && start == 0)
+	while ((current_line = get_next_line(fd)) != NULL && start == 0 && i < 1)
 	{
-		if (unwantedElements(current_line) == 1)
-			break;
+		print_int_values(current_line);
+		ft_printf("\n\n");
+		line = front_trim(current_line);
+		ft_printf("\n\n");
+		print_int_values(line);
+		// if (unwantedElements(current_line) == 1)
+		// 	break;
 		ft_printf("[ %s ]   [ %d ]\n", current_line, i);
-		parseEastTexture(current_line, map);
+		parseEastTexture(line, map);
 		// parseWestTexture(current_line, map);
 		// parseNorthTexture(current_line, map);
 		// parseSouthTexture(current_line, map);
@@ -55,7 +61,8 @@ int	parseCubElements(int fd, t_map *map)
 		/* Function map_start */
 		// start = mapStart(current_line);
 		free(current_line);
-		// i++;
+		free(line);
+		i++;
 	}
 	/* Check if map contains all textures and colors before parsing map */
 

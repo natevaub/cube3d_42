@@ -8,7 +8,7 @@ int	parseFloor(char *line, t_map *map)
 	floor_info = ft_split(line, ' ');
 	if (floor_info == NULL)
 		return (0);
-	floor_info[1] = ft_strtrim(floor_info[1], "\n");
+	floor_info[1] = ft_strtrim(floor_info[1], " \n");
 	count_info = count_split_elements(floor_info);
 	if (ft_strcmp(floor_info[0], "F") == 0)
 	{
@@ -40,7 +40,7 @@ int	parseCeiling(char *line, t_map *map)
 	ceiling_info = ft_split(line, ' ');
 	if (ceiling_info == NULL)
 		return (0);
-	ceiling_info[1] = ft_strtrim(ceiling_info[1], "\n");
+	ceiling_info[1] = ft_strtrim(ceiling_info[1], " \n");
 	count_info = count_split_elements(ceiling_info);
 	if (ft_strcmp(ceiling_info[0], "C") == 0)
 	{

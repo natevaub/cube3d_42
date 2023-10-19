@@ -23,10 +23,10 @@ int		map_valid_char( char **map );
 
 void	init_helper_vars( t_help_vars *vars );
 
-int		parseEastTexture(char *line, t_map *map);
-int		parseWestTexture(char *line, t_map *map);
-int		parseNorthTexture(char *line, t_map *map);
-int		parseSouthTexture(char *line, t_map *map);
+void		parseEastTexture(char *line, t_map *map);
+void		parseWestTexture(char *line, t_map *map);
+void		parseNorthTexture(char *line, t_map *map);
+void		parseSouthTexture(char *line, t_map *map);
 
 int		count_split_elements(char **tab);
 int		ft_strcmp(char *s1, char *s2);
@@ -47,5 +47,6 @@ int		cubParsing(char *path, t_map *map);
 int		mapStart(char *line);
 int		unwantedElements(char *line);
 int		isMapValid(t_map *map);
+char	*front_trim(char *line);
 
 #endif

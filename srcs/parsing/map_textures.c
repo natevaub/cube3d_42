@@ -13,7 +13,7 @@
  *
  * @return 1 if the East Texture was successfully parsed and stored, 0 otherwise.
  */
-int	parseEastTexture(char *line, t_map *map)
+void	parseEastTexture(char *line, t_map *map)
 {
 	char	**texture_info;
 	char	*s;
@@ -22,12 +22,11 @@ int	parseEastTexture(char *line, t_map *map)
 
 	texture_info = ft_split(line, ' ');
 	if (texture_info == NULL)
-		return (0);
+		return;
 	s = texture_info[1];
-	texture_info[1] = ft_strtrim(texture_info[1], "\n");
+	texture_info[1] = ft_strtrim(texture_info[1], " \n");
 	free(s);
 	count_info = count_split_elements(texture_info);
-	ft_printf("texture name = %s count_info: %d\n", texture_info[0], count_info);
 	if (ft_strcmp(texture_info[0], "EA") == 0)
 	{
 		map->count_ea++;
@@ -37,29 +36,32 @@ int	parseEastTexture(char *line, t_map *map)
 			{
 				map->ea = ft_strdup(texture_info[1]);
 				free_split(texture_info);
-				return (1);
+				return;
 			}
 			else
 			{
 				free_split(texture_info);
-				return(0);
+				return;
 			}
 		}
 	}
 	free_split(texture_info);
-	return (0);
+	return;
 }
 
-int	parseWestTexture(char *line, t_map *map)
+void	parseWestTexture(char *line, t_map *map)
 {
 	char	**texture_info;
+	char	*s;
 	int		count_info;
 	int		existing_file;
 
 	texture_info = ft_split(line, ' ');
 	if (texture_info == NULL)
-		return (0);
-	texture_info[1] = ft_strtrim(texture_info[1], "\n");
+		return;
+	s = texture_info[1];
+	texture_info[1] = ft_strtrim(texture_info[1], " \n");
+	free(s);
 	count_info = count_split_elements(texture_info);
 	if (ft_strcmp(texture_info[0], "WE") == 0)
 	{
@@ -70,30 +72,32 @@ int	parseWestTexture(char *line, t_map *map)
 			{
 				map->we = ft_strdup(texture_info[1]);
 				free_split(texture_info);
-				return (1);
+				return;
 			}
 			else
 			{
 				free_split(texture_info);
-				return(0);
+				return;
 			}
 		}
 	}
 	free_split(texture_info);
-	// free(texture_info);
-	return (0);
+	return;
 }
 
-int	parseNorthTexture(char *line, t_map *map)
+void	parseNorthTexture(char *line, t_map *map)
 {
 	char	**texture_info;
+	char	*s;
 	int		count_info;
 	int		existing_file;
 
 	texture_info = ft_split(line, ' ');
 	if (texture_info == NULL)
-		return (0);
-	texture_info[1] = ft_strtrim(texture_info[1], "\n");
+		return;
+	s = texture_info[1];
+	texture_info[1] = ft_strtrim(texture_info[1], " \n");
+	free(s);
 	count_info = count_split_elements(texture_info);
 	if (ft_strcmp(texture_info[0], "NO") == 0)
 	{
@@ -104,30 +108,33 @@ int	parseNorthTexture(char *line, t_map *map)
 			{
 				map->no = ft_strdup(texture_info[1]);
 				free_split(texture_info);
-				return (1);
+				return;
 			}
 			else
 			{
 				free_split(texture_info);
-				return(0);
+				return;
 			}
 		}
 	}
 	free_split(texture_info);
-	// free(texture_info);
-	return (0);
+	return;
 }
 
-int	parseSouthTexture(char *line, t_map *map)
+void	parseSouthTexture(char *line, t_map *map)
 {
 	char	**texture_info;
+	char	*s;
 	int		count_info;
 	int		existing_file;
 
 	texture_info = ft_split(line, ' ');
 	if (texture_info == NULL)
-		return (0);
-	texture_info[1] = ft_strtrim(texture_info[1], "\n");
+		return;
+	s = texture_info[1];
+	texture_info[1] = ft_strtrim(texture_info[1], " \n");
+	// print_int_values(texture_info[1]);
+	free(s);
 	count_info = count_split_elements(texture_info);
 	if (ft_strcmp(texture_info[0], "SO") == 0)
 	{
@@ -138,16 +145,15 @@ int	parseSouthTexture(char *line, t_map *map)
 			{
 				map->so = ft_strdup(texture_info[1]);
 				free_split(texture_info);
-				return (1);
+				return;
 			}
 			else
 			{
 				free_split(texture_info);
-				return(0);
+				return;
 			}
 		}
 	}
 	free_split(texture_info);
-	// free(texture_info);
-	return (0);
+	return;
 }
