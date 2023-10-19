@@ -43,6 +43,8 @@ int	parseCubElements(int fd, t_map *map)
 	/* Iterate through the .cub file until it reaches the map */
 	while ((current_line = get_next_line(fd)) != NULL && start == 0)
 	{
+		if (unwantedElements(current_line) == 1)
+			break;
 		ft_printf("[ %s ]   [ %d ]\n", current_line, i);
 		parseEastTexture(current_line, map);
 		// parseWestTexture(current_line, map);

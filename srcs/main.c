@@ -77,7 +77,7 @@ int	main( int ac, char **av )
 
 	printMap(&map);
 
-	// free_map(&map);
+	free_map(&map);
 
 	// void *mlx; // The magical mlx pointer
 	// void *win; // The window pointer

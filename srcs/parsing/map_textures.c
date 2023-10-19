@@ -16,24 +16,25 @@
 int	parseEastTexture(char *line, t_map *map)
 {
 	char	**texture_info;
+	char	*s;
 	int		count_info;
 	int		existing_file;
 
 	texture_info = ft_split(line, ' ');
 	if (texture_info == NULL)
 		return (0);
+	s = texture_info[1];
 	texture_info[1] = ft_strtrim(texture_info[1], "\n");
+	free(s);
 	count_info = count_split_elements(texture_info);
-	ft_printf("textture name = %s count_info: %d\n", texture_info[0], count_info);
+	ft_printf("texture name = %s count_info: %d\n", texture_info[0], count_info);
 	if (ft_strcmp(texture_info[0], "EA") == 0)
 	{
 		map->count_ea++;
 		if (count_info == 2)
 		{
-			ft_printf("OK\n");
 			if (access(texture_info[1], F_OK) == 0)
 			{
-				ft_printf("OKK\n");
 				map->ea = ft_strdup(texture_info[1]);
 				free_split(texture_info);
 				return (1);
