@@ -16,16 +16,21 @@
 void	parseEastTexture(char *line, t_map *map)
 {
 	char	**texture_info;
-	char	*s;
+	// char	*s;
 	int		count_info;
 	int		existing_file;
 
 	texture_info = ft_split(line, ' ');
 	if (texture_info == NULL)
+	{
+		ft_printf("NULL");
 		return;
-	s = texture_info[1];
-	texture_info[1] = ft_strtrim(texture_info[1], " \n");
-	free(s);
+	}
+	if (map->count_ea > 1)
+	{
+		free_split(texture_info);
+		return;
+	}
 	count_info = count_split_elements(texture_info);
 	if (ft_strcmp(texture_info[0], "EA") == 0)
 	{
@@ -52,16 +57,17 @@ void	parseEastTexture(char *line, t_map *map)
 void	parseWestTexture(char *line, t_map *map)
 {
 	char	**texture_info;
-	char	*s;
 	int		count_info;
 	int		existing_file;
 
 	texture_info = ft_split(line, ' ');
 	if (texture_info == NULL)
 		return;
-	s = texture_info[1];
-	texture_info[1] = ft_strtrim(texture_info[1], " \n");
-	free(s);
+	if (map->count_we == 1)
+	{
+		free_split(texture_info);
+		return;
+	}
 	count_info = count_split_elements(texture_info);
 	if (ft_strcmp(texture_info[0], "WE") == 0)
 	{
@@ -88,16 +94,17 @@ void	parseWestTexture(char *line, t_map *map)
 void	parseNorthTexture(char *line, t_map *map)
 {
 	char	**texture_info;
-	char	*s;
 	int		count_info;
 	int		existing_file;
 
 	texture_info = ft_split(line, ' ');
 	if (texture_info == NULL)
 		return;
-	s = texture_info[1];
-	texture_info[1] = ft_strtrim(texture_info[1], " \n");
-	free(s);
+	if (map->count_no > 1)
+	{
+		free_split(texture_info);
+		return;
+	}
 	count_info = count_split_elements(texture_info);
 	if (ft_strcmp(texture_info[0], "NO") == 0)
 	{
@@ -124,17 +131,17 @@ void	parseNorthTexture(char *line, t_map *map)
 void	parseSouthTexture(char *line, t_map *map)
 {
 	char	**texture_info;
-	char	*s;
 	int		count_info;
 	int		existing_file;
 
 	texture_info = ft_split(line, ' ');
 	if (texture_info == NULL)
 		return;
-	s = texture_info[1];
-	texture_info[1] = ft_strtrim(texture_info[1], " \n");
-	// print_int_values(texture_info[1]);
-	free(s);
+	if (map->count_so > 1)
+	{
+		free_split(texture_info);
+		return;
+	}
 	count_info = count_split_elements(texture_info);
 	if (ft_strcmp(texture_info[0], "SO") == 0)
 	{
@@ -156,4 +163,14 @@ void	parseSouthTexture(char *line, t_map *map)
 	}
 	free_split(texture_info);
 	return;
+}
+
+void	parseElements(char *line, t_map *map)
+{
+	parseEastTexture(line, map);
+	parseWestTexture(line, map);
+	parseNorthTexture(line, map);
+	parseSouthTexture(line, map);
+	parseFloor(line, map);
+	parseCeiling(line, map);
 }

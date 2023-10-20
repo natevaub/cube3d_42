@@ -27,6 +27,7 @@ void		parseEastTexture(char *line, t_map *map);
 void		parseWestTexture(char *line, t_map *map);
 void		parseNorthTexture(char *line, t_map *map);
 void		parseSouthTexture(char *line, t_map *map);
+void		parseElements(char *line, t_map *map);
 
 int		count_split_elements(char **tab);
 int		ft_strcmp(char *s1, char *s2);
@@ -34,19 +35,21 @@ void	free_split(char **split);
 int		count_occurences(char *str, char c);
 void	print_int_values(char *str);
 
-int		parseFloor(char *line, t_map *map);
-int		parseCeiling(char *line, t_map *map);
+void		parseFloor(char *line, t_map *map);
+void		parseCeiling(char *line, t_map *map);
 int		validCeilingColor(char *ceilingValues, t_map *map);
 int		validFloorColor(char *floorValues, t_map *map);
 int		helper_validFloorColor(char **floorValues, t_map *map);
 int		helper_validCeilingColor(char **floorValues, t_map *map);
+void	freeLines(char *line, char *current_line);
+
 
 int		openCubFile(char *path);
 int		parseCubElements(int fd, t_map *map);
+int 	isValidElements(t_map *map);
 int		cubParsing(char *path, t_map *map);
 int		mapStart(char *line);
 int		unwantedElements(char *line);
-int		isMapValid(t_map *map);
 char	*front_trim(char *line);
 
 #endif

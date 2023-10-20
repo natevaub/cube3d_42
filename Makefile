@@ -38,6 +38,7 @@ PARSING_FILES			:=			map_check.c			\
 									map_textures.c		\
 									map_utils.c			\
 									map_floor_ceiling.c	\
+									map_helpers.c		\
 
 MAIN_FILE				:=			$(addprefix $(OBJS_PATH)/, $(MAIN_FILE:.c=.o))
 PARSING_FILES			:=			$(addprefix $(OBJS_PATH)/parsing/, $(PARSING_FILES:.c=.o))

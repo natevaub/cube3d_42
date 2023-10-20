@@ -1,15 +1,19 @@
 #include "../includes/cube.h"
 
-int	parseFloor(char *line, t_map *map)
+void	parseFloor(char *line, t_map *map)
 {
 	char	**floor_info;
 	int		count_info;
 
 	floor_info = ft_split(line, ' ');
 	if (floor_info == NULL)
-		return (0);
-	floor_info[1] = ft_strtrim(floor_info[1], " \n");
+		return;
 	count_info = count_split_elements(floor_info);
+	if (map->count_floor > 1)
+	{
+		free_split(floor_info);
+		return;
+	}
 	if (ft_strcmp(floor_info[0], "F") == 0)
 	{
 		if (count_info == 2)
@@ -18,50 +22,54 @@ int	parseFloor(char *line, t_map *map)
 			if (validFloorColor(floor_info[1], map) == 1)
 			{
 				free_split(floor_info);
-				return (1);
+				return;
 			}
 			else
 			{
 				free_split(floor_info);
-				return (0);
+				return;
 			}
 		}
 	}
 	free_split(floor_info);
-	// free(floor_info);
-	return (0);
+	return;
 }
 
-int	parseCeiling(char *line, t_map *map)
+void	parseCeiling(char *line, t_map *map)
 {
 	char	**ceiling_info;
 	int		count_info;
 
 	ceiling_info = ft_split(line, ' ');
 	if (ceiling_info == NULL)
-		return (0);
-	ceiling_info[1] = ft_strtrim(ceiling_info[1], " \n");
+		return;
 	count_info = count_split_elements(ceiling_info);
+	if (map->count_ceiling > 1)
+	{
+		free_split(ceiling_info);
+		return;
+	}
 	if (ft_strcmp(ceiling_info[0], "C") == 0)
 	{
 		map->count_ceiling++;
+		
 		if (count_info == 2)
 		{
 			if (validCeilingColor(ceiling_info[1], map) == 1)
 			{
 				free_split(ceiling_info);
-				return (1);
+				return;
 			}
 			else
 			{
 				free_split(ceiling_info);
-				return (0);
+				return;
 			}
 		}
 	}
 	free_split(ceiling_info);
 	// free(ceiling_info);
-	return (0);
+	return;
 }
 
 int	validFloorColor(char *floorValues, t_map *map)
@@ -116,50 +124,8 @@ int	validCeilingColor(char *ceilingValues, t_map *map)
 	return (1);
 }
 
-int	helper_validCeilingColor(char **CeilingValues, t_map *map)
+void	freeLines(char *line, char *current_line)
 {
-	int	value;
-	int	i;
-
-	i = 0;
-	while (CeilingValues[i] != NULL)
-	{
-		value = atoi(CeilingValues[i]);
-		if (value < 0 || value > 255)
-		{
-			return (0);
-		}
-		if (i == 0)
-			map->ceiling_R = value;
-		else if (i == 1)
-			map->ceiling_G = value;
-		else if (i == 2)
-			map->ceiling_B = value;
-		i++;
-	}
-	return (1);
-}
-
-int	helper_validFloorColor(char **floorValues, t_map *map)
-{
-	int	value;
-	int	i;
-
-	i = 0;
-	while (floorValues[i] != NULL)
-	{
-		value = atoi(floorValues[i]);
-		if (value < 0 || value > 255)
-		{
-			return (0);
-		}
-		if (i == 0)
-			map->floor_R = value;
-		else if (i == 1)
-			map->floor_G = value;
-		else if (i == 2)
-			map->floor_B = value;
-		i++;
-	}
-	return (1);
+	free(line);
+	free(current_line);
 }
