@@ -1,6 +1,6 @@
 #include "../../includes/cube.h"
 
-int	helper_validCeilingColor(char **CeilingValues, t_map *map)
+int	helper_valid_ceiling_color(char **CeilingValues, t_map *map)
 {
 	int	value;
 	int	i;
@@ -24,7 +24,7 @@ int	helper_validCeilingColor(char **CeilingValues, t_map *map)
 	return (1);
 }
 
-int	helper_validFloorColor(char **floorValues, t_map *map)
+int	helper_valid_floor_color(char **floorValues, t_map *map)
 {
 	int	value;
 	int	i;
@@ -46,4 +46,14 @@ int	helper_validFloorColor(char **floorValues, t_map *map)
 		i++;
 	}
 	return (1);
+}
+
+void	parseElements(char *line, t_map *map)
+{
+	parse_east_texture(line, map);
+	parse_west_texture(line, map);
+	parse_north_texture(line, map);
+	parse_south_texture(line, map);
+	parse_floor(line, map);
+	parse_ceiling(line, map);
 }

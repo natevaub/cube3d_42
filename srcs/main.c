@@ -84,13 +84,8 @@ int	main( int ac, char **av )
 	t_map	map;
 
 	init_map(&map);
-
+	cub_parsing(av[1], &map);
 	printMap(&map);
-
-	cubParsing(av[1], &map);
-
-	printMap(&map);
-
 	free_map(&map);
 
 	// printMap(&map);

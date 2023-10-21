@@ -96,3 +96,10 @@ char	*front_trim(char *line)
 	new_line[i] = '\0';
 	return (new_line);
 }
+
+
+void	free_lines(char *line, char *current_line)
+{
+	free(line);
+	free(current_line);
+}
