@@ -62,6 +62,7 @@ void	print_int_values(char *str) {
 	for (int i = 0; i < ft_strlen(str); i++) {
 		ft_printf("%d ", str[i]);
 	}
+	ft_printf("\n");
 }
 
 char	*front_trim(char *line)
@@ -102,4 +103,97 @@ void	free_lines(char *line, char *current_line)
 {
 	free(line);
 	free(current_line);
+}
+
+int count_length(char *line)
+{
+	int i = 0;
+
+	// Skip leading spaces
+	while (line[i] && line[i] == ' ')
+	{
+		i++;
+	}
+
+	int j = 0;
+
+	// Count characters until a space or the end of the string
+	while (line[i] && line[i] != ' ')
+	{
+		i++;
+		j++;
+	}
+
+	return j;
+}
+
+
+
+int	parse_cub_elements(int fd, t_map *map)
+{
+	char	*current_line;
+	char	*line;
+	int		i = 0;
+	int		start = 0;
+	int		badElements = 0;
+
+	/* Iterate through the .cub file until it reaches the map */
+	while ((current_line = get_next_line(fd)) != NULL)
+	{
+		line = front_trim(current_line);
+		if (line[0] == '\0')
+		{
+			free_lines(line, current_line);
+			continue;
+		}
+		if (mapStart(line) == 1)
+		{
+			close(fd);
+			ft_printf("Fd = %d\n", fd);
+			free_lines(line, current_line);
+			break;
+		}
+		ft_printf("[ %s ]   [ %d ]\n", line, i);
+		if (unwanted_elements(line) == 1)
+		{
+			badElements = 1;
+			free_lines(line, current_line);
+			break;
+		}
+		parseElements(line, map);
+		/* Function map_start */
+		free_lines(line, current_line);
+		i++;
+	}
+
+	/* Check if map contains all textures and colors before parsing map */
+	if (is_valid_elements(map) || badElements == 1)
+	{
+		ft_putstr_fd("Error\n", 2);
+		return (0);
+	}
+	else {
+		ft_printf("Lets parse the map\n");
+	}
+
+	/* Parse the map */
+	// first_pass_map(map, fd);
+
+	return (0);
+}
+
+int	mapStart(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] && line[i] == ' ')
+	{
+		i++;
+	}
+	if (line[i] && line[i] == '1')
+	{
+		return (1);
+	}
+	return (0);
 }

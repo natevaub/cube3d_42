@@ -39,8 +39,9 @@ void printMap(const t_map *map) {
     }
 }
 
-void	init_map(t_map *map)
+void	init_map(t_map *map, char **av)
 {
+	map->path = ft_strdup(av[1]);
 	map->so = NULL;
 	map->no = NULL;
 	map->we = NULL;
@@ -57,6 +58,8 @@ void	init_map(t_map *map)
 	map->ceiling_R = -1;
 	map->ceiling_G = -1;
 	map->ceiling_B = -1;
+	map->rows_count = 0;
+	map->rows_width = 0;
 	map->map = NULL;
 }
 
@@ -77,29 +80,19 @@ void	free_map(t_map *map)
 	map->ceiling_G = -1;
 	map->ceiling_B = -1;
 	map->map = NULL;
+	free(map->path);
+	map->path = NULL;
+	free_split(map->copy);
+	map->copy = NULL;
 }
 
 int	main( int ac, char **av )
 {
 	t_map	map;
 
-	init_map(&map);
-	cub_parsing(av[1], &map);
-	printMap(&map);
-	free_map(&map);
-
+	init_map(&map, av);
+	open_cub_file(map.path, &map);
 	// printMap(&map);
-	// void *mlx; // The magical mlx pointer
-	// void *win; // The window pointer
-
-	// // Initialize mlx
-	// mlx = mlx_init();
-
-	// // Create a window
-	// win = mlx_new_window(mlx, 800, 600, "My First mlx Window");
-
-	// // The window will stay open until you close it
-	// mlx_loop(mlx);
-
+	free_map(&map);
 	return (0);
 }

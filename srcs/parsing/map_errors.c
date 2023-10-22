@@ -25,21 +25,25 @@ int	is_valid_elements(t_map *map)
 	if (map->count_no != 1 || map->count_ea != 1 || map->count_so != 1
 		|| map->count_we != 1)
 	{
-		return (1);
+		ft_printf("Error: invalid number of textures\n");
+		return (0);
 	}
 	if (map->so == NULL || map->no == NULL || map->we == NULL
 		|| map->ea == NULL)
 	{
-		return (2);
+		ft_printf("Error: invalid texture path\n");
+		return (0);
 	}
 	if (map->count_floor != 1 || map->count_ceiling != 1)
 	{
-		return (3);
+		ft_printf("Error: invalid number of colors\n");
+		return (0);
 	}
 	if (map->floor_R == -1 || map->floor_G == -1 || map->floor_B == -1
 		|| map->ceiling_R == -1 || map->ceiling_G == -1 || map->ceiling_B == -1)
 	{
-		return (4);
+		ft_printf("Error: invalid color\n");
+		return (0);
 	}
-	return (0);
+	return (1);
 }

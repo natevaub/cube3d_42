@@ -9,6 +9,7 @@ typedef struct s_map {
 	int		count_no;
 	int		count_so;
 	int		count_we;
+	char	*path;
 	char	*so;
 	char	*no;
 	char	*we;
@@ -21,5 +22,8 @@ typedef struct s_map {
 	int		ceiling_R;
 	int		ceiling_G;
 	int		ceiling_B;
+	int		rows_count;
+	int		rows_width;
 	char	**map;
+	char	**copy;
 }	t_map;

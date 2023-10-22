@@ -1,25 +1,6 @@
 #include "../../includes/cube.h"
 
-// Function to check if a line contains elements that are not in the specification
-
-
-int	cub_parsing(char *path, t_map *map)
-{
-	int	res;
-
-	res = open_cub_file(path);
-	if (res == -1)
-	{
-		return (0);
-	}
-	else
-	{
-		parse_cub_elements(res, map);
-	}
-	return (1);
-}
-
-int	open_cub_file(char *path)
+int	open_cub_file(char *path, t_map *map)
 {
 	int	fd;
 
@@ -31,72 +12,76 @@ int	open_cub_file(char *path)
 		ft_putstr_fd("\n", 2);
 		return (-1);
 	}
-	return (fd);
-}
-
-int	parse_cub_elements(int fd, t_map *map)
-{
-	char	*current_line;
-	char	*line;
-	int		i = 0;
-	int		start = 0;
-	int		badElements = 0;
-
-	/* Iterate through the .cub file until it reaches the map */
-	while ((current_line = get_next_line(fd)) != NULL && mapStart != 1)
+	else
 	{
-		line = front_trim(current_line);
-		if (line[0] == '\0')
-		{
-			free_lines(line, current_line);
-			continue;
-		}
-		if (mapStart(line) == 1)
-		{
-			free_lines(line, current_line);
-			break;
-		}
-		ft_printf("[ %s ]   [ %d ]\n", line, i);
-		if (unwanted_elements(line) == 1)
-		{
-			badElements = 1;
-			free_lines(line, current_line);
-			break;
-		}
-		parseElements(line, map);
-		/* Function map_start */
-		free_lines(line, current_line);
-		i++;
+		cub_copy(fd, map);
 	}
-
-	/* Check if map contains all textures and colors before parsing map */
-	if (is_valid_elements(map) || badElements == 1)
-	{
-		ft_putstr_fd("Error\n", 2);
-		return (0);
-	}
-	else {
-		ft_printf("Lets parse the map\n");
-	}
-
-	/* Parse the map */
-
-
 	return (0);
 }
 
-int	mapStart(char *line)
+int	cub_copy(int fd, t_map *map)
 {
-	int	i;
+	char	*line;
+	char	*to_free;
+	char	*res;
+	int 	map_start_at;
+	int		i;
 
-	i = 0;
-	while (line[i] == ' ')
+	res = NULL;
+	to_free = ft_strdup("");
+	while ((line = get_next_line(fd)) != NULL)
 	{
+		res = ft_strjoin(to_free, line);
+		free(to_free);
+		to_free = res;
+		free(line);
+	}
+	/* Detect if there's a map in the file */
+	search_map(0, &map_start_at, res);
+	if (map_start_at == -1)
+	{
+		ft_printf("Error map not found\n");
+		return (0);
+	}
+	/* Detect if there's an empty line in the file */
+	if (found_empty_line(&res[map_start_at]))
+	{
+		ft_printf("Error empty line in map\n");
+		return (0);
+	}
+
+	/* Split res and store the result in copy */
+	map->copy = ft_split(res, '\n');
+	free(res);
+	for (int i = 0; map->copy[i]; i++)
+	{
+		ft_printf("Line[%d]: [%s]\n", i, map->copy[i]);
+	}
+	i = 0;
+	while (map->copy[i])
+	{
+		line = front_trim(map->copy[i]);
+		if (mapStart(line))
+		{
+			ft_printf("Map found\n");
+			break ;
+		}
+		if (unwanted_elements(line))
+		{
+			ft_printf("Line = %s\n", line);
+			ft_printf("Error unwanted elements\n");
+			return (0);
+		}
+		parseElements(line, map);
+		free(line);
 		i++;
 	}
-	if (line[i] == '1')
+	printMap(map);
+	if (!is_valid_elements(map))
 	{
-		return (1);
+		ft_printf("Error invalid elements\n");
+		return (0);
 	}
+	ft_printf("i = %d\n", i);
 	return (0);
 }
