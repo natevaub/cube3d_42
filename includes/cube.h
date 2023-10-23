@@ -27,10 +27,6 @@
 #define ERR_MSG_8 "Error: Invalidd color\n"
 
 
-int map_valid_char(char **map);
-
-void init_helper_vars(t_help_vars *vars);
-
 /**
  * map_textures.c
  *
