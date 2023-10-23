@@ -41,6 +41,7 @@ int	cub_copy(int fd, t_map *map)
 	if (map_start_at == -1)
 	{
 		ft_printf("Error map not found\n");
+		free(res);
 		return (0);
 	}
 	/* Detect if there's an empty line in the file */
@@ -61,27 +62,51 @@ int	cub_copy(int fd, t_map *map)
 	while (map->copy[i])
 	{
 		line = front_trim(map->copy[i]);
-		if (mapStart(line))
+		if (map_start(line))
 		{
 			ft_printf("Map found\n");
+			free(line);
 			break ;
 		}
 		if (unwanted_elements(line))
 		{
+			free(line);
 			ft_printf("Line = %s\n", line);
 			ft_printf("Error unwanted elements\n");
 			return (0);
 		}
-		parseElements(line, map);
+		parse_elements(line, map);
 		free(line);
 		i++;
 	}
-	printMap(map);
 	if (!is_valid_elements(map))
 	{
 		ft_printf("Error invalid elements\n");
 		return (0);
 	}
 	ft_printf("i = %d\n", i);
+	int	map_start = i;
+	char *ft_line;
+	while (map->copy[i])
+	{
+		if (ft_strlen(map->copy[i]) > map->rows_width)
+			map->rows_width = ft_strlen(map->copy[i]);
+		map->rows_count++;
+		i++;
+	}
+	map->map = (char **)malloc(sizeof(char *) * (map->rows_count + 1));
+	map->map[map->rows_count] = NULL;
+	i = 0;	
+	while (i < map->rows_count)
+	{
+		map->map[i] = fill_map(map->copy[map_start], map);
+		i++;
+		map_start++;
+	}
+
+	if (is_valid_map(map) == 0)
+	{
+		return (0);
+	}
 	return (0);
 }

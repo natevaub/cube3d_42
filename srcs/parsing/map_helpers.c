@@ -1,14 +1,14 @@
 #include "../../includes/cube.h"
 
-int	helper_valid_ceiling_color(char **CeilingValues, t_map *map)
+int	helper_valid_ceiling_color(char **ceilingValues, t_map *map)
 {
 	int	value;
 	int	i;
 
 	i = 0;
-	while (CeilingValues[i] != NULL)
+	while (ceilingValues[i] != NULL)
 	{
-		value = atoi(CeilingValues[i]);
+		value = atoi(ceilingValues[i]);
 		if (value < 0 || value > 255)
 		{
 			return (0);
@@ -48,7 +48,7 @@ int	helper_valid_floor_color(char **floorValues, t_map *map)
 	return (1);
 }
 
-void	parseElements(char *line, t_map *map)
+void	parse_elements(char *line, t_map *map)
 {
 	parse_east_texture(line, map);
 	parse_west_texture(line, map);
@@ -56,4 +56,50 @@ void	parseElements(char *line, t_map *map)
 	parse_south_texture(line, map);
 	parse_floor(line, map);
 	parse_ceiling(line, map);
+}
+
+int	map_start(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] && line[i] == ' ')
+		i++;
+	if (line[i] && line[i] == '1')
+		return (1);
+	return (0);
+}
+
+char	*fill_map(char *line, t_map *map)
+{
+	int		i;
+	int		j;
+	char	*new_line;
+
+	i = 0;
+	j = 0;
+	new_line = ft_calloc(map->rows_width + 1, sizeof(char));
+	if (new_line == NULL)
+		return (NULL);
+	while (line[i] && line[i] == ' ')
+		i++;
+	if (line[i])
+	{
+		while (line[i] && j < map->rows_width)
+		{
+			if (line[i] == ' ')
+				new_line[j] = '1';
+			else
+				new_line[j] = line[i];
+			i++;
+			j++;
+		}
+	}
+	while (j < map->rows_width)
+	{
+		new_line[j] = '1';
+		j++;
+	}
+	new_line[j] = '\0';
+	return (new_line);
 }

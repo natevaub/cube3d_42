@@ -1,6 +1,16 @@
 #include "../includes/cube.h"
 
-void printMap(const t_map *map) {
+void	debug_print_int_values(char *str) {
+	if (!str) {
+		return;
+	}
+	for (int i = 0; i < ft_strlen(str); i++) {
+		ft_printf("%d ", str[i]);
+	}
+	ft_printf("\n");
+}
+
+void debug_print_map(const t_map *map) {
     printf("East Texture: %s\n", map->ea ? map->ea : "Not defined");
     printf("North Texture: %s\n", map->no ? map->no : "Not defined");
     printf("South Texture: %s\n", map->so ? map->so : "Not defined");
@@ -28,6 +38,9 @@ void printMap(const t_map *map) {
 
     printf("Ceiling Count: %d\n", map->count_ceiling);
     printf("Floor Count: %d\n", map->count_floor);
+
+	printf("Rows Count: %d\n", map->rows_count);
+	printf("Rows Width: %d\n", map->rows_width);
 
     printf("Map Content:\n");
     if (map->map) {
@@ -61,29 +74,40 @@ void	init_map(t_map *map, char **av)
 	map->rows_count = 0;
 	map->rows_width = 0;
 	map->map = NULL;
+	map->copy = NULL;
 }
 
 void	free_map(t_map *map)
 {
-	free(map->so);
-	map->so = NULL;
-	free(map->no);
-	map->no = NULL;
-	free(map->we);
-	map->we = NULL;
-	free(map->ea);
-	map->ea = NULL;
+	int	i;
+
+	
 	map->floor_R = -1;
 	map->floor_G = -1;
 	map->floor_B = -1;
 	map->ceiling_R = -1;
 	map->ceiling_G = -1;
 	map->ceiling_B = -1;
-	map->map = NULL;
 	free(map->path);
-	map->path = NULL;
-	free_split(map->copy);
-	map->copy = NULL;
+	if (map->copy)
+	{
+		ft_printf("Here");
+		free_split(map->copy);
+		free(map->so);
+		free(map->no);
+		free(map->we);
+		free(map->ea);
+	}
+	if (map->map)
+	{
+		i = 0;
+		while (map->map[i])
+		{
+			free(map->map[i]);
+			i++;
+		}
+		free(map->map);
+	}
 }
 
 int	main( int ac, char **av )
@@ -92,7 +116,7 @@ int	main( int ac, char **av )
 
 	init_map(&map, av);
 	open_cub_file(map.path, &map);
-	// printMap(&map);
+	debug_print_map(&map);
 	free_map(&map);
 	return (0);
 }

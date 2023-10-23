@@ -1,5 +1,5 @@
 CC						:=			gcc
-CFLAGS					:=		-fsanitize=address
+CFLAGS					:=		-fsanitize=address -g
 
 
 NAME					:=			cube3D
@@ -33,14 +33,14 @@ LIBPRINTF_DIRECTORY		:=			$(LIB_DIRECTORY)ftprintf/
 
 MAIN_FILE				:=			main.c
 
-PARSING_FILES			:=			map_check.c			\
-									map_open.c			\
+PARSING_FILES			:=			map_open.c			\
 									map_textures.c		\
 									map_utils.c			\
 									map_floor_ceiling.c	\
 									map_helpers.c		\
 									map_errors.c		\
 									map_search.c		\
+									map_parsing.c		\
 
 MAIN_FILE				:=			$(addprefix $(OBJS_PATH)/, $(MAIN_FILE:.c=.o))
 PARSING_FILES			:=			$(addprefix $(OBJS_PATH)/parsing/, $(PARSING_FILES:.c=.o))
