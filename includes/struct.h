@@ -24,6 +24,7 @@ typedef struct s_map {
 	int		ceiling_B;
 	int		rows_count;
 	int		rows_width;
+	int		map_start_line;
 	char	**map;
 	char	**copy;
 }	t_map;

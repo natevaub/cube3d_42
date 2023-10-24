@@ -11,45 +11,56 @@ void	debug_print_int_values(char *str) {
 }
 
 void debug_print_map(const t_map *map) {
-    printf("East Texture: %s\n", map->ea ? map->ea : "Not defined");
-    printf("North Texture: %s\n", map->no ? map->no : "Not defined");
-    printf("South Texture: %s\n", map->so ? map->so : "Not defined");
-    printf("West Texture: %s\n", map->we ? map->we : "Not defined");
+	printf("East Texture: %s\n", map->ea ? map->ea : "Not defined");
+	printf("North Texture: %s\n", map->no ? map->no : "Not defined");
+	printf("South Texture: %s\n", map->so ? map->so : "Not defined");
+	printf("West Texture: %s\n", map->we ? map->we : "Not defined");
 
-    printf("Floor Color: ");
-    if (map->floor_R >= 0 && map->floor_G >= 0 && map->floor_B >= 0) {
-        printf("%d,%d,%d\n", map->floor_R, map->floor_G, map->floor_B);
-    } else {
-        printf("Not defined\n");
-    }
+	printf("Floor Color: ");
+	if (map->floor_R >= 0 && map->floor_G >= 0 && map->floor_B >= 0) {
+		printf("%d,%d,%d\n", map->floor_R, map->floor_G, map->floor_B);
+	} else {
+		printf("Not defined\n");
+	}
 
-    printf("Ceiling Color: ");
-    if (map->ceiling_R >= 0 && map->ceiling_G >= 0 && map->ceiling_B >= 0) {
-        printf("%d,%d,%d\n", map->ceiling_R, map->ceiling_G, map->ceiling_B);
-    } else {
-        printf("Not defined\n");
-    }
+	printf("Ceiling Color: ");
+	if (map->ceiling_R >= 0 && map->ceiling_G >= 0 && map->ceiling_B >= 0) {
+		printf("%d,%d,%d\n", map->ceiling_R, map->ceiling_G, map->ceiling_B);
+	} else {
+		printf("Not defined\n");
+	}
 
-    printf("Texture Counts:\n");
-    printf("East Texture Count: %d\n", map->count_ea);
-    printf("North Texture Count: %d\n", map->count_no);
-    printf("South Texture Count: %d\n", map->count_so);
-    printf("West Texture Count: %d\n", map->count_we);
+	printf("Texture Counts:\n");
+	printf("East Texture Count: %d\n", map->count_ea);
+	printf("North Texture Count: %d\n", map->count_no);
+	printf("South Texture Count: %d\n", map->count_so);
+	printf("West Texture Count: %d\n", map->count_we);
 
-    printf("Ceiling Count: %d\n", map->count_ceiling);
-    printf("Floor Count: %d\n", map->count_floor);
+	printf("Ceiling Count: %d\n", map->count_ceiling);
+	printf("Floor Count: %d\n", map->count_floor);
 
 	printf("Rows Count: %d\n", map->rows_count);
 	printf("Rows Width: %d\n", map->rows_width);
+	printf("Map Copy:\n");
 
-    printf("Map Content:\n");
-    if (map->map) {
-        for (int i = 0; map->map[i]; i++) {
-            printf("%s\n", map->map[i]);
-        }
-    } else {
-        printf("Not defined\n");
-    }
+	printf("Map Content:\n");
+	if (map->copy) {
+		for (int i = 0; map->copy[i]; i++) {
+			printf("%s\n", map->copy[i]);
+		}
+	} else {
+		printf("Not defined\n");
+	}
+
+
+	printf("Map Content:\n");
+	if (map->map) {
+		for (int i = 0; map->map[i]; i++) {
+			printf("%s\n", map->map[i]);
+		}
+	} else {
+		printf("Not defined\n");
+	}
 }
 
 void	init_map(t_map *map, char **av)
@@ -73,6 +84,7 @@ void	init_map(t_map *map, char **av)
 	map->ceiling_B = -1;
 	map->rows_count = 0;
 	map->rows_width = 0;
+	map->map_start_line = 0;
 	map->map = NULL;
 	map->copy = NULL;
 }
@@ -81,17 +93,15 @@ void	free_map(t_map *map)
 {
 	int	i;
 
-	
-	map->floor_R = -1;
-	map->floor_G = -1;
-	map->floor_B = -1;
-	map->ceiling_R = -1;
-	map->ceiling_G = -1;
-	map->ceiling_B = -1;
+	// map->floor_R = -1;
+	// map->floor_G = -1;
+	// map->floor_B = -1;
+	// map->ceiling_R = -1;
+	// map->ceiling_G = -1;
+	// map->ceiling_B = -1;
 	free(map->path);
 	if (map->copy)
 	{
-		ft_printf("Here");
 		free_split(map->copy);
 		free(map->so);
 		free(map->no);
@@ -113,10 +123,16 @@ void	free_map(t_map *map)
 int	main( int ac, char **av )
 {
 	t_map	map;
+	int		code_error;
 
 	init_map(&map, av);
-	open_cub_file(map.path, &map);
-	debug_print_map(&map);
+	// open_cub_file(map.path, &map);
+	code_error = parser(&map);
+	if (code_error)
+		ft_printf("😔 Why are you doing this to me ? 😔\n");
+	else if (!code_error)
+		ft_printf("🔥 I'm ready to cast rayzzzz 🔥\n");
+	// debug_print_map(&map);
 	free_map(&map);
 	return (0);
 }

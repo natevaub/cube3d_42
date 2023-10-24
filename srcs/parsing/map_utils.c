@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/24 16:01:23 by nvaubien          #+#    #+#             */
+/*   Updated: 2023/10/24 16:02:58 by nvaubien         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cube.h"
 
 int	count_split_elements(char **tab)
@@ -12,7 +24,7 @@ int	count_split_elements(char **tab)
 	return (i);
 }
 
-int ft_strcmp(char *s1, char *s2)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 
@@ -23,7 +35,6 @@ int ft_strcmp(char *s1, char *s2)
 		++i;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
-
 
 int	count_occurences(char *str, char c)
 {
@@ -43,33 +54,28 @@ int	count_occurences(char *str, char c)
 
 char	*front_trim(char *line)
 {
-	int	i = 0;
-	int size = 0; // Initialize size
-	int j = ft_strlen(line) - 1;
-	char *new_line;
+	int		i;
+	int		size;
+	int		j;
+	char	*new_line;
 
-	if (line == NULL)
-		return (NULL);
-
-	// Count the number of characters to trim from the end
+	i = 0;
+	size = 0;
+	j = ft_strlen(line) - 1;
 	while (j >= 0 && (line[j] == ' ' || line[j] == '\n'))
 	{
 		j--;
 		size++;
 	}
-
-	new_line = malloc(sizeof(char) * (j + 2)); // Allocate space for the trimmed string
+	new_line = malloc(sizeof(char) * (j + 2));
 	if (new_line == NULL)
 		return (NULL);
-
-	// Copy the non-trimmed characters to new_line
 	i = 0;
 	while (i <= j)
 	{
 		new_line[i] = line[i];
 		i++;
 	}
-
 	new_line[i] = '\0';
 	return (new_line);
 }

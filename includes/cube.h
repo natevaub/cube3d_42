@@ -25,6 +25,9 @@
 #define ERR_MSG_6 "Error: Invalid texture path\n"
 #define ERR_MSG_7 "Error: Invalid number of floor & ceiling informations\n"
 #define ERR_MSG_8 "Error: Invalidd color\n"
+#define ERR_MSG_9 "Error: Found empty line in map\n"
+#define ERR_MSG_10 "Error: Invalid element found\n"
+#define ERR_MSG_11 "MALLOC ERROR\n"
 
 
 /**
@@ -43,7 +46,7 @@ void 	check_access_textures(char **texture_info, t_map *map,
 /**
  * map_floor_ceiling.c
  *
- * Norme: ❌ , Leak: ✅
+ * Norme: ✅ , Leak: ✅
  */
 void 	parse_floor(char *line, t_map *map);
 void 	parse_ceiling(char *line, t_map *map);
@@ -63,17 +66,18 @@ int 	found_empty_line(char *raw);
 /**
  * map_errors.c
  *
- * Norme: ❌ , Leak: ✅
+ * Norme: ✅ , Leak: ✅
  */
 int 	unwanted_elements(char *line);
 int 	is_valid_elements(t_map *map);
 void 	free_lines(char *line, char *current_line);
 void	free_split(char **split);
+int		manage_errors(int code_error);
 
 /**
  * map_parsing.c
  *
- * Norme: ❌ , Leak: ✅
+ * Norme: ✅ , Leak: ✅
  */
 int		is_valid_map(t_map *map);;
 int		contains_only_valid(char *line);
@@ -95,7 +99,7 @@ char	*fill_map(char *line, t_map *map);
 /**
  * map_utils.c
  *
- * Norme: ❌ , Leak: ✅
+ * Norme: ✅ , Leak: ✅
  */
 
 int		count_split_elements(char **tab);
@@ -108,8 +112,11 @@ char	*front_trim(char *line);
  *
  * Norme: ❌ , Leak: ✅
  */
-int open_cub_file(char *path, t_map *map);
-int	cub_copy(int fd, t_map *map);
+int 	open_cub_file(char *path, t_map *map);
+int		cub_copy(int fd, t_map *map);
+int		parser(t_map *map);
+int		cub_copy_to_map(t_map *map);
+int		map_transform_to_usable(t_map *map);
 
 
 /**

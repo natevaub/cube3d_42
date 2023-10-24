@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_errors.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/24 16:00:04 by nvaubien          #+#    #+#             */
+/*   Updated: 2023/10/24 16:00:07 by nvaubien         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cube.h"
 
 int	unwanted_elements(char *line)
@@ -54,7 +66,7 @@ void	free_lines(char *line, char *current_line)
 	free(current_line);
 }
 
-void free_split(char **split)
+void	free_split(char **split)
 {
 	int	i;
 
@@ -65,4 +77,19 @@ void free_split(char **split)
 		i++;
 	}
 	free(split);
+}
+
+int	manage_errors(int code_error)
+{
+	if (code_error)
+	{
+		if (code_error == 1)
+			ft_putstr_fd(ERR_MSG_4, 2);
+		else if (code_error == 2)
+			ft_putstr_fd(ERR_MSG_9, 2);
+		else if (code_error == 3)
+			ft_putstr_fd(ERR_MSG_10, 2);
+		return (1);
+	}
+	return (0);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_floor_ceiling.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/24 16:00:11 by nvaubien          #+#    #+#             */
+/*   Updated: 2023/10/24 16:03:40 by nvaubien         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cube.h"
 
 void	parse_floor(char *line, t_map *map)
@@ -99,4 +111,3 @@ int	valid_ceiling_color(char *ceilingValues, t_map *map)
 	free_split(parsed_rgb);
 	return (1);
 }
-
