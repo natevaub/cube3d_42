@@ -93,12 +93,6 @@ void	free_map(t_map *map)
 {
 	int	i;
 
-	// map->floor_R = -1;
-	// map->floor_G = -1;
-	// map->floor_B = -1;
-	// map->ceiling_R = -1;
-	// map->ceiling_G = -1;
-	// map->ceiling_B = -1;
 	free(map->path);
 	if (map->copy)
 	{
