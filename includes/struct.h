@@ -28,3 +28,14 @@ typedef struct s_map {
 	char	**map;
 	char	**copy;
 }	t_map;
+
+/**
+ * mlx
+*/
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;

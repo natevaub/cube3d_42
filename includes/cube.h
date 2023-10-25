@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/10/24 23:34:20 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/10/25 22:35:01 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,15 @@
 # define ERR_MSG_10 "Error: Invalid element found\n"
 # define ERR_MSG_11 "MALLOC ERROR\n"
 
-# define WIDTH 1280
-# define HEIGHT 720
+# define MINIMAP_WIDTH 300
+# define MINIMAP_HEIGHT 300
+# define GAME_WIDTH 720
+# define GAME_HEIGHT 480
 
+# define RED 0x00FF0000
+# define BLUE 0x000000FF
+
+/* _____ PARSING ______ */
 /**
  * map_textures.c
  *
@@ -131,6 +137,17 @@ int		cub_copy(int fd, t_map *map);
 int		parser(t_map *map);
 int		cub_copy_to_map(t_map *map);
 int		map_transform_to_usable(t_map *map);
+
+/* _____ GRAPHICS ______ */
+/**
+ * graphics_draw.c
+ *
+ * Norme: ❌ , Leak: ✅
+ */
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	minimap_square(t_map *map, t_data *img);
+void	draw_square(int x, int y, int size, t_data *img);
+
 
 /**
  *

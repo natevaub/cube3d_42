@@ -42,11 +42,25 @@ PARSING_FILES			:=			map_open.c			\
 									map_search.c		\
 									map_parsing.c		\
 
+GRAPHICS_FILES			:=			graphics.c			\
+									graphics_draw.c		\
+									graphics_utils.c	\
+									graphics_raycast.c	\
+									graphics_sprites.c	\
+									graphics_textures.c	\
+									graphics_keys.c		\
+									graphics_init.c		\
+									graphics_errors.c	\
+									graphics_helpers.c	\
+									graphics_save.c		\
+
 MAIN_FILE				:=			$(addprefix $(OBJS_PATH)/, $(MAIN_FILE:.c=.o))
 PARSING_FILES			:=			$(addprefix $(OBJS_PATH)/parsing/, $(PARSING_FILES:.c=.o))
+GRAPHICS_FILES			:=			$(addprefix $(OBJS_PATH)/graphics/, $(GRAPHICS_FILES:.c=.o))
 
 OBJS					:=			$(MAIN_FILE)				\
 									$(PARSING_FILES)			\
+									$(GRAPHICS_FILES)			\
 
 LIBS					:=			-L$(LIB_DIRECTORY) -lft -lftprintf
 

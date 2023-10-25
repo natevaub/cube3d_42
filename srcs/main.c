@@ -42,7 +42,6 @@ void debug_print_map(const t_map *map) {
 	printf("Rows Count: %d\n", map->rows_count);
 	printf("Rows Width: %d\n", map->rows_width);
 	printf("Map Copy:\n");
-
 	printf("Map Content:\n");
 	if (map->copy) {
 		for (int i = 0; map->copy[i]; i++) {
@@ -51,7 +50,6 @@ void debug_print_map(const t_map *map) {
 	} else {
 		printf("Not defined\n");
 	}
-
 
 	printf("Map Content:\n");
 	if (map->map) {
@@ -127,6 +125,30 @@ int	main( int ac, char **av )
 	else if (!code_error)
 		ft_printf("🔥 I'm ready to cast rayzzzz 🔥\n");
 	// debug_print_map(&map);
+
+	/* Je fais ma sauce */
+	t_data	img;
+	void	*mlx;
+	void	*mlx_win;
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, MINIMAP_WIDTH, MINIMAP_HEIGHT, "Hello world!");
+	img.img = mlx_new_image(mlx, MINIMAP_WIDTH, MINIMAP_HEIGHT);
+	/*
+	** After creating an image, we can call `mlx_get_data_addr`, we pass
+	** `bits_per_pixel`, `line_length`, and `endian` by reference. These will
+	** then be set accordingly for the *current* data address.
+	*/
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+								&img.endian);
+	// draw_square(10, 20, 50, &img);
+	minimap_square(&map, &img);
+	// minimap_square(&map, &img);
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	mlx_loop(mlx);
+
+
+	/* Memory Management */
 	free_map(&map);
 	return (0);
 }
