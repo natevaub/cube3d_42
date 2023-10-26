@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/10/25 22:35:01 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/10/26 12:47:32 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,19 @@
 # define GAME_WIDTH 720
 # define GAME_HEIGHT 480
 
-# define RED 0x00FF0000
-# define BLUE 0x000000FF
+# define RED		0x00FF0000
+# define GREEN 		0x0000FF00
+# define BLUE		0x000000FF
+# define YELLOW		0x00FFFF00
+# define CYAN		0x0000FFFF
+# define MAGENTA	0x00FF00FF
+# define ORANGE		0x00FFA500
+# define PINK		0xFFC0CB
+# define PURPLE		0x800080
+# define BROWN		0xA52A2A
+# define LIGHT_GRAY		0xD0D3D4
+# define DARK_GRAY		0x515A5A
+# define WHITE		0xFFFFFF
 
 /* _____ PARSING ______ */
 /**
@@ -147,6 +158,7 @@ int		map_transform_to_usable(t_map *map);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	minimap_square(t_map *map, t_data *img);
 void	draw_square(int x, int y, int size, t_data *img);
+void	draw_square_walls(int x, int y, int size, t_data *img);
 
 
 /**
