@@ -122,6 +122,7 @@ int	main( int ac, char **av )
 	init_map(&map, av);
 	// open_cub_file(map.path, &map);
 	code_error = parser(&map);
+	ft_printf("Code error = %d\n", code_error);
 	if (code_error)
 	{
 		debug_print_map(&map);
