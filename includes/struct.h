@@ -39,3 +39,30 @@ typedef struct	s_data {
 	int		line_length;
 	int		endian;
 }				t_data;
+
+typedef struct s_mlx {
+	void	*mlx;
+	void	*mlx_win;
+	t_data	*img;
+}	t_mlx;
+
+
+typedef struct s_vector {
+	float x;
+	float y;
+} t_vector;
+
+typedef struct s_mapping {
+	int from_width;
+	int from_height;
+	int to_width;
+	int to_height;
+} t_mapping;
+
+	
+
+typedef struct s_intersections
+{
+	int size;
+	t_vector* points;
+} t_intersections;

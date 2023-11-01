@@ -58,17 +58,63 @@ void	draw_square_walls(int x, int y, int size, t_data *img)
 	}
 }
 
-void	minimap_square(t_map *map, t_data *img)
+void draw_line(t_data *img, t_vector start, t_vector end, int color)
+{
+	float x;
+	float y;
+	float dx;
+	float dy;
+	float step;
+	float i;
+
+	dx = end.x - start.x;
+	dy = end.y - start.y;
+	step = (fabs(dx) > fabs(dy)) ? fabs(dx) : fabs(dy);
+	dx /= step;
+	dy /= step;
+	x = start.x;
+	y = start.y;
+	i = 0;
+	while (i <= step)
+	{
+		my_mlx_pixel_put(img, x, y, color);
+		x += dx;
+		y += dy;
+		i++;
+	}
+}
+
+void draw_disk(int x, int y, int radius, t_data *img, int color)
+{
+    for (int i = x - radius; i <= x + radius; i++) {
+        for (int j = y - radius; j <= y + radius; j++) {
+            int dx = i - x;
+            int dy = j - y;
+            if (dx * dx + dy * dy <= radius * radius) {
+                my_mlx_pixel_put(img, i, j, color);
+            }
+        }
+    }
+}
+
+void minimap_square(t_map *map, t_data *img, t_intersections intersections, t_vector pos, t_vector dir)
 {
 	ft_printf("Map Row Width %d\n", map->rows_width);
 	ft_printf("Map Row Count %d\n", map->rows_count);
-	int	size = (MINIMAP_WIDTH / map->rows_width);
+	int	size = 20;
 	ft_printf("Square Width %d\n", size);
 	int	x, y;
 	int	i, j;
 
 	y = 0; x = 0;
 	i = 0; j = 0;
+
+	t_mapping mapping = {
+		.from_width = map->rows_width,
+		.from_height = map->rows_count,
+		.to_width = map->rows_width * 20,
+		.to_height = map->rows_count * 20};
+
 
 	while (i < map->rows_count)
 	{
@@ -90,4 +136,13 @@ void	minimap_square(t_map *map, t_data *img)
 		j = 0;
 		y += size;
 	}
+
+	for  (int i = 0; i < intersections.size - 4; i++)
+	{
+		t_vector mapped = map_vec(intersections.points[i], mapping);
+		draw_disk(mapped.x, mapped.y, 5, img, RED);
+	}
+
+	
+	draw_line(img, pos, dir, RED);
 }

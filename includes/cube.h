@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/10/26 12:47:32 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/10/31 13:16:32 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@
 # define ERR_MSG_10 "Error: Invalid element found\n"
 # define ERR_MSG_11 "MALLOC ERROR\n"
 
-# define MINIMAP_WIDTH 300
-# define MINIMAP_HEIGHT 300
+# define SCREEN_WIDTH 1000
+# define SCREEN_HEIGHT 1000
 # define GAME_WIDTH 720
 # define GAME_HEIGHT 480
 
@@ -156,9 +156,10 @@ int		map_transform_to_usable(t_map *map);
  * Norme: ❌ , Leak: ✅
  */
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	minimap_square(t_map *map, t_data *img);
+void	minimap_square(t_map *map, t_data *img, t_intersections intersections, t_vector pos, t_vector dir);
 void	draw_square(int x, int y, int size, t_data *img);
 void	draw_square_walls(int x, int y, int size, t_data *img);
+void draw_disk(int x, int y, int radius, t_data *img, int color);
 
 
 /**
@@ -168,5 +169,8 @@ void	draw_square_walls(int x, int y, int size, t_data *img);
  */
 void	debug_print_int_values(char *str);
 void	debug_print_map(const t_map *map);
+
+t_vector map_vec(t_vector v, t_mapping m);
+int compute_intersection(t_vector pos, t_vector dir, t_vector *intersections, t_map *map);
 
 #endif
