@@ -1,5 +1,5 @@
 CC						:=			gcc
-CFLAGS					:=		-fsanitize=address -g
+# CFLAGS					:=		-fsanitize=address -g
 
 
 NAME					:=			cube3D

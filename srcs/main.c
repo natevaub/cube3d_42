@@ -123,7 +123,12 @@ int	main( int ac, char **av )
 	// open_cub_file(map.path, &map);
 	code_error = parser(&map);
 	if (code_error)
+	{
+		debug_print_map(&map);
+		free_map(&map);
 		ft_printf("😔 Why are you doing this to me ? 😔\n");
+		return (1);
+	}
 	else if (!code_error)
 		ft_printf("🔥 I'm ready to cast rayzzzz 🔥\n");
 	// debug_print_map(&map);

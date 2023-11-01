@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:28 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/01 16:17:18 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:20:49 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int	cub_copy_to_map(t_map *map)
  * 1001
  * 
  * Check si la ligne parse est inferieur a la longueur d'une reference de ligne et que 
- * le dernier char de cette ligne est different de -1, stopper la loop et renvoyer erreur
+ * le dernier char de cette ligne est different de '1' ou dde ' ', stopper la loop et renvoyer erreur
 */
 int	map_transform_to_usable(t_map *map)
 {
@@ -132,6 +132,14 @@ int	map_transform_to_usable(t_map *map)
 	map->map[map->rows_count] = NULL;
 	while (i < map->rows_count)
 	{
+		if (ft_strlen(map->copy[map->map_start_line]) < map->rows_width
+		&& map->copy[map->map_start_line][ft_strlen(map->copy[map->map_start_line]) - 1] != '1'
+		&& map->copy[map->map_start_line][ft_strlen(map->copy[map->map_start_line]) - 1] != ' ')
+		{
+			ft_printf("Error catch\n");
+			map->map[i] = NULL;
+			return (6);
+		}
 		map->map[i] = fill_map(map->copy[map->map_start_line], map);
 		i++;
 		map->map_start_line++;
