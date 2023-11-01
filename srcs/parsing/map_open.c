@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:28 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/10/24 16:00:29 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/01 16:17:18 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,15 @@ int	cub_copy_to_map(t_map *map)
 	}
 	return (0);
 }
-
+/**
+ * 1001
+ * 100
+ * 100
+ * 1001
+ * 
+ * Check si la ligne parse est inferieur a la longueur d'une reference de ligne et que 
+ * le dernier char de cette ligne est different de -1, stopper la loop et renvoyer erreur
+*/
 int	map_transform_to_usable(t_map *map)
 {
 	int	i;
