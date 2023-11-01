@@ -6,12 +6,15 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:11 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/10/24 16:03:40 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:47:44 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
-
+/**
+ * Except for the map, 
+ * each type of information from an element can be separated by one or more space(s).
+*/
 void	parse_floor(char *line, t_map *map)
 {
 	char	**floor_info;
