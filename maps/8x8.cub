@@ -1,0 +1,16 @@
+NO ./textures/chateau.xpm
+SO ./textures/greystone.xpm
+WE ./textures/planks.xpm
+EA ./textures/redbrick.xpm
+
+F 70,70,70
+C 0, 255, 204
+
+11111111
+10100001
+1000W001
+10001001
+10010001
+10001011
+10001011
+11111111
