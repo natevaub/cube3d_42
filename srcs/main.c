@@ -112,6 +112,100 @@ void	free_map(t_map *map)
 	}
 }
 
+
+
+int	create_rgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+void	draw_floor_and_ceiling(t_map *map, t_data *img)
+{
+	int	floor_color;
+	int	ceiling_color;
+	int	y;
+	int	x;
+
+	floor_color = create_rgb(0, map->floor_R, map->floor_G, map->floor_B);
+	ceiling_color = create_rgb(0, map->ceiling_R, map->ceiling_G, map->ceiling_B);
+	y = -1;
+	while (++y < MINIMAP_HEIGHT / 2)
+	{
+		x = -1;
+		while (++x < MINIMAP_WIDTH)
+			my_mlx_pixel_put(img, x, y, floor_color);
+	}
+	y = MINIMAP_HEIGHT / 2 - 1;
+	while (++y < MINIMAP_HEIGHT)
+	{
+		x = -1;
+		while (++x < MINIMAP_WIDTH)
+			my_mlx_pixel_put(img, x, y, ceiling_color);
+	}
+}
+
+void	draw_player(int x, int y, int size, t_data *img)
+{
+	int	color;
+	int	i;
+	int	j;
+
+	color = create_rgb(0, 0, 0, 0);
+	i = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (j < size)
+		{
+			my_mlx_pixel_put(img, x + i, y + j, color);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	draw_minimap(t_map *map, t_data *img)
+{
+	int	x;
+	int	y;
+	int	size = 4;
+	int	i, j;
+
+	y = 10;
+	x = MINIMAP_WIDTH / 2 - (map->rows_width * size) / 2;
+	i = 0; j = 0;
+	while (i < map->rows_count)
+	{
+		while (j < map->rows_width)
+		{
+			if (map->map[i][j] == '1')
+				draw_square_walls(x, y, size, img);
+			else if (map->map[i][j] == '0')
+				draw_square(x, y, size, img);
+			else if (map->map[i][j] == 'E' || map->map[i][j] == 'W' || map->map[i][j] == 'N' || map->map[i][j] == 'S')
+				draw_player(x, y, size, img);
+			x += size;
+			j++;
+		}
+		i++;
+		x = MINIMAP_WIDTH / 2 - (map->rows_width * size) / 2;
+		j = 0;
+		y += size;
+	}
+}
+
+void	draw_view(t_map *map, t_data *img)
+{
+	// calculate the distance to the projection plane
+	// for each column, calculate the projected ray angle into world space
+	// for each ray, find the distance to the wall
+	// for each ray, calculate the height of the wall
+	// for each ray, calculate the lowest and highest pixel to fill in current stripe
+	// for each ray, calculate the texture offset
+
+	
+}
+
 int	main( int ac, char **av )
 {
 	t_map	map;
@@ -142,7 +236,10 @@ int	main( int ac, char **av )
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
 	// draw_square(10, 20, 50, &img);
-	minimap_square(&map, &img);
+	draw_floor_and_ceiling(&map, &img);
+	draw_view(&map, &img);
+	draw_minimap(&map, &img);
+	// minimap_square(&map, &img);
 	// minimap_square(&map, &img);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);

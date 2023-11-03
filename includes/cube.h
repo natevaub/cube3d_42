@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/10/26 12:47:32 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/03 16:16:01 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@
 # define ERR_MSG_10 "Error: Invalid element found\n"
 # define ERR_MSG_11 "MALLOC ERROR\n"
 
-# define MINIMAP_WIDTH 300
-# define MINIMAP_HEIGHT 300
+# define MINIMAP_WIDTH 3000
+# define MINIMAP_HEIGHT 3000
 # define GAME_WIDTH 720
 # define GAME_HEIGHT 480
+# define MINIMAP_SCALE 0.2
 
 # define RED		0x00FF0000
 # define GREEN 		0x0000FF00
