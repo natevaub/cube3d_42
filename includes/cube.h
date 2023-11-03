@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/10/24 23:34:20 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/03 03:27:53 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	parse_floor(char *line, t_map *map);
 void	parse_ceiling(char *line, t_map *map);
 int		valid_ceiling_color(char *ceilingValues, t_map *map);
 int		valid_floor_color(char *floorValues, t_map *map);
+char	*concat_split(char **split, int i);
 
 /**
  * map_search.c
