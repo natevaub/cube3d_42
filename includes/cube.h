@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/03 16:16:01 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/11/03 16:36:47 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@
 # define ERR_MSG_10 "Error: Invalid element found\n"
 # define ERR_MSG_11 "MALLOC ERROR\n"
 
-# define MINIMAP_WIDTH 3000
-# define MINIMAP_HEIGHT 3000
+# define MINIMAP_WIDTH 1000
+# define MINIMAP_HEIGHT 1000
 # define GAME_WIDTH 720
 # define GAME_HEIGHT 480
 # define MINIMAP_SCALE 0.2

@@ -196,14 +196,90 @@ void	draw_minimap(t_map *map, t_data *img)
 
 void	draw_view(t_map *map, t_data *img)
 {
-	// calculate the distance to the projection plane
-	// for each column, calculate the projected ray angle into world space
-	// for each ray, find the distance to the wall
-	// for each ray, calculate the height of the wall
-	// for each ray, calculate the lowest and highest pixel to fill in current stripe
-	// for each ray, calculate the texture offset
+	// calculer la distance entre le joueur et le mur d'en face
+	// calculer la hauteur du mur
+	// calculer la position du mur sur l'écran
+	// dessiner le mur
+	// sprites in map->so, map->no, map->we, map->ea
+	// position of the player in map->player_info->pos_x, map->player_info->pos_y
+	// direction of the player in map->player_info->direction (NORTH, SOUTH, EAST, WEST)
+}
 
-	
+void	calculate_map(t_map *map)
+{
+	int	i;
+	int	j;
+	int	nbr_east = 0;
+	int	nbr_west = 0;
+	int	nbr_north = 0;
+	int	nbr_south = 0;
+	i = 0;
+	while (i < map->rows_count)
+	{
+		j = 0;
+		while (j < map->rows_width)
+		{
+			if (map->map[i][j] == 'E')
+				nbr_east++;
+			else if (map->map[i][j] == 'N')
+				nbr_north++;
+			else if (map->map[i][j] == 'S')
+				nbr_south++;
+			else if (map->map[i][j] == 'W')
+				nbr_west++;
+			j++;
+		}
+		i++;
+	}
+	int	more_than_one = 0;
+
+	if (nbr_east >= 1)
+		more_than_one++;
+	if (nbr_north >= 1)
+		more_than_one++;
+	if (nbr_south >= 1)
+		more_than_one++;
+	if (nbr_west >= 1)
+		more_than_one++;
+	if (more_than_one > 1)
+	{
+		ft_printf("Error\n");
+		exit(1);
+	}
+	else if (nbr_east > 1 || nbr_north > 1 || nbr_south > 1 || nbr_west > 1)
+	{
+		ft_printf("Error\n");
+		exit(1);
+	}
+	else if (nbr_east == 0 && nbr_north == 0 && nbr_south == 0 && nbr_west == 0)
+	{
+		ft_printf("Error\n");
+		exit(1);
+	}
+	else if (nbr_east == 1)
+		map->player_info->direction = EAST;
+	else if (nbr_north == 1)
+		map->player_info->direction = NORTH;
+	else if (nbr_south == 1)
+		map->player_info->direction = SOUTH;
+	else if (nbr_west == 1)
+		map->player_info->direction = WEST;
+
+	i = 0;
+	while (map->map[i])
+	{
+		j = 0;
+		while (map->map[i][j])
+		{
+			if (map->map[i][j] == 'E' || map->map[i][j] == 'W' || map->map[i][j] == 'N' || map->map[i][j] == 'S')
+			{
+				map->player_info->pos_x = j;
+				map->player_info->pos_y = i;
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
 int	main( int ac, char **av )
@@ -237,6 +313,7 @@ int	main( int ac, char **av )
 								&img.endian);
 	// draw_square(10, 20, 50, &img);
 	draw_floor_and_ceiling(&map, &img);
+	calculate_map(&map);
 	draw_view(&map, &img);
 	draw_minimap(&map, &img);
 	// minimap_square(&map, &img);

@@ -1,8 +1,24 @@
-typedef struct s_help_vars {
+typedef struct s_help_vars
+{
 	int	i;
 	int	j;
 	int	k;
 }	t_help_vars;
+
+typedef enum s_direction
+{
+	NORTH = 1,
+	SOUTH = 2,
+	EAST = 3,
+	WEST = 4
+} t_direction;
+
+typedef struct s_info
+{
+	int	pos_x;
+	int	pos_y;
+	enum s_direction	direction;
+}	t_info;
 
 typedef struct s_map {
 	int		count_ea;
@@ -27,6 +43,7 @@ typedef struct s_map {
 	int		map_start_line;
 	char	**map;
 	char	**copy;
+	t_info	*player_info;
 }	t_map;
 
 /**

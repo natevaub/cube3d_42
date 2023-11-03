@@ -2,10 +2,10 @@
 
 
 
-EA     ./textures/xpm/1.xpm     
-WE     ./textures/xpm/1.xpm     
-     SO    ./textures/xpm/1.xpm
-   NO  ./textures/xpm/1.xpm   
+EA     ./textures/xpm/wall/concrete.xpm     
+WE     ./textures/xpm/wall/grafiti.xpm     
+     SO    ./textures/xpm/wall/stone.xpm
+   NO  ./textures/xpm/wall/wood.xpm   
 C 25,0,25
 F       255,0,255
 1111111111111111111111111111

@@ -62,7 +62,7 @@ OBJS					:=			$(MAIN_FILE)				\
 									$(PARSING_FILES)			\
 									$(GRAPHICS_FILES)			\
 
-LIBS					:=			-L$(LIB_DIRECTORY) -lft -lftprintf
+LIBS					:=			-L$(LIB_DIRECTORY) -lft $(LIBPRINTF)
 
 all:	$(NAME)
 
@@ -94,7 +94,7 @@ endif
 ##
 $(NAME):	$(LIBFT) $(LIBPRINTF) $(OBJS) mlx
 			@echo "$(GREEN)Compilating cube3D$(RESET)"
-			@$(CC) $(CFLAGS) -Llibs/ftprintf -Llibs/libft -o $@ $(OBJS) $(LIBS) $(LINK_FLAGS)
+			@$(CC) $(CFLAGS) -Llibs/libft -o $@ $(OBJS) $(LIBS) $(LINK_FLAGS)
 			@echo "$(CYAN)✔️  Compilation Done$(RESET)"
 ##
 
