@@ -1,0 +1,12 @@
+NO ./textures/planks.xpm
+SO ./textures/planks.xpm
+WE ./textures/planks.xpm
+EA ./textures/planks.xpm
+
+F 200,200,200
+C 200,            200,200
+
+                    111111111111           
+          1111111111100000000001   
+          100000000W001111111111 
+          1111111111111          

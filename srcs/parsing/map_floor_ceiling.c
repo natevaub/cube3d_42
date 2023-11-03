@@ -6,61 +6,64 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:11 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/10/24 16:03:40 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/03 03:44:44 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
+/**
+ * Except for the map, 
+ * each type of information from an element can be separated by one or more space(s).
+*/
+// void	parse_floor(char *line, t_map *map)
+// {
+// 	char	**floor_info;
+// 	int		count_info;
 
-void	parse_floor(char *line, t_map *map)
-{
-	char	**floor_info;
-	int		count_info;
+// 	floor_info = ft_split(line, ' ');
+// 	count_info = count_split_elements(floor_info);
+// 	if (map->count_floor > 1)
+// 	{
+// 		free_split(floor_info);
+// 		return ;
+// 	}
+// 	if (ft_strcmp(floor_info[0], "F") == 0)
+// 	{
+// 		map->count_floor++;
+// 		if (count_info == 2)
+// 		{
+// 			valid_floor_color(floor_info[1], map);
+// 			free_split(floor_info);
+// 			return ;
+// 		}
+// 	}
+// 	free_split(floor_info);
+// }
 
-	floor_info = ft_split(line, ' ');
-	count_info = count_split_elements(floor_info);
-	if (map->count_floor > 1)
-	{
-		free_split(floor_info);
-		return ;
-	}
-	if (ft_strcmp(floor_info[0], "F") == 0)
-	{
-		map->count_floor++;
-		if (count_info == 2)
-		{
-			valid_floor_color(floor_info[1], map);
-			free_split(floor_info);
-			return ;
-		}
-	}
-	free_split(floor_info);
-}
+// void	parse_ceiling(char *line, t_map *map)
+// {
+// 	char	**ceiling_info;
+// 	int		count_info;
 
-void	parse_ceiling(char *line, t_map *map)
-{
-	char	**ceiling_info;
-	int		count_info;
-
-	ceiling_info = ft_split(line, ' ');
-	count_info = count_split_elements(ceiling_info);
-	if (map->count_ceiling > 1)
-	{
-		free_split(ceiling_info);
-		return ;
-	}
-	if (ft_strcmp(ceiling_info[0], "C") == 0)
-	{
-		map->count_ceiling++;
-		if (count_info == 2)
-		{
-			valid_ceiling_color(ceiling_info[1], map);
-			free_split(ceiling_info);
-			return ;
-		}
-	}
-	free_split(ceiling_info);
-}
+// 	ceiling_info = ft_split(line, ' ');
+// 	count_info = count_split_elements(ceiling_info);
+// 	if (map->count_ceiling > 1)
+// 	{
+// 		free_split(ceiling_info);
+// 		return ;
+// 	}
+// 	if (ft_strcmp(ceiling_info[0], "C") == 0)
+// 	{
+// 		map->count_ceiling++;
+// 		if (count_info == 2)
+// 		{
+// 			valid_ceiling_color(ceiling_info[1], map);
+// 			free_split(ceiling_info);
+// 			return ;
+// 		}
+// 	}
+// 	free_split(ceiling_info);
+// }
 
 int	valid_floor_color(char *floorValues, t_map *map)
 {
@@ -110,4 +113,75 @@ int	valid_ceiling_color(char *ceilingValues, t_map *map)
 		return (0);
 	free_split(parsed_rgb);
 	return (1);
+}
+
+char	*concat_split(char **split, int i)
+{
+	char	*concat;
+	char	*tmp;
+	int		size;
+	int 	j;
+
+	concat = NULL;
+	tmp = ft_strdup("");
+	i = 1;
+	j = 0;
+	while (split[i])
+	{
+		concat = ft_strjoin(tmp, split[i]);
+		free(tmp);
+		tmp = concat;
+		j += ft_strlen(split[i]);
+		i++;
+	}
+	concat[j] = '\0';
+	return (concat);
+}
+
+/**
+ * Except for the map, 
+ * each type of information from an element can be separated by one or more space(s).
+*/
+void	parse_floor(char *line, t_map *map)
+{
+	char	**floor_info;
+	char	*info_concat;
+	int		count_info;
+
+	count_info = count_occurences(line, ',');
+	if (count_info != 2)
+		return ;
+	floor_info = ft_split(line, ' ');
+	if (ft_strcmp(floor_info[0], "F") == 0)
+	{
+		map->count_floor++;
+		info_concat = concat_split(floor_info, 1);
+		valid_floor_color(info_concat, map);
+		free(info_concat);
+		free_split(floor_info);
+		return ;
+	}
+	free_split(floor_info);
+}
+
+void	parse_ceiling(char *line, t_map *map)
+{
+	char	**ceiling_info;
+	char	*info_concat;
+	int		count_info;
+
+	count_info = count_occurences(line, ',');
+	if (count_info != 2)
+		return ;
+	ceiling_info = ft_split(line, ' ');
+	if (ft_strcmp(ceiling_info[0], "C") == 0)
+	{
+		map->count_ceiling++;
+		info_concat = concat_split(ceiling_info, 1);
+		valid_ceiling_color(info_concat, map);
+		free(info_concat);
+		free_split(ceiling_info);
+		return ;
+	}
+	free_split(ceiling_info);
 }
