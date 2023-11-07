@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:11 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/03 03:44:44 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:35:02 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,12 +149,12 @@ void	parse_floor(char *line, t_map *map)
 	int		count_info;
 
 	count_info = count_occurences(line, ',');
-	if (count_info != 2)
-		return ;
 	floor_info = ft_split(line, ' ');
 	if (ft_strcmp(floor_info[0], "F") == 0)
 	{
 		map->count_floor++;
+		if (count_info != 2)
+			return ;
 		info_concat = concat_split(floor_info, 1);
 		valid_floor_color(info_concat, map);
 		free(info_concat);
@@ -171,12 +171,12 @@ void	parse_ceiling(char *line, t_map *map)
 	int		count_info;
 
 	count_info = count_occurences(line, ',');
-	if (count_info != 2)
-		return ;
 	ceiling_info = ft_split(line, ' ');
 	if (ft_strcmp(ceiling_info[0], "C") == 0)
 	{
 		map->count_ceiling++;
+		if (count_info != 2)
+			return ;
 		info_concat = concat_split(ceiling_info, 1);
 		valid_ceiling_color(info_concat, map);
 		free(info_concat);
