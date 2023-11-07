@@ -4,6 +4,7 @@ WE ./textures/xpm/1.xpm
 EA ./textures/xpm/1.xpm
 
 F 70,70,70
+F ,70,70,70
 C 0,     255,204
 
 11111111
