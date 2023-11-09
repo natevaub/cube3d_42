@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:28 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/09 04:40:49 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:33:08 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	map_check_hole(t_map *map)
 	int	j;
 
 	i = 0;
+	debug_print_map(map);
 	while (map->map[i])
 	{
 		j = 0;
@@ -49,9 +50,10 @@ int	map_check_hole(t_map *map)
 			if (i > 0 && i < map->rows_count - 1 && j > 0
 				&& j < map->rows_width - 1)
 			{
-				if (map->map[i][j] == '0' && (map->map[i][j] == 'N' || map->map[i][j] == 'S'
-					&& map->map[i][j] || 'E' || map->map[i][j] == 'W'))
+				if (map->map[i][j] == '0' || map->map[i][j] == 'N' || map->map[i][j] == 'S'
+					|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
 				{
+					ft_printf("Here\n");
 					if (map->map[i][j + 1] == '2' || map->map[i][j - 1] == '2'
 						|| map->map[i + 1][j] == '2' || map->map[i - 1][j] == '2')
 						return (1);
@@ -84,7 +86,6 @@ int	map_transform_to_usable(t_map *map)
 		{
 			if (map->map[i][j] == '2')
 			{
-				ft_printf("HERE\n");
 				map->map[i][j] = '1';
 			}
 			j++;
