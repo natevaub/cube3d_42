@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:11 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/07 15:30:45 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/09 03:08:03 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,10 @@ void	parse_floor(char *line, t_map *map)
 	{
 		map->count_floor++;
 		if (count_info != 2)
+		{
+			free_split(floor_info);
 			return ;
+		}
 		info_concat = concat_split(floor_info, 1);
 		valid_floor_color(info_concat, map);
 		free(info_concat);
@@ -122,7 +125,10 @@ void	parse_ceiling(char *line, t_map *map)
 	{
 		map->count_ceiling++;
 		if (count_info != 2)
+		{
+			free_split(ceiling_info);
 			return ;
+		}
 		info_concat = concat_split(ceiling_info, 1);
 		valid_ceiling_color(info_concat, map);
 		free(info_concat);
