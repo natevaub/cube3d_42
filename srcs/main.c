@@ -297,30 +297,7 @@ int main(int ac, char **av)
 										   &graphics.img->endian);
 	// draw_square(10, 20, 50, &img);
 
-	t_vector pos = (t_vector){.x = 4, .y = 4};
-	t_vector dir = (t_vector){.x = 2, .y = 1};
-
-	t_mapping mapping = {
-		.from_width = map.rows_width,
-		.from_height = map.rows_count,
-		.to_width = map.rows_width * 20,
-		.to_height = map.rows_count * 20};
-	// Pretty print mapping
-	printf("Mapping:\n");
-	printf("From Width: %d\n", mapping.from_width);
-	printf("From Height: %d\n", mapping.from_height);
-	printf("To Width: %d\n", mapping.to_width);
-	printf("To Height: %d\n", mapping.to_height);
-
-	t_intersections intersections = compute_intersections(pos, dir, &map);
-	for (int i = 0; i < intersections.size; i++)
-	{
-		printf("Intersection %d: %f, %f\n", i, intersections.points[i].x, intersections.points[i].y);
-	}
-
-
-	t_vector pp = (t_vector){.x = pos.x + dir.x, .y = pos.y + dir.y};
-	minimap_square(&map, graphics.img, intersections, map_vec(pos, mapping), map_vec(pp, mapping));
+	// minimap_square(&map, graphics.img, intersections, map_vec(pos, mapping), map_vec(pp, mapping));
 	// minimap_square(&map, &img);
 	mlx_put_image_to_window(graphics.mlx, graphics.mlx_win, graphics.img->img, 0, 0);
 	mlx_loop(graphics.mlx);
