@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:32 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/07 15:33:00 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/09 04:07:43 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	is_valid_map(t_map *map)
 	j = 0;
 	while (map->map[i])
 	{
-		if (!contains_only_valid(map->map[i]))
-			return (0);
+		// if (!contains_only_valid(map->map[i]))
+		// 	return (0);
 		if ((i == 0 || i == map->rows_count - 1) && !contains_only_1(map->map[i]))
 			return (0);
 		if (!contains_1_start_end(map->map[i]))
@@ -58,10 +58,11 @@ int	contains_only_valid(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] != '1' && line[i] != '0'
+		if (line[i] != '1' && line[i] != '0' && line[i] != ' '
 			&& line[i] != 'N' && line[i] != 'S'
 			&& line[i] != 'E' && line[i] != 'W')
 		{
+			ft_printf("%s\n", line);
 			ft_putstr_fd(ERR_MSG_2, 2);
 			return (0);
 		}

@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:28 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/01 19:38:23 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/09 04:12:00 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ int	parser(t_map *map)
 		return (1);
 	}
 	if (manage_errors(cub_copy_to_map(map)))
+	{
+		return (1);
+	}
+	if (manage_errors(map_transform_to_parsable(map)))
 	{
 		return (1);
 	}
@@ -110,41 +114,5 @@ int	cub_copy_to_map(t_map *map)
 		map->rows_count++;
 		i++;
 	}
-	return (0);
-}
-/**
- * 1001
- * 100
- * 100
- * 1001
- * 
- * Check si la ligne parse est inferieur a la longueur d'une reference de ligne et que 
- * le dernier char de cette ligne est different de '1' ou dde ' ', stopper la loop et renvoyer erreur
-*/
-int	map_transform_to_usable(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	map->map = (char **)malloc(sizeof(char *) * (map->rows_count + 1));
-	if (map->map == NULL)
-		return (5);
-	map->map[map->rows_count] = NULL;
-	while (i < map->rows_count)
-	{
-		if (ft_strlen(map->copy[map->map_start_line]) < map->rows_width
-		&& map->copy[map->map_start_line][ft_strlen(map->copy[map->map_start_line]) - 1] != '1'
-		&& map->copy[map->map_start_line][ft_strlen(map->copy[map->map_start_line]) - 1] != ' ')
-		{
-			ft_printf("Error catch\n");
-			map->map[i] = NULL;
-			return (6);
-		}
-		map->map[i] = fill_map(map->copy[map->map_start_line], map);
-		i++;
-		map->map_start_line++;
-	}
-	if (!is_valid_map(map))
-		return (6);
 	return (0);
 }

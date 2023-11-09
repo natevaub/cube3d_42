@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:23 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/10/24 16:00:24 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/09 03:18:18 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ char	*fill_map(char *line, t_map *map)
 	}
 	while (j < map->rows_width)
 	{
-		new_line[j] = '1';
+		new_line[j] = '2';
 		j++;
 	}
 	new_line[j] = '\0';

@@ -41,6 +41,7 @@ PARSING_FILES			:=			map_open.c			\
 									map_errors.c		\
 									map_search.c		\
 									map_parsing.c		\
+									map_transform.c		\
 
 GRAPHICS_FILES			:=			graphics.c			\
 									graphics_draw.c		\
@@ -54,13 +55,17 @@ GRAPHICS_FILES			:=			graphics.c			\
 									graphics_helpers.c	\
 									graphics_save.c		\
 
+COMPUTE_FILES			:=			compute.c			\
+
 MAIN_FILE				:=			$(addprefix $(OBJS_PATH)/, $(MAIN_FILE:.c=.o))
 PARSING_FILES			:=			$(addprefix $(OBJS_PATH)/parsing/, $(PARSING_FILES:.c=.o))
 GRAPHICS_FILES			:=			$(addprefix $(OBJS_PATH)/graphics/, $(GRAPHICS_FILES:.c=.o))
+COMPUTE_FILES			:=			$(addprefix $(OBJS_PATH)/compute/, $(COMPUTE_FILES:.c=.o))
 
 OBJS					:=			$(MAIN_FILE)				\
 									$(PARSING_FILES)			\
 									$(GRAPHICS_FILES)			\
+									$(COMPUTE_FILES)			\
 
 LIBS					:=			-L$(LIB_DIRECTORY) -lft -lftprintf
 

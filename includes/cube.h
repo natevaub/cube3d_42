@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/09 01:45:36 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/09 04:13:01 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,15 @@ int		open_cub_file(char *path, t_map *map);
 int		cub_copy(int fd, t_map *map);
 int		parser(t_map *map);
 int		cub_copy_to_map(t_map *map);
+
+/**
+ * map_transform.c
+ *
+ * Norme:  , Leak: 
+*/
+int		map_transform_to_parsable(t_map *map);
 int		map_transform_to_usable(t_map *map);
+int		map_check_hole(t_map *map);
 
 /* _____ GRAPHICS ______ */
 /**
@@ -160,7 +168,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	minimap_square(t_map *map, t_data *img, t_intersections intersections, t_vector pos, t_vector dir);
 void	draw_square(int x, int y, int size, t_data *img);
 void	draw_square_walls(int x, int y, int size, t_data *img);
-void draw_disk(int x, int y, int radius, t_data *img, int color);
+void 	draw_disk(int x, int y, int radius, t_data *img, int color);
 
 
 /**
@@ -171,7 +179,10 @@ void draw_disk(int x, int y, int radius, t_data *img, int color);
 void	debug_print_int_values(char *str);
 void	debug_print_map(const t_map *map);
 
-t_vector map_vec(t_vector v, t_mapping m);
-int compute_intersection(t_vector pos, t_vector dir, t_vector *intersections, t_map *map);
+
+t_vector 			map_vec(t_vector v, t_mapping m);
+float 				norm(t_vector vec);
+t_vector 			normalize(t_vector vec);
+t_intersections		compute_intersections(t_vector origin, t_vector direction, t_map *map);
 
 #endif
