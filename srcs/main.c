@@ -87,30 +87,30 @@ void	init_map(t_map *map, char **av)
 	map->copy = NULL;
 }
 
-void	free_map(t_map *map)
-{
-	int	i;
+// void	free_map(t_map *map)
+// {
+// 	int	i;
 
-	free(map->path);
-	if (map->copy)
-	{
-		free_split(map->copy);
-		free(map->so);
-		free(map->no);
-		free(map->we);
-		free(map->ea);
-	}
-	if (map->map)
-	{
-		i = 0;
-		while (map->map[i])
-		{
-			free(map->map[i]);
-			i++;
-		}
-		free(map->map);
-	}
-}
+// 	free(map->path);
+// 	if (map->copy)
+// 	{
+// 		free_split(map->copy);
+// 		free(map->so);
+// 		free(map->no);
+// 		free(map->we);
+// 		free(map->ea);
+// 	}
+// 	if (map->map)
+// 	{
+// 		i = 0;
+// 		while (map->map[i])
+// 		{
+// 			free(map->map[i]);
+// 			i++;
+// 		}
+// 		free(map->map);
+// 	}
+// }
 
 
 
@@ -231,32 +231,10 @@ void	calculate_map(t_map *map)
 		}
 		i++;
 	}
-	int	more_than_one = 0;
-
-	if (nbr_east >= 1)
-		more_than_one++;
-	if (nbr_north >= 1)
-		more_than_one++;
-	if (nbr_south >= 1)
-		more_than_one++;
-	if (nbr_west >= 1)
-		more_than_one++;
-	if (more_than_one > 1)
-	{
-		ft_printf("Error\n");
-		exit(1);
-	}
-	else if (nbr_east > 1 || nbr_north > 1 || nbr_south > 1 || nbr_west > 1)
-	{
-		ft_printf("Error\n");
-		exit(1);
-	}
-	else if (nbr_east == 0 && nbr_north == 0 && nbr_south == 0 && nbr_west == 0)
-	{
-		ft_printf("Error\n");
-		exit(1);
-	}
-	else if (nbr_east == 1)
+	map->player_info = ft_gc_malloc(sizeof(t_info));
+	if (!map->player_info)
+		return ;
+	if (nbr_east == 1)
 		map->player_info->direction = EAST;
 	else if (nbr_north == 1)
 		map->player_info->direction = NORTH;
@@ -282,6 +260,179 @@ void	calculate_map(t_map *map)
 	}
 }
 
+int	close_window(t_map *map)
+{
+	// free(img->player_info);
+	// free(img);
+	exit(0);
+	return (0);
+}
+
+int	player_is_facing_wall(t_map *map)
+{
+	int	x;
+	int	y;
+
+	x = map->player_info->pos_x;
+	y = map->player_info->pos_y;
+	if (map->player_info->direction == NORTH)
+	{
+		if (map->map[y - 1][x] == '1')
+			return (1);
+	}
+	else if (map->player_info->direction == SOUTH)
+	{
+		if (map->map[y + 1][x] == '1')
+			return (1);
+	}
+	else if (map->player_info->direction == EAST)
+	{
+		if (map->map[y][x + 1] == '1')
+			return (1);
+	}
+	else if (map->player_info->direction == WEST)
+	{
+		if (map->map[y][x - 1] == '1')
+			return (1);
+	}
+	return (0);
+}
+
+int	key_press(int keycode, t_map *map)
+{
+	if (keycode == KEY_W || keycode == KEY_UP)
+	{
+		printf("Avancer\n");
+		if (player_is_facing_wall(map))
+			return (0);
+		if (map->player_info->direction == NORTH)
+			map->player_info->pos_y--;
+		else if (map->player_info->direction == SOUTH)
+			map->player_info->pos_y++;
+		else if (map->player_info->direction == EAST)
+			map->player_info->pos_x++;
+		else if (map->player_info->direction == WEST)
+			map->player_info->pos_x--;
+	}
+	else if (keycode == KEY_S || keycode == KEY_DOWN)
+	{
+		printf("Reculer\n");
+		if (player_is_facing_wall(map))
+			return (0);
+		if (map->player_info->direction == NORTH)
+			map->player_info->pos_y++;
+		else if (map->player_info->direction == SOUTH)
+			map->player_info->pos_y--;
+		else if (map->player_info->direction == EAST)
+			map->player_info->pos_x--;
+		else if (map->player_info->direction == WEST)
+			map->player_info->pos_x++;
+	}
+	else if (keycode == KEY_A || keycode == KEY_LEFT)
+	{
+		printf("LEFT\n");
+		if (player_is_facing_wall(map))
+			return (0);
+		map->player_info->direction = (map->player_info->direction + 3) % 4;
+		if (map->player_info->direction == NORTH)
+			map->player_info->pos_y--;
+		else if (map->player_info->direction == SOUTH)
+			map->player_info->pos_y++;
+		else if (map->player_info->direction == EAST)
+			map->player_info->pos_x++;
+		else if (map->player_info->direction == WEST)
+			map->player_info->pos_x--;
+	}
+	else if (keycode == KEY_D || keycode == KEY_RIGHT)
+	{
+		printf("RIGHT\n");
+		if (player_is_facing_wall(map))
+			return (0);
+		map->player_info->direction = (map->player_info->direction + 1) % 4;
+		if (map->player_info->direction == NORTH)
+			map->player_info->pos_y--;
+		else if (map->player_info->direction == SOUTH)
+			map->player_info->pos_y++;
+		else if (map->player_info->direction == EAST)
+			map->player_info->pos_x++;
+		else if (map->player_info->direction == WEST)
+			map->player_info->pos_x--;
+	}
+	else if (keycode == KEY_ESC || keycode == KEY_Q)
+	{
+		close_window(map);
+	}
+	return (0);
+}
+
+int	key_release(int keycode, t_map *map)
+{
+	// if (keycode == KEY_W || keycode == KEY_UP)
+	// {
+
+	// }
+	// else if (keycode == KEY_S || keycode == KEY_DOWN)
+	// {
+		
+	// }
+	// else if (keycode == KEY_A || keycode == KEY_LEFT)
+	// {
+		
+	// }
+	// else if (keycode == KEY_D || keycode == KEY_RIGHT)
+	// {
+		
+	// }
+	return (0);
+}
+
+void	process_events(t_map *map)
+{
+	mlx_hook(map->mlx_win, 2, 1L<<0, key_press, map);
+	mlx_hook(map->mlx_win, 3, 1L<<1, key_release, map);
+	mlx_hook(map->mlx_win, 17, 1L<<17, close_window, map);
+	// update_player(map);
+}
+
+void	process_player(t_map *map)
+{
+	// check_player_position(map);
+	// draw_minimap(map, map->img);
+	// mlx_put_image_to_window(mlx, mlx_win, map->img->img, 0, 0);
+	// mlx_loop(mlx);
+	// draw_minimap(map, map->img);
+}
+
+void	display(t_map *map)
+{
+	// mlx_put_image_to_window(map->mlx, map->mlx_win, map->img->img, 0, 0);
+	// mlx_loop(map->mlx);
+}
+
+void	game_loop(void *mlx, void *mlx_win, t_map *map)
+{
+	mlx_hook(mlx_win, 2, 1L<<0, key_press, map);
+	mlx_hook(mlx_win, 3, 1L<<1, key_release, map);
+	mlx_hook(mlx_win, 17, 1L<<17, close_window, map);
+	mlx_loop(mlx);
+
+	// // mlx_hook(mlx_win, 2, 1L<<0, key_press, map);
+	// // mlx_hook(mlx_win, 3, 1L<<1, key_release, map);
+	// // mlx_hook(mlx_win, 17, 1L<<17, close_window, map);
+	// map->in_game = 1;
+	// while (map->in_game)
+	// {
+	// 	process_events(map);
+	// 	process_player(map);
+	// 	display(map);
+	// 	// mlx_loop(mlx);
+	// 	// check_player_position(map);
+	// 	// draw_minimap(map, map->img);
+	// 	// mlx_put_image_to_window(mlx, mlx_win, map->img->img, 0, 0);
+	// 	// mlx_loop(mlx);
+	// }
+}
+
 int	main( int ac, char **av )
 {
 	t_map	map;
@@ -291,7 +442,10 @@ int	main( int ac, char **av )
 	// open_cub_file(map.path, &map);
 	code_error = parser(&map);
 	if (code_error)
+	{
 		ft_printf("😔 Why are you doing this to me ? 😔\n");
+		return (1);
+	}
 	else if (!code_error)
 		ft_printf("🔥 I'm ready to cast rayzzzz 🔥\n");
 	// debug_print_map(&map);
@@ -314,15 +468,18 @@ int	main( int ac, char **av )
 	// draw_square(10, 20, 50, &img);
 	draw_floor_and_ceiling(&map, &img);
 	calculate_map(&map);
-	draw_view(&map, &img);
-	draw_minimap(&map, &img);
+	// draw_view(&map, &img);
 	// minimap_square(&map, &img);
 	// minimap_square(&map, &img);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	draw_minimap(&map, &img);
+	game_loop(mlx, mlx_win, &map);
+	// mlx_loop(mlx);
 
 
 	/* Memory Management */
-	free_map(&map);
+	// free_map(&map);
 	return (0);
 }
+
+

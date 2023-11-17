@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/03 16:36:47 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/11/17 16:02:00 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@
 
 // #include "../libs/mlx_linux/mlx.h"
 # include "../libs/libmlx/mlx.h"
-# include "../libs/ftprintf/ft_printf.h"
-# include "../libs/libft/libft.h"
+# include "../mylib/includes/mylib.h"
 # include "../includes/struct.h"
 
 # define DEBUG 1
@@ -60,6 +59,18 @@
 # define LIGHT_GRAY		0xD0D3D4
 # define DARK_GRAY		0x515A5A
 # define WHITE		0xFFFFFF
+
+// GAME CONSTANTS
+# define KEY_ESC		53
+# define KEY_W			13
+# define KEY_A			0
+# define KEY_S			1
+# define KEY_D			2
+# define KEY_Q			12
+# define KEY_LEFT		123
+# define KEY_RIGHT		124
+# define KEY_UP			126
+# define KEY_DOWN		125
 
 /* _____ PARSING ______ */
 /**
@@ -135,7 +146,7 @@ char	*fill_map(char *line, t_map *map);
  */
 
 int		count_split_elements(char **tab);
-int		ft_strcmp(char *s1, char *s2);
+// int		ft_strcmp(char *s1, char *s2);
 int		count_occurences(char *str, char c);
 char	*front_trim(char *line);
 

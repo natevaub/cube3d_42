@@ -1,7 +1,7 @@
-NO ./assets/normal_north.xpm
-SO ./assets/normal_south.xpm
-WE ./assets/normal_west.xpm
-EA ./assets/normal_east.xpm
+EA     ./textures/xpm/wall/concrete.xpm     
+WE     ./textures/xpm/wall/grafiti.xpm     
+     SO    ./textures/xpm/wall/stone.xpm
+   NO  ./textures/xpm/wall/wood.xpm   
 
 F 220,100,0
 C 225,30,0

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_errors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:04 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/10/24 16:00:07 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/17 16:04:53 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	unwanted_elements(char *line)
 		&& ft_strcmp(test[0], "C") != 0
 		&& ft_strcmp(test[0], " ") != 0)
 	{
-		free_split(test);
+		// free_split(test);
 		return (1);
 	}
-	free_split(test);
+	// free_split(test);
 	return (0);
 }
 
@@ -60,24 +60,24 @@ int	is_valid_elements(t_map *map)
 	return (1);
 }
 
-void	free_lines(char *line, char *current_line)
-{
-	free(line);
-	free(current_line);
-}
+// void	free_lines(char *line, char *current_line)
+// {
+// 	free(line);
+// 	free(current_line);
+// }
 
-void	free_split(char **split)
-{
-	int	i;
+// void	free_split(char **split)
+// {
+// 	int	i;
 
-	i = 0;
-	while (split[i] != NULL)
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
-}
+// 	i = 0;
+// 	while (split[i] != NULL)
+// 	{
+// 		free(split[i]);
+// 		i++;
+// 	}
+// 	free(split);
+// }
 
 int	manage_errors(int code_error)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:32 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/10/24 16:00:33 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:10:20 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	is_valid_map(t_map *map)
 	{
 		if (!contains_only_valid(map->map[i]))
 			return (0);
-		if ((i == 0 || i == map->rows_count) && !contains_only_1(map->map[i]))
+		if ((i == 0 || i == map->rows_count - 1) && !contains_only_1(map->map[i]))
 			return (0);
 		if (!contains_1_start_end(map->map[i]))
 			return (0);

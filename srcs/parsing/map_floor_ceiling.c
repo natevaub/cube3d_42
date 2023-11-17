@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_floor_ceiling.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:11 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/10/24 16:03:40 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/17 16:05:18 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	parse_floor(char *line, t_map *map)
 	count_info = count_split_elements(floor_info);
 	if (map->count_floor > 1)
 	{
-		free_split(floor_info);
+		// free_split(floor_info);
 		return ;
 	}
 	if (ft_strcmp(floor_info[0], "F") == 0)
@@ -30,11 +30,11 @@ void	parse_floor(char *line, t_map *map)
 		if (count_info == 2)
 		{
 			valid_floor_color(floor_info[1], map);
-			free_split(floor_info);
+			// free_split(floor_info);
 			return ;
 		}
 	}
-	free_split(floor_info);
+	// free_split(floor_info);
 }
 
 void	parse_ceiling(char *line, t_map *map)
@@ -46,7 +46,7 @@ void	parse_ceiling(char *line, t_map *map)
 	count_info = count_split_elements(ceiling_info);
 	if (map->count_ceiling > 1)
 	{
-		free_split(ceiling_info);
+		// free_split(ceiling_info);
 		return ;
 	}
 	if (ft_strcmp(ceiling_info[0], "C") == 0)
@@ -55,11 +55,11 @@ void	parse_ceiling(char *line, t_map *map)
 		if (count_info == 2)
 		{
 			valid_ceiling_color(ceiling_info[1], map);
-			free_split(ceiling_info);
+			// free_split(ceiling_info);
 			return ;
 		}
 	}
-	free_split(ceiling_info);
+	// free_split(ceiling_info);
 }
 
 int	valid_floor_color(char *floorValues, t_map *map)
@@ -83,7 +83,7 @@ int	valid_floor_color(char *floorValues, t_map *map)
 		return (0);
 	if (helper_valid_floor_color(parsed_rgb, map) == 0)
 		return (0);
-	free_split(parsed_rgb);
+	// free_split(parsed_rgb);
 	return (1);
 }
 
@@ -108,6 +108,6 @@ int	valid_ceiling_color(char *ceilingValues, t_map *map)
 		return (0);
 	if (helper_valid_ceiling_color(parsed_rgb, map) == 0)
 		return (0);
-	free_split(parsed_rgb);
+	// free_split(parsed_rgb);
 	return (1);
 }

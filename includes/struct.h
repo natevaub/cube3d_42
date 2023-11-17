@@ -20,6 +20,17 @@ typedef struct s_info
 	enum s_direction	direction;
 }	t_info;
 
+/**
+ * mlx
+*/
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
 typedef struct s_map {
 	int		count_ea;
 	int		count_no;
@@ -41,18 +52,11 @@ typedef struct s_map {
 	int		rows_count;
 	int		rows_width;
 	int		map_start_line;
+	int		in_game;
 	char	**map;
 	char	**copy;
+	void	*mlx;
+	void	*mlx_win;
+	t_data	*img;
 	t_info	*player_info;
 }	t_map;
-
-/**
- * mlx
-*/
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;

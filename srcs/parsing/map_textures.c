@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:48 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/10/24 16:00:56 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/17 16:06:18 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	parse_east_texture(char *line, t_map *map)
 	texture_info = ft_split(line, ' ');
 	if (map->count_ea > 1)
 	{
-		free_split(texture_info);
+		// free_split(texture_info);
 		return ;
 	}
 	count_info = count_split_elements(texture_info);
@@ -30,13 +30,13 @@ void	parse_east_texture(char *line, t_map *map)
 		map->count_ea++;
 		if (count_info != 2)
 		{
-			free_split(texture_info);
+			// free_split(texture_info);
 			return ;
 		}
 		check_access_textures(texture_info, map, count_info);
 		return ;
 	}
-	free_split(texture_info);
+	// free_split(texture_info);
 }
 
 void	parse_west_texture(char *line, t_map *map)
@@ -48,7 +48,7 @@ void	parse_west_texture(char *line, t_map *map)
 	texture_info = ft_split(line, ' ');
 	if (map->count_we > 1)
 	{
-		free_split(texture_info);
+		// free_split(texture_info);
 		return ;
 	}
 	count_info = count_split_elements(texture_info);
@@ -57,13 +57,13 @@ void	parse_west_texture(char *line, t_map *map)
 		map->count_we++;
 		if (count_info != 2)
 		{
-			free_split(texture_info);
+			// free_split(texture_info);
 			return ;
 		}
 		check_access_textures(texture_info, map, count_info);
 		return ;
 	}
-	free_split(texture_info);
+	// free_split(texture_info);
 }
 
 void	parse_north_texture(char *line, t_map *map)
@@ -75,7 +75,7 @@ void	parse_north_texture(char *line, t_map *map)
 	texture_info = ft_split(line, ' ');
 	if (map->count_no > 1)
 	{
-		free_split(texture_info);
+		// free_split(texture_info);
 		return ;
 	}
 	count_info = count_split_elements(texture_info);
@@ -84,13 +84,13 @@ void	parse_north_texture(char *line, t_map *map)
 		map->count_no++;
 		if (count_info != 2)
 		{
-			free_split(texture_info);
+			// free_split(texture_info);
 			return ;
 		}
 		check_access_textures(texture_info, map, count_info);
 		return ;
 	}
-	free_split(texture_info);
+	// free_split(texture_info);
 }
 
 void	parse_south_texture(char *line, t_map *map)
@@ -102,7 +102,7 @@ void	parse_south_texture(char *line, t_map *map)
 	texture_info = ft_split(line, ' ');
 	if (map->count_so > 1)
 	{
-		free_split(texture_info);
+		// free_split(texture_info);
 		return ;
 	}
 	count_info = count_split_elements(texture_info);
@@ -111,13 +111,13 @@ void	parse_south_texture(char *line, t_map *map)
 		map->count_so++;
 		if (count_info != 2)
 		{
-			free_split(texture_info);
+			// free_split(texture_info);
 			return ;
 		}
 		check_access_textures(texture_info, map, count_info);
 		return ;
 	}
-	free_split(texture_info);
+	// free_split(texture_info);
 }
 
 void	check_access_textures(char **texture_info, t_map *map, int count_info)
@@ -141,10 +141,10 @@ void	check_access_textures(char **texture_info, t_map *map, int count_info)
 			&& access(texture_info[1], F_OK) == 0)
 		{
 			*destinations[i] = ft_strdup(texture_info[1]);
-			free_split(texture_info);
+			// free_split(texture_info);
 			return ;
 		}
 		i++;
 	}
-	free_split(texture_info);
+	// free_split(texture_info);
 }

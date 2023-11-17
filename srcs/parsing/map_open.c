@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_open.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:28 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/10/24 16:00:29 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/17 16:05:39 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ int	cub_copy(int fd, t_map *map)
 	while (line != NULL)
 	{
 		res = ft_strjoin(to_free, line);
-		free_lines(to_free, line);
+		// free_lines(to_free, line);
 		to_free = res;
 		line = get_next_line(fd);
 	}
 	search_map(0, &map_start_at, res);
 	if (map_start_at == -1)
 	{
-		free(res);
+		// free(res);
 		return (1);
 	}
 	if (found_empty_line(&res[map_start_at]))
@@ -78,7 +78,7 @@ int	cub_copy(int fd, t_map *map)
 		return (2);
 	}
 	map->copy = ft_split(res, '\n');
-	free(res);
+	// free(res);
 	return (0);
 }
 
@@ -118,7 +118,7 @@ int	map_transform_to_usable(t_map *map)
 	int	i;
 
 	i = 0;
-	map->map = (char **)malloc(sizeof(char *) * (map->rows_count + 1));
+	map->map = (char **)ft_gc_malloc(sizeof(char *) * (map->rows_count + 1));
 	if (map->map == NULL)
 		return (5);
 	map->map[map->rows_count] = NULL;
