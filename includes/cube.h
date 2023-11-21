@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/17 16:02:00 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:38:24 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <sys/stat.h>
 
 // #include "../libs/mlx_linux/mlx.h"
-# include "../libs/libmlx/mlx.h"
-# include "../mylib/includes/mylib.h"
+# include "../libs/mlx/mlx.h"
+# include "../libs/libft/includes/mylib.h"
 # include "../includes/struct.h"
 
 # define DEBUG 1

@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:28 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/17 16:05:39 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:39:00 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int	open_cub_file(char *path, t_map *map)
 {
 	int	fd;
+
+	(void) map;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
@@ -105,7 +107,7 @@ int	cub_copy_to_map(t_map *map)
 	map->map_start_line = i;
 	while (map->copy[i])
 	{
-		if (ft_strlen(map->copy[i]) > map->rows_width)
+		if (ft_strlen(map->copy[i]) > (size_t) map->rows_width)
 			map->rows_width = ft_strlen(map->copy[i]);
 		map->rows_count++;
 		i++;

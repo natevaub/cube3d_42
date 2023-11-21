@@ -4,7 +4,7 @@ void	debug_print_int_values(char *str) {
 	if (!str) {
 		return;
 	}
-	for (int i = 0; i < ft_strlen(str); i++) {
+	for (size_t i = 0; i < ft_strlen(str); i++) {
 		ft_printf("%d ", str[i]);
 	}
 	ft_printf("\n");
@@ -196,6 +196,8 @@ void	draw_minimap(t_map *map, t_data *img)
 
 void	draw_view(t_map *map, t_data *img)
 {
+	(void)map;
+	(void)img;
 	// calculer la distance entre le joueur et le mur d'en face
 	// calculer la hauteur du mur
 	// calculer la position du mur sur l'écran
@@ -264,6 +266,7 @@ int	close_window(t_map *map)
 {
 	// free(img->player_info);
 	// free(img);
+	(void)map;
 	exit(0);
 	return (0);
 }
@@ -383,6 +386,8 @@ int	key_release(int keycode, t_map *map)
 	// {
 		
 	// }
+	(void)keycode;
+	(void)map;
 	return (0);
 }
 
@@ -401,12 +406,14 @@ void	process_player(t_map *map)
 	// mlx_put_image_to_window(mlx, mlx_win, map->img->img, 0, 0);
 	// mlx_loop(mlx);
 	// draw_minimap(map, map->img);
+	(void)map;
 }
 
 void	display(t_map *map)
 {
 	// mlx_put_image_to_window(map->mlx, map->mlx_win, map->img->img, 0, 0);
 	// mlx_loop(map->mlx);
+	(void)map;
 }
 
 void	game_loop(void *mlx, void *mlx_win, t_map *map)
@@ -433,11 +440,16 @@ void	game_loop(void *mlx, void *mlx_win, t_map *map)
 	// }
 }
 
-int	main( int ac, char **av )
+int	main(int ac, char **av )
 {
 	t_map	map;
 	int		code_error;
 
+	if (ac != 2)
+	{
+		ft_printf("😔 Why are you doing this to me ? 😔\n");
+		return (1);
+	}
 	init_map(&map, av);
 	// open_cub_file(map.path, &map);
 	code_error = parser(&map);

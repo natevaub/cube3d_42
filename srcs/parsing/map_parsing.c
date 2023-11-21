@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:32 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/07 15:10:20 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:16:19 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	contains_only_valid(char *line)
 
 int	contains_1_start_end(char *line)
 {
-	int	i;
+	unsigned long	i;
 
 	i = 0;
 	while (line[i])

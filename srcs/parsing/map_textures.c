@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:48 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/17 16:06:18 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:07:01 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	parse_east_texture(char *line, t_map *map)
 {
 	char	**texture_info;
 	int		count_info;
-	int		existing_file;
+	// int		existing_file;
 
 	texture_info = ft_split(line, ' ');
 	if (map->count_ea > 1)
@@ -43,7 +43,7 @@ void	parse_west_texture(char *line, t_map *map)
 {
 	char	**texture_info;
 	int		count_info;
-	int		existing_file;
+	// int		existing_file;
 
 	texture_info = ft_split(line, ' ');
 	if (map->count_we > 1)
@@ -70,7 +70,7 @@ void	parse_north_texture(char *line, t_map *map)
 {
 	char	**texture_info;
 	int		count_info;
-	int		existing_file;
+	// int		existing_file;
 
 	texture_info = ft_split(line, ' ');
 	if (map->count_no > 1)
@@ -97,7 +97,7 @@ void	parse_south_texture(char *line, t_map *map)
 {
 	char	**texture_info;
 	int		count_info;
-	int		existing_file;
+	// int		existing_file;
 
 	texture_info = ft_split(line, ' ');
 	if (map->count_so > 1)
@@ -125,6 +125,8 @@ void	check_access_textures(char **texture_info, t_map *map, int count_info)
 	char	*texture_types[4];
 	char	**destinations[4];
 	int		i;
+
+	(void)count_info;
 
 	i = 0;
 	texture_types[0] = "EA";

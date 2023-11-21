@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:11 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/17 16:05:18 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:37:48 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	valid_floor_color(char *floorValues, t_map *map)
 	char	**parsed_rgb;
 	int		count_info;
 	int		i;
-	int		j;
+	// int		j;
 
 	i = -1;
 	if (count_occurences(floorValues, ',') != 2)
@@ -92,7 +92,7 @@ int	valid_ceiling_color(char *ceilingValues, t_map *map)
 	char	**parsed_rgb;
 	int		count_info;
 	int		i;
-	int		j;
+	// int		j;
 
 	i = -1;
 	if (count_occurences(ceilingValues, ',') != 2)
