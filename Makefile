@@ -6,7 +6,7 @@
 #    By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 15:20:40 by rrouille          #+#    #+#              #
-#    Updated: 2023/11/21 17:53:16 by rrouille         ###   ########.fr        #
+#    Updated: 2023/11/21 17:58:57 by rrouille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -134,7 +134,6 @@ extract_mlx:
 # Build rule for object files
 ${OBJSDIR}/%.o : ${SRCSDIR}/%.c .WAIT lib
 			@${MKDIR} ${OBJS_FOLDERS}
-			# @${EXTRACT_MLX}
 			@${CC} ${CFLAGS} -I ${HDRDIR} -c $< -o $@
 
 # Linking rule
@@ -293,7 +292,7 @@ cf:		check_forbidden
 
 # Fast compilation
 fast: FAST_MODE := YES
-fast: lib .WAIT ${OBJS}	
+fast: lib .WAIT extract_mlx .WAIT ${OBJS}	
 		${COMPILATION}
 f: fast
 
