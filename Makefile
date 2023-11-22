@@ -42,30 +42,33 @@ PARSING_FILES			:=			map_open.c			\
 									map_search.c		\
 									map_parsing.c		\
 									map_transform.c		\
+									map_init_free.c		\
 
-GRAPHICS_FILES			:=			graphics.c			\
-									graphics_draw.c		\
-									graphics_utils.c	\
-									graphics_raycast.c	\
-									graphics_sprites.c	\
-									graphics_textures.c	\
-									graphics_keys.c		\
-									graphics_init.c		\
-									graphics_errors.c	\
-									graphics_helpers.c	\
-									graphics_save.c		\
 
-COMPUTE_FILES			:=			compute.c			\
+GRAPHICS_FILES			:=			graphics_draw.c		\
+
+COMPUTE_FILES			:=			compute.c		\
+									compute_init.c		\
+									op_vectors.c		\
+
+MYMINILIBX_FILES				:=	event_handler.c			\
+									init_handler.c		\
+
+DEBUG_FILES				:=			debug.c				\
 
 MAIN_FILE				:=			$(addprefix $(OBJS_PATH)/, $(MAIN_FILE:.c=.o))
 PARSING_FILES			:=			$(addprefix $(OBJS_PATH)/parsing/, $(PARSING_FILES:.c=.o))
 GRAPHICS_FILES			:=			$(addprefix $(OBJS_PATH)/graphics/, $(GRAPHICS_FILES:.c=.o))
 COMPUTE_FILES			:=			$(addprefix $(OBJS_PATH)/compute/, $(COMPUTE_FILES:.c=.o))
+MYMINILIBX_FILES		:=			$(addprefix $(OBJS_PATH)/myminilibx/, $(MYMINILIBX_FILES:.c=.o))
+DEBUG_FILES				:=			$(addprefix $(OBJS_PATH)/debug/, $(DEBUG_FILES:.c=.o))
 
 OBJS					:=			$(MAIN_FILE)				\
 									$(PARSING_FILES)			\
 									$(GRAPHICS_FILES)			\
 									$(COMPUTE_FILES)			\
+									$(MYMINILIBX_FILES)				\
+									$(DEBUG_FILES)				\
 
 LIBS					:=			-L$(LIB_DIRECTORY) -lft -lftprintf
 

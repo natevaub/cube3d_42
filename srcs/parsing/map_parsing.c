@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:32 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/09 04:07:43 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/21 22:15:01 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	is_valid_map(t_map *map)
 			return (0);
 		i++;
 	}
-	if (contains_spawn(map->map) == 0)
+	if (contains_spawn(map->map, map) == 0)
 		return (0);
 	return (1);
 }
@@ -91,7 +91,7 @@ int	contains_1_start_end(char *line)
 	return (1);
 }
 
-int	contains_spawn(char **map)
+int	contains_spawn(char **map, t_map *m)
 {
 	int	flag;
 	int	i;
@@ -106,7 +106,16 @@ int	contains_spawn(char **map)
 		{
 			if (map[i][j] == 'N' || map[i][j] == 'S' ||
 				map[i][j] == 'E' || map[i][j] == 'W')
-				flag++;
+				{
+					m->player_position = (t_vector *)malloc(sizeof(t_vector));
+					m->player_position->y = i + 0.5;
+					m->player_position->x = j + 0.5;
+					m->player_direction = map[i][j];
+					printf("x %f --- ", m->player_position->x);
+					printf("y %f --- ", m->player_position->y);
+					printf("dir %c\n\n", m->player_direction);
+					flag++;
+				}
 			j++;
 		}
 		i++;

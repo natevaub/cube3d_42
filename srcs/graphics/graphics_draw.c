@@ -77,6 +77,11 @@ void draw_line(t_data *img, t_vector start, t_vector end, int color)
 	i = 0;
 	while (i <= step)
 	{
+		if (x < 0 || x >= img->line_length || y < 0 || y >= img->line_length) {
+		i++;
+			continue;
+
+		}
 		my_mlx_pixel_put(img, x, y, color);
 		x += dx;
 		y += dy;
@@ -86,35 +91,30 @@ void draw_line(t_data *img, t_vector start, t_vector end, int color)
 
 void draw_disk(int x, int y, int radius, t_data *img, int color)
 {
-    for (int i = x - radius; i <= x + radius; i++) {
-        for (int j = y - radius; j <= y + radius; j++) {
-            int dx = i - x;
-            int dy = j - y;
-            if (dx * dx + dy * dy <= radius * radius) {
-                my_mlx_pixel_put(img, i, j, color);
-            }
-        }
-    }
+	for (int i = x - radius; i <= x + radius; i++) {
+		for (int j = y - radius; j <= y + radius; j++) {
+			if (i < 0 || i >= img->line_length || j < 0 || j >= img->line_length)
+				continue;
+			int dx = i - x;
+			int dy = j - y;
+			if (dx * dx + dy * dy <= radius * radius) {
+				my_mlx_pixel_put(img, i, j, color);
+			}
+		}
+	}
 }
 
-void minimap_square(t_map *map, t_data *img, t_intersections intersections, t_vector pos, t_vector dir)
+void minimap_square(t_map *map, t_data *img, t_intersections intersections, t_vector pos, t_vector dir, t_mapping *mapping)
 {
 	ft_printf("Map Row Width %d\n", map->rows_width);
 	ft_printf("Map Row Count %d\n", map->rows_count);
-	int	size = 20;
+	int	size = 50;
 	ft_printf("Square Width %d\n", size);
 	int	x, y;
 	int	i, j;
 
 	y = 0; x = 0;
 	i = 0; j = 0;
-
-	t_mapping mapping = {
-		.from_width = map->rows_width,
-		.from_height = map->rows_count,
-		.to_width = map->rows_width * 20,
-		.to_height = map->rows_count * 20};
-
 
 	while (i < map->rows_count)
 	{
@@ -137,12 +137,37 @@ void minimap_square(t_map *map, t_data *img, t_intersections intersections, t_ve
 		y += size;
 	}
 
-	for  (int i = 0; i < intersections.size - 4; i++)
+	for (int i = 0; i < intersections.size; i++)
 	{
-		t_vector mapped = map_vec(intersections.points[i], mapping);
-		draw_disk(mapped.x, mapped.y, 5, img, RED);
+		t_vector mapped = map_vec(intersections.points[i], *mapping);
+		draw_disk(mapped.x, mapped.y, 3, img, RED);
 	}
+	t_vector start = pos;
+	t_vector end = add(pos, map_vec(normalize(dir), *mapping) );
+	// normalized dir
+	t_vector normed_dir = normalize(dir);
 
-	
-	draw_line(img, pos, dir, RED);
+	printf("Pos: %f, %f\n", pos.x, pos.y);
+	printf("Start: %f, %f\n", start.x, start.y);
+	// print normalized dir
+	printf("Dir: %f, %f\n", normed_dir.x, normed_dir.y);
+	printf("End: %f, %f\n\n", end.x, end.y);
+
+	// draw_line(img, start, end, RED);
+	// draw a line from player position to last intersection
+	// draw_line(img, pos, intersections.points[intersections.size - 1], RED);
+	// previous line doesn't work I think you should map_vec
+	draw_line(img, pos, map_vec(intersections.points[intersections.size - 1], *mapping), RED);
+}
+
+void	draw_player(t_map *map, t_data *img, t_mapping *mapping)
+{
+	t_vector	mapped = map_vec(*map->player_position, *mapping);
+	draw_disk(mapped.x, mapped.y, 3, img, GREEN);
+
+}
+
+int	encode_rgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
 }

@@ -4,6 +4,11 @@ typedef struct s_help_vars {
 	int	k;
 }	t_help_vars;
 
+typedef struct s_vector {
+	float x;
+	float y;
+} t_vector;
+
 typedef struct s_map {
 	int		count_ea;
 	int		count_no;
@@ -27,6 +32,8 @@ typedef struct s_map {
 	int		map_start_line;
 	char	**map;
 	char	**copy;
+	t_vector	*player_position;
+	char	player_direction;
 }	t_map;
 
 /**
@@ -40,17 +47,13 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
+
 typedef struct s_mlx {
-	void	*mlx;
+	void	*mlx_ptr;
 	void	*mlx_win;
-	t_data	*img;
+	t_data	img;
 }	t_mlx;
 
-
-typedef struct s_vector {
-	float x;
-	float y;
-} t_vector;
 
 typedef struct s_mapping {
 	int from_width;
@@ -66,3 +69,36 @@ typedef struct s_intersections
 	int size;
 	t_vector* points;
 } t_intersections;
+
+typedef struct s_test
+{
+	t_vector		pos;
+	t_vector		dir;
+	t_intersections	intersections;
+	t_vector		pp;
+} t_test;
+
+typedef struct s_compute
+{
+	t_vector	*dynamic_res;
+	t_vector	*tmp;
+	int		n_inter;
+	float	xy;
+	float	yx;
+	float	x_diag_increment;
+	float	y_diag_increment;
+	t_vector	curr_square;
+	t_vector	curr_origin;
+	t_vector	test;
+	t_vector	n_direction;
+	int			next_x;
+	int	next_y;
+	float	len_x;
+	float	len_y;
+	float	diag_for_len_x;
+	float	diag_for_len_y;
+	float	new_origin_x;
+	float	new_origin_y;
+	float	eps;
+	char	x;
+}	t_compute;

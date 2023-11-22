@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/09 04:13:01 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/22 06:16:32 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "../libs/ftprintf/ft_printf.h"
 # include "../libs/libft/libft.h"
 # include "../includes/struct.h"
+# include "../includes/enums.h"
 
 # define DEBUG 1
 # define ERR_MSG_1 "Error: Map is not surrounded by 1's\n"
@@ -41,10 +42,10 @@
 # define ERR_MSG_10 "Error: Invalid element found\n"
 # define ERR_MSG_11 "MALLOC ERROR\n"
 
-# define SCREEN_WIDTH 1000
-# define SCREEN_HEIGHT 1000
-# define GAME_WIDTH 720
-# define GAME_HEIGHT 480
+# define SCREEN_WIDTH 700
+# define SCREEN_HEIGHT 700
+# define GAME_WIDTH 500
+# define GAME_HEIGHT 500
 
 # define RED		0x00FF0000
 # define GREEN 		0x0000FF00
@@ -59,6 +60,16 @@
 # define LIGHT_GRAY		0xD0D3D4
 # define DARK_GRAY		0x515A5A
 # define WHITE		0xFFFFFF
+
+# define LINUX_W 199
+# define LINUX_A 97
+# define LINX_S 115
+# define LINUX_D 100
+# define LINUX_NORTH_ARROW 65362
+# define LINUX_SOUTH_ARROW 65364
+# define LINUX_EAST_ARROW 65363
+# define LINUX_WEST_ARROW 65361
+# define LINUX_ESCAPE 65307
 
 /* _____ PARSING ______ */
 /**
@@ -115,7 +126,7 @@ int		is_valid_map(t_map *map);;
 int		contains_only_valid(char *line);
 int		contains_only_1(char *line);
 int		contains_1_start_end(char *line);
-int		contains_spawn(char **map);
+int		contains_spawn(char **map, t_map *m);
 
 /**
  * map_helpers.c
@@ -158,6 +169,14 @@ int		map_transform_to_parsable(t_map *map);
 int		map_transform_to_usable(t_map *map);
 int		map_check_hole(t_map *map);
 
+/**
+ * map_init_free.c
+ * 
+ * Norme: ✅ , Leak: ✅
+*/
+void	init_map(t_map *map, char **av);
+void	free_map(t_map *map);
+
 /* _____ GRAPHICS ______ */
 /**
  * graphics_draw.c
@@ -165,10 +184,12 @@ int		map_check_hole(t_map *map);
  * Norme: ❌ , Leak: ✅
  */
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	minimap_square(t_map *map, t_data *img, t_intersections intersections, t_vector pos, t_vector dir);
+void	minimap_square(t_map *map, t_data *img, t_intersections intersections, t_vector pos, t_vector dir, t_mapping *mapping);
 void	draw_square(int x, int y, int size, t_data *img);
 void	draw_square_walls(int x, int y, int size, t_data *img);
 void 	draw_disk(int x, int y, int radius, t_data *img, int color);
+void	draw_player(t_map *map, t_data *img, t_mapping *mapping);
+int		encode_rgb(int t, int r, int g, int b);
 
 
 /**
@@ -183,6 +204,27 @@ void	debug_print_map(const t_map *map);
 t_vector 			map_vec(t_vector v, t_mapping m);
 float 				norm(t_vector vec);
 t_vector 			normalize(t_vector vec);
-t_intersections		compute_intersections(t_vector origin, t_vector direction, t_map *map);
+t_vector 			add(t_vector a, t_vector b);
+t_vector 			add_scalar(t_vector a, float b);
+t_vector 			mul_scalar(t_vector a, float b);
+
+// t_intersections		compute_intersections(t_vector origin, t_vector direction, t_map *map);
+t_intersections	compute_intersections(t_vector or, t_vector dir, t_map *map);
+void			store_intersections(t_compute *c);
+void			initialize_compute(t_vector or, t_vector dir, t_compute *compute);
+int				check_collision(t_map *map, t_compute *c);
+void			update_next_x_and_y(t_vector or, t_vector dir, t_compute *c);
+void			update_compute_state(t_compute *c);
+
+
+int 			init_mlx(t_mlx *m_mlx);
+int				win_close_click();
+int				key_hook(int keycode, t_mlx *m_mlx);
+int				win_close_key(t_mlx *m_mlx);
+void			event_manager(t_mlx *m_mlx);
+
+
+void				init_mapping(t_map *map, t_mapping *mapping);
+void				test_inter(t_map *map, t_mapping *mapping, t_test *test);
 
 #endif
