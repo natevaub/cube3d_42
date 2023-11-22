@@ -57,6 +57,8 @@ typedef struct s_map {
 	char	**copy;
 	void	*mlx;
 	void	*mlx_win;
+    int     texWidth;
+    int     texHeight;
 	t_data	*img;
 	t_info	*player_info;
 }	t_map;

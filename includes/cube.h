@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/21 17:38:24 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:44:22 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define MINIMAP_HEIGHT 1000
 # define GAME_WIDTH 720
 # define GAME_HEIGHT 480
-# define MINIMAP_SCALE 0.2
+# define MINIMAP_SCALE 8
 
 # define RED		0x00FF0000
 # define GREEN 		0x0000FF00
