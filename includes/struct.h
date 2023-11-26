@@ -1,40 +1,3 @@
-typedef struct s_help_vars {
-	int	i;
-	int	j;
-	int	k;
-}	t_help_vars;
-
-typedef struct s_vector {
-	float x;
-	float y;
-} t_vector;
-
-typedef struct s_map {
-	int		count_ea;
-	int		count_no;
-	int		count_so;
-	int		count_we;
-	char	*path;
-	char	*so;
-	char	*no;
-	char	*we;
-	char	*ea;
-	int		count_floor;
-	int		count_ceiling;
-	int		floor_R;
-	int		floor_G;
-	int		floor_B;
-	int		ceiling_R;
-	int		ceiling_G;
-	int		ceiling_B;
-	int		rows_count;
-	int		rows_width;
-	int		map_start_line;
-	char	**map;
-	char	**copy;
-	t_vector	*player_position;
-	char	player_direction;
-}	t_map;
 
 /**
  * mlx
@@ -54,7 +17,6 @@ typedef struct s_mlx {
 	t_data	img;
 }	t_mlx;
 
-
 typedef struct s_mapping {
 	int from_width;
 	int from_height;
@@ -62,7 +24,51 @@ typedef struct s_mapping {
 	int to_height;
 } t_mapping;
 
-	
+typedef struct s_help_vars {
+	int	i;
+	int	j;
+	int	k;
+}	t_help_vars;
+
+typedef struct s_vector {
+	float x;
+	float y;
+} t_vector;
+
+typedef struct s_map {
+	int			count_ea;
+	int			count_no;
+	int			count_so;
+	int			count_we;
+	char		*path;
+	char		*so;
+	char		*no;
+	char		*we;
+	char		*ea;
+	int			count_floor;
+	int			count_ceiling;
+	int			floor_R;
+	int			floor_G;
+	int			floor_B;
+	int			ceiling_R;
+	int			ceiling_G;
+	int			ceiling_B;
+	int			rows_count;
+	int			rows_width;
+	int			map_start_line;
+	char		**map;
+	char		**copy;
+	t_vector	player_position;
+	t_vector	direction;
+	char		player_direction;
+	t_mlx		m_mlx;
+	t_mapping	mapping;
+	int frames;
+	int start_time;
+}	t_map;
+
+
+
 
 typedef struct s_intersections
 {

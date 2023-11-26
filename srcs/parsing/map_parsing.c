@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:32 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/21 22:15:01 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:46:23 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,10 @@ int	contains_spawn(char **map, t_map *m)
 			if (map[i][j] == 'N' || map[i][j] == 'S' ||
 				map[i][j] == 'E' || map[i][j] == 'W')
 				{
-					m->player_position = (t_vector *)malloc(sizeof(t_vector));
-					m->player_position->y = i + 0.5;
-					m->player_position->x = j + 0.5;
-					m->player_direction = map[i][j];
-					printf("x %f --- ", m->player_position->x);
-					printf("y %f --- ", m->player_position->y);
-					printf("dir %c\n\n", m->player_direction);
+					m->player_position.y = i + 0.5;
+					m->player_position.x = j + 0.5;
+					// m->player_direction = map[i][j];
+					m->direction = transform_pdirection_to_vector(map[i][j]);
 					flag++;
 				}
 			j++;

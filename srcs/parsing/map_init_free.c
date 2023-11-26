@@ -34,8 +34,6 @@ void free_map(t_map *map)
 	free(map->path);
 	if (map->copy)
 	{
-		if (map->player_position)
-			free(map->player_position);
 		free_split(map->copy);
 		free(map->so);
 		free(map->no);

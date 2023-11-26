@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/22 06:31:29 by nvaubien          #+#    #+#             */
+/*   Updated: 2023/11/22 16:51:09by nvaubien         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cube.h"
 
 // int main(int ac, char **av)
@@ -48,11 +60,55 @@
 // 	return (0);
 // }
 
+// int main(int ac, char **av)
+// {
+// 	t_map		map;
+// 	t_mlx		m_mlx;
+// 	t_mapping	mapping;
+// 	int			code_error;
+
+// 	init_map(&map, av);
+// 	code_error = parser(&map);
+// 	if (code_error)
+// 	{
+// 		free_map(&map);
+// 		ft_printf("😔 Why are you doing this to me ? 😔\n");
+// 		return (1);
+// 	}
+// 	else if (!code_error)
+// 		ft_printf("🔥 I'm ready to cast rayzzzz 🔥\n");
+
+// 	debug_print_map(&map);
+
+// 	init_mapping(&map, &mapping);
+	
+// 	init_mlx(&m_mlx);
+// 	map.direction = transform_pdirection_to_vector('S');
+	// for (int i=0; i < 360; i++) {
+	// 	// map.player_position = add(map.player_position, (t_vector){0.01*i, 0.0*i});
+	// 	map.player_position = (t_vector){2, 3};
+	// 	map.direction = rotate(map.direction, i);
+	// 	render_on_screen(&m_mlx, &map, &mapping);
+	// 	usleep(500000);
+	// }
+	
+	// render_on_screen(&m_mlx, &map, &mapping);
+
+	// event_manager(&m_mlx);
+
+// 	game_loop(&map, &m_mlx, &mapping);
+	
+	
+// 	free_map(&map);
+
+// 	return (0);
+// }
+
 int main(int ac, char **av)
 {
 	t_map		map;
-	t_mlx		m_mlx;
 	t_mapping	mapping;
+	t_mlx		m_mlx;
 	int			code_error;
 
 	init_map(&map, av);
@@ -67,10 +123,28 @@ int main(int ac, char **av)
 		ft_printf("🔥 I'm ready to cast rayzzzz 🔥\n");
 
 	debug_print_map(&map);
+
 	init_mapping(&map, &mapping);
 	init_mlx(&m_mlx);
+	
+	map.m_mlx = m_mlx;
+	map.mapping = mapping;
+	// map.direction = transform_pdirection_to_vector('S');
+	// for (int i=0; i < 360; i++) {
+	// 	// map.player_position = add(map.player_position, (t_vector){0.01*i, 0.0*i});
+	// 	map.player_position = (t_vector){2, 3};
+	// 	map.direction = rotate(map.direction, i);
+	// 	render_on_screen(&m_mlx, &map, &mapping);
+	// 	usleep(500000);
+	// }
+	
+	// render_on_screen(&m_mlx, &map, &mapping);
 
-	event_manager(&m_mlx);
+	// event_manager(&m_mlx);
+	
+	game_loop(&map);
+	
+	
 	free_map(&map);
 
 	return (0);

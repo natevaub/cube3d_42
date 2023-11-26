@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/22 06:16:32 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/25 23:33:25 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <time.h>
+
 
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -46,6 +48,7 @@
 # define SCREEN_HEIGHT 700
 # define GAME_WIDTH 500
 # define GAME_HEIGHT 500
+# define MAP_SCALE 10
 
 # define RED		0x00FF0000
 # define GREEN 		0x0000FF00
@@ -61,9 +64,9 @@
 # define DARK_GRAY		0x515A5A
 # define WHITE		0xFFFFFF
 
-# define LINUX_W 199
+# define LINUX_W 119
 # define LINUX_A 97
-# define LINX_S 115
+# define LINUX_S 115
 # define LINUX_D 100
 # define LINUX_NORTH_ARROW 65362
 # define LINUX_SOUTH_ARROW 65364
@@ -179,17 +182,41 @@ void	free_map(t_map *map);
 
 /* _____ GRAPHICS ______ */
 /**
- * graphics_draw.c
+ * draw_utils.c
  *
  * Norme: ❌ , Leak: ✅
  */
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	minimap_square(t_map *map, t_data *img, t_intersections intersections, t_vector pos, t_vector dir, t_mapping *mapping);
+int		encode_rgb(int t, int r, int g, int b);
+
+/**
+ * draw_shapes.c
+ *
+ * Norme: ✅ , Leak: ✅
+ */
 void	draw_square(int x, int y, int size, t_data *img);
 void	draw_square_walls(int x, int y, int size, t_data *img);
 void 	draw_disk(int x, int y, int radius, t_data *img, int color);
+
+/**
+ * draw_minimap.c
+*/
+void	draw_non_walls(t_map *map, t_data *img, t_mapping *mapping);
 void	draw_player(t_map *map, t_data *img, t_mapping *mapping);
-int		encode_rgb(int t, int r, int g, int b);
+// void	draw_player(t_map *map);
+void	draw_minimap(t_map *map, t_data *img, t_mapping *mapping);
+// void	draw_intersections(t_map *map);
+void	draw_intersections(t_map *map, t_data *img, t_mapping *mapping);
+void	draw_view(t_map *map, t_data *img, t_mapping *mapping);
+
+
+/**
+ * render.c
+ * 
+ * 
+*/
+// void	render_on_screen(t_mlx *m_mlx, t_map *map, t_mapping *mapping);
+void	render_on_screen(t_map *map);
 
 
 /**
@@ -206,7 +233,10 @@ float 				norm(t_vector vec);
 t_vector 			normalize(t_vector vec);
 t_vector 			add(t_vector a, t_vector b);
 t_vector 			add_scalar(t_vector a, float b);
+t_vector			sub_scalar(t_vector a, t_vector b);
 t_vector 			mul_scalar(t_vector a, float b);
+t_vector			transform_pdirection_to_vector(char direction);
+t_vector rotate(t_vector v, float angle);
 
 // t_intersections		compute_intersections(t_vector origin, t_vector direction, t_map *map);
 t_intersections	compute_intersections(t_vector or, t_vector dir, t_map *map);
@@ -219,10 +249,17 @@ void			update_compute_state(t_compute *c);
 
 int 			init_mlx(t_mlx *m_mlx);
 int				win_close_click();
-int				key_hook(int keycode, t_mlx *m_mlx);
+int				key_press(int keycode, t_map *map);
 int				win_close_key(t_mlx *m_mlx);
-void			event_manager(t_mlx *m_mlx);
+void			event_manager(t_map *map);
+// void			game_loop(t_map *map, t_mlx *m_mlx, t_mapping *mapping);
+void	game_loop(t_map *map);
+void	game_loop_callback(t_map *map);
+void	update_frame(t_map *map);
 
+void	handle_wasd(int keycode, t_map *map);
+void	handle_esc(int keycode, t_map *map);
+void	handle_arrows(int keycode, t_map *map);
 
 void				init_mapping(t_map *map, t_mapping *mapping);
 void				test_inter(t_map *map, t_mapping *mapping, t_test *test);

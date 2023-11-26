@@ -17,9 +17,19 @@ void	init_mapping(t_map *map, t_mapping *mapping)
 {
 	mapping->from_width = map->rows_width;
 	mapping->from_height = map->rows_count;
-	mapping->to_width = map->rows_width * 50;
-	mapping->to_height = map->rows_count * 50;
+	mapping->to_width = map->rows_width * MAP_SCALE;
+	mapping->to_height = map->rows_count * MAP_SCALE;
 }
+
+// void	init_mapping(t_map *map, t_mapping *mapping)
+// {
+// 	mapping->from_width = map->rows_width;
+// 	mapping->from_height = map->rows_count;
+// 	mapping->to_width = map->rows_width * MAP_SCALE + SCREEN_WIDTH/ 2 - (map->rows_width * MAP_SCALE) / 2;
+// 	printf("to_width: %d\n", mapping->to_width);
+// 	mapping->to_height = map->rows_count * MAP_SCALE + 10;
+// 	printf("to_height: %d\n", mapping->to_height);
+// }
 
 void	initialize_compute(t_vector or, t_vector dir, t_compute *compute)
 {

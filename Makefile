@@ -45,7 +45,11 @@ PARSING_FILES			:=			map_open.c			\
 									map_init_free.c		\
 
 
-GRAPHICS_FILES			:=			graphics_draw.c		\
+GRAPHICS_FILES			:=			draw_minimap.c\
+									draw_shapes.c\
+									draw_utils.c\
+									render.c\
+
 
 COMPUTE_FILES			:=			compute.c		\
 									compute_init.c		\
