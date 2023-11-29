@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/26 02:40:53 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/28 23:03:09 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void	draw_player(t_map *map, t_data *img, t_mapping *mapping)
 	mapped.y += 10;
 	// printf("mapped player position: %f, %f\n", mapped.x, mapped.y);
 	draw_disk(mapped.x, mapped.y, 3, img, GREEN);
-	t_vector fov_start = map_vec(rotate(map->direction, -60 / 2), map->mapping);
-	t_vector fov_end = map_vec(rotate(map->direction, 60 / 2), map->mapping);
+	t_vector fov_start = map_vec(rotate(map->direction, -45 / 2), map->mapping);
+	t_vector fov_end = map_vec(rotate(map->direction, 45 / 2), map->mapping);
 
 	t_vector origin = map_vec(map->player_position, map->mapping);
 	origin.x = origin.x + SCREEN_WIDTH / 2 - (map->rows_width * MAP_SCALE) / 2;
@@ -89,6 +89,7 @@ void	draw_player(t_map *map, t_data *img, t_mapping *mapping)
 	endpoint.x = endpoint.x + SCREEN_WIDTH / 2 - (map->rows_width * MAP_SCALE) / 2;
 	endpoint.y = endpoint.y + 10;
 	draw_line(img, origin, endpoint, BLUE);
+	free(intersections.points);
 
 	intersections = compute_intersections(map->player_position, fov_end, map);
 	endpoint = intersections.points[intersections.size - 1];
@@ -96,6 +97,7 @@ void	draw_player(t_map *map, t_data *img, t_mapping *mapping)
 	endpoint.x = endpoint.x + SCREEN_WIDTH / 2 - (map->rows_width * MAP_SCALE) / 2;
 	endpoint.y = endpoint.y + 10;
 	draw_line(img, origin, endpoint, BLUE);
+	free(intersections.points);
 }
 
 void	draw_view(t_map *map, t_data *img, t_mapping *mapping)
@@ -113,7 +115,7 @@ void	draw_view(t_map *map, t_data *img, t_mapping *mapping)
 		}
 	}
 
-	float fov = 60;
+	float fov = 90;
 
 	
 
@@ -138,35 +140,62 @@ void	draw_view(t_map *map, t_data *img, t_mapping *mapping)
 		t_vector endpoint = intersections.points[intersections.size - 1];
 		t_vector dist = sub_scalar(endpoint, map->player_position);
 		// printf("endpoint: %f, %f\n", endpoint.x, endpoint.y);
-		float angle = -fov + (120.0 / SCREEN_WIDTH) * i;
+		float angle = -(fov / 2) + (fov / SCREEN_WIDTH) * i;
 		float n_dist = norm(dist);
 		float scale_fac = 1.0 / n_dist;
 		// printf("scale_fac: %f dist: %f\n", scale_fac, n_dist);
+		
+		float h = 100  / (n_dist * 0.8);
 
 
-		float l = SCREEN_HEIGHT - (scale_fac * SCREEN_HEIGHT) / 2;
+		// float l = SCREEN_HEIGHT - (scale_fac * SCREEN_HEIGHT) / 2;
 
-		t_vector beg = (t_vector){.x = i, .y = l};
-		t_vector end = (t_vector){.x = i, .y = SCREEN_HEIGHT - l};
+		t_vector beg = (t_vector){.x = i, .y = SCREEN_HEIGHT / 2 - h / 2};
+		t_vector end = (t_vector){.x = i, .y = SCREEN_HEIGHT / 2 + h / 2};
+		// printf("beg: %f, %f, end: %f, %f, dist: %f\n", beg.x, beg.y, end.x, end.y, n_dist);
 
 		// t_vector beg = (t_vector){.x = i, .y = 100};
 		// t_vector end = (t_vector){.x = i, .y = SCREEN_HEIGHT - 100};
 
 		t_vector n = sub_scalar(end, beg);
-		printf("n: %f, %f, scale_fac: %f, n_dist: %f, i: %d. angle: %f\n", n.x, n.y, scale_fac, n_dist, i, angle);
+		// printf("n: %f, %f, scale_fac: %f, n_dist: %f, i: %d. angle: %f\n", n.x, n.y, scale_fac, n_dist, i, angle);
 		// print current
 		// printf("current: %f, %f\n", current.x, current.y);
 
+		// clamp beg and end to 0, screen_height
+		if (beg.y < 0) {
+			beg.y = 0;
+		}
+		if (end.y > SCREEN_HEIGHT) {
+			end.y = SCREEN_HEIGHT;
+		}
+
+
 
 		if (endpoint.y == (int)endpoint.y) {
-			draw_line(img, beg, end, RED);
+
+			int m = (int)endpoint.y % 3;
+			if (m == 0) {
+				draw_line(img, beg, end, BLUE);
+			} else if (m == 1) {
+				draw_line(img, beg, end, RED);
+			} else {
+				draw_line(img, beg, end, GREEN);
+			}
 		}
 		if (endpoint.x == (int)endpoint.x) {
-			draw_line(img, beg, end, GREEN);
+			int m = (int)endpoint.x % 3;
+
+			if (m == 0) {
+				draw_line(img, beg, end, LIGHT_GRAY);
+			} else if (m == 1) {
+				draw_line(img, beg, end, DARK_GRAY);
+			} else {
+				draw_line(img, beg, end, 0);
+			}	
+
 		}
 		
-
 		free(intersections.points);
 	}
-
 }
