@@ -67,6 +67,8 @@ typedef struct s_map {
 	char		player_direction;
 	t_mlx		m_mlx;
 	t_mapping	mapping;
+	// int			mouse_x;
+	// int			mouse_y;
 	int frames;
 	int start_time;
 }	t_map;
