@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/01 00:28:45 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:38:09 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,17 @@
 # define LINUX_A 97
 # define LINUX_S 115
 # define LINUX_D 100
-# define LINUX_NORTH_ARROW 65362
-# define LINUX_SOUTH_ARROW 65364
 # define LINUX_EAST_ARROW 65363
 # define LINUX_WEST_ARROW 65361
 # define LINUX_ESCAPE 65307
+
+# define MAC_W 13
+# define MAC_A 0
+# define MAC_S 1
+# define MAC_D 2
+# define MAC_EAST_ARROW 124
+# define MAC_WEST_ARROW 123
+# define MAC_ESCAPE 53
 
 /* _____ PARSING ______ */
 /**

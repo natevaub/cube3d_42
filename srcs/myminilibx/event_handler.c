@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 00:23:48 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/25 15:38:19 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:39:48 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int	win_close_key(t_mlx *m_mlx)
 
 void	handle_arrows(int keycode, t_map *map)
 {
-	if (keycode == LINUX_EAST_ARROW)
+	if (keycode == LINUX_EAST_ARROW || keycode == MAC_EAST_ARROW)
 	{
 		map->direction = normalize(rotate(map->direction, 2));
 	}
-	if (keycode == LINUX_WEST_ARROW)
+	if (keycode == LINUX_WEST_ARROW || keycode == MAC_WEST_ARROW)
 	{
 		map->direction = normalize(rotate(map->direction, -2));
 	}
@@ -58,22 +58,23 @@ void	handle_wasd(int keycode, t_map *map)
 
 	t_vector  move;
 	int is_moved = 0;
-	if (keycode == LINUX_W)
+	printf("keycode: %d\n", keycode);
+	if (keycode == LINUX_W || keycode == MAC_W)
 	{
 		move =  mul_scalar(dir, 0.1);
 		is_moved = 1;
 	}
-	if (keycode == LINUX_A)
+	if (keycode == LINUX_A || keycode == MAC_A)
 	{
 		move = mul_scalar(perpendicular, -0.1);
 		is_moved = 1;
 	}
-	if (keycode == LINUX_S)
+	if (keycode == LINUX_S || keycode == MAC_S)
 	{
 		move = mul_scalar(dir, -0.1);
 		is_moved = 1;
 	}
-	if (keycode == LINUX_D)
+	if (keycode == LINUX_D || keycode == MAC_D)
 	{
 		move = mul_scalar(perpendicular, 0.1);
 		is_moved = 1;
@@ -93,7 +94,7 @@ void	handle_wasd(int keycode, t_map *map)
 
 void	handle_esc(int keycode, t_map *map)
 {
-	if (keycode == LINUX_ESCAPE)
+	if (keycode == LINUX_ESCAPE || keycode == MAC_ESCAPE)
 	{
 		exit(0);
 	}
