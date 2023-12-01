@@ -6,7 +6,7 @@
 #    By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 15:20:40 by rrouille          #+#    #+#              #
-#    Updated: 2023/11/21 17:58:57 by rrouille         ###   ########.fr        #
+#    Updated: 2023/11/24 14:26:36 by rrouille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -148,16 +148,16 @@ ${NAME}: ${OBJS} .WAIT
 
 draw_begining:
 			@${ECHO} "${CLEAR}${GREEN}\c"
-			@cat ascii_art/prog_name | while IFS= read -r line; do \
+			@cat ${MAKEFILE_UTILS}/ascii_art/prog_name | while IFS= read -r line; do \
 				printf '%s\n' "$$line"; \
 				sleep 0.01; \
 			done
-			@sleep 0.1
+			@sleep 2
 			@${ECHO} "${CLEAR}"
 
 draw_bonus:
 			@${ECHO} "${CLEAR}${BLUE}\c"
-			@cat ascii_art/bonus | \
+			@cat ${MAKEFILE_UTILS}/ascii_art/bonus | \
 				while IFS= read -r line; do \
 					printf '%s\n' "$$line"; \
 					sleep 0.01; \
@@ -168,7 +168,7 @@ draw_bonus:
 
 draw_ready:
 			@${ECHO} "${CLEAR}${GREEN}${BOLD}\c"
-			@cat ascii_art/prog_ready | \
+			@cat ${MAKEFILE_UTILS}/ascii_art/prog_ready | \
 				while IFS= read -r line; do \
 					printf '%s\n' "$$line"; \
 					sleep 0.01; \
@@ -181,14 +181,14 @@ draw_ready:
 draw_run:
 			@for i in 1 2 3; do \
 				${ECHO} "${CLEAR}${BLUE}${BOLD}\c"; \
-				cat "ascii_art/prog_running_$$i"; \
+				cat "${MAKEFILE_UTILS}/ascii_art/prog_running_$$i"; \
 				${ECHO} "${ENDCOLOR}"; \
 				sleep 0.3; \
 			done
 
 draw_help:
 			@${ECHO} "${GRAY}${BOLD}\c"
-			@cat ascii_art/help_me | \
+			@cat ${MAKEFILE_UTILS}/ascii_art/help_me | \
 				while IFS= read -r line; do \
 					printf '%s\n' "$$line"; \
 				done; \
@@ -197,12 +197,12 @@ draw_help:
 
 draw_norm_yes:
 			@${ECHO} "${CLEAR}${GREEN}${BOLD}\c"
-			@cat ascii_art/obama
+			@cat ${MAKEFILE_UTILS}/ascii_art/obama
 			@${ECHO} "${ENDCOLOR}"
 
 draw_norm_no:
 			@${ECHO} "${CLEAR}${RED}${BOLD}\c"
-			@cat ascii_art/obama_sad
+			@cat ${MAKEFILE_UTILS}/ascii_art/obama_sad
 			@${ECHO} "${ENDCOLOR}"
 
 # **************************************************************************** #
