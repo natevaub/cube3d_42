@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/01 17:21:27 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/01 18:25:17 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,17 @@ void	draw_floor_ceiling(t_map *map, t_data *img, t_mapping *mapping)
 	}
 }
 
+void load_textures(t_map *map, t_mlx *mlx)
+{
+	int size = 1024;
+
+    map->m_mlx.img.img_no = mlx_xpm_file_to_image(mlx->mlx_ptr, map->no, &size, &size);
+    map->m_mlx.img.img_so = mlx_xpm_file_to_image(mlx->mlx_ptr, map->so, &size, &size);
+    map->m_mlx.img.img_we = mlx_xpm_file_to_image(mlx->mlx_ptr, map->we, &size, &size);
+    map->m_mlx.img.img_ea = mlx_xpm_file_to_image(mlx->mlx_ptr, map->ea, &size, &size);
+}
+
+
 void draw_view(t_map *map, t_data *img, t_mapping *mapping)
 {
     draw_floor_ceiling(map, img, mapping);
@@ -104,6 +115,8 @@ void draw_view(t_map *map, t_data *img, t_mapping *mapping)
 
     // Compute plane vector, perpendicular to the direction vector
     t_vector plane = {.x = -map->direction.y * halfFovTan, .y = map->direction.x * halfFovTan};
+
+	load_textures(map, &map->m_mlx);
 
     for (int i = 0; i < SCREEN_WIDTH; i++) {
 

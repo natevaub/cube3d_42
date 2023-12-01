@@ -4,6 +4,10 @@
 */
 typedef struct	s_data {
 	void	*img;
+	void	*img_so;
+	void	*img_no;
+	void	*img_we;
+	void	*img_ea;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
