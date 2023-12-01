@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_vectors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 19:34:24 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/30 16:14:45 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:51:43 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_vector	rotate(t_vector v, float degrees)
 	float	cos;
 	float	sin;
 
-	radians = degrees * 3.14 / 180;
+	radians = degrees * M_PI / 180;
 	cos = cosf(radians);
 	sin = sinf(radians);
 	return ((t_vector){.x = v.x * cos - v.y * sin, .y = v.x * sin + v.y * cos});

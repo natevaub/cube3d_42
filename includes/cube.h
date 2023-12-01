@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/01 15:38:09 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:48:17 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 # define GAME_WIDTH 500
 # define GAME_HEIGHT 500
 # define MAP_SCALE 10
-# define FOV 90
+# define FOV 66
 
 # define RED		0x00FF0000
 # define GREEN 		0x0000FF00
