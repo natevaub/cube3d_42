@@ -6,12 +6,36 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:43:35 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/28 23:02:13 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:21:31 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../includes/cube.h"
+
+// void	draw_intersections(t_map *map, t_data *img, t_mapping *mapping)
+// {
+// 	int				i;
+// 	t_intersections	intersections;
+// 	t_vector		v;
+// 	// print v to see if it's correct
+
+// 	v = map->direction;
+// 	// printf("v: %f, %f\n", v.x, v.y);
+// 	intersections = compute_intersections(map->player_position, v, map);
+// 	i = 0;
+// 	while (i < intersections.size)
+// 	{
+// 		t_vector mapped = map_vec(intersections.points[i], map->mapping);
+// 		mapped.x += SCREEN_WIDTH / 2 - (map->columns * MAP_SCALE) / 2;
+// 		mapped.y += 10;
+// 		draw_disk(mapped.x, mapped.y, 3, img, RED);
+// 		// printf("intersection %d: %f, %f\n", i, intersections.points[i].x, intersections.points[i].y);
+// 		i++;
+// 	}
+// 	free(intersections.points);
+// 	// draw_line(img, (t_vector){.x = 100, .y = 100}, (t_vector){.x = 300, .y = 300}, RED);
+// }
 
 void	draw_intersections(t_map *map, t_data *img, t_mapping *mapping)
 {
@@ -26,9 +50,7 @@ void	draw_intersections(t_map *map, t_data *img, t_mapping *mapping)
 	i = 0;
 	while (i < intersections.size)
 	{
-		t_vector mapped = map_vec(intersections.points[i], map->mapping);
-		mapped.x += SCREEN_WIDTH / 2 - (map->rows_width * MAP_SCALE) / 2;
-		mapped.y += 10;
+		t_vector mapped = map_vec_adjust(intersections.points[i], map);
 		draw_disk(mapped.x, mapped.y, 3, img, RED);
 		// printf("intersection %d: %f, %f\n", i, intersections.points[i].x, intersections.points[i].y);
 		i++;
@@ -61,7 +83,7 @@ void	game_loop(t_map *map)
 
 
 
-void	game_loop_callback(t_map *map)
+int	game_loop_callback(t_map *map)
 {
 	// usleep(1000000);
 	t_data new_image;
@@ -71,7 +93,7 @@ void	game_loop_callback(t_map *map)
 	draw_view(map, &new_image, &map->mapping);
 	draw_minimap(map, &new_image, &map->mapping);
 	draw_player(map, &new_image, &map->mapping);
-	draw_intersections(map, &new_image, &map->mapping);
+	
 
 	// Destroy the previous image
 	if (map->m_mlx.img.img)
@@ -89,4 +111,5 @@ void	game_loop_callback(t_map *map)
 	float fps = (float)map->frames / (current_time - map->start_time);
 	// printf("\033[2J\033[H");
 	// printf("FPS: %f\n", fps);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:28 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/09 04:12:00 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:13:50 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,9 @@ int	cub_copy_to_map(t_map *map)
 	map->map_start_line = i;
 	while (map->copy[i])
 	{
-		if (ft_strlen(map->copy[i]) > map->rows_width)
-			map->rows_width = ft_strlen(map->copy[i]);
-		map->rows_count++;
+		if (ft_strlen(map->copy[i]) > map->columns)
+			map->columns = ft_strlen(map->copy[i]);
+		map->rows++;
 		i++;
 	}
 	return (0);

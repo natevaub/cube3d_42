@@ -20,8 +20,8 @@ void init_map(t_map *map, char **av)
 	map->ceiling_R = -1;
 	map->ceiling_G = -1;
 	map->ceiling_B = -1;
-	map->rows_count = 0;
-	map->rows_width = 0;
+	map->rows = 0;
+	map->columns = 0;
 	map->map_start_line = 0;
 	map->map = NULL;
 	map->copy = NULL;

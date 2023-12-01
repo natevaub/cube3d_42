@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/25 23:33:25 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/01 00:28:45 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 # define GAME_WIDTH 500
 # define GAME_HEIGHT 500
 # define MAP_SCALE 10
+# define FOV 90
 
 # define RED		0x00FF0000
 # define GREEN 		0x0000FF00
@@ -197,15 +198,14 @@ int		encode_rgb(int t, int r, int g, int b);
 void	draw_square(int x, int y, int size, t_data *img);
 void	draw_square_walls(int x, int y, int size, t_data *img);
 void 	draw_disk(int x, int y, int radius, t_data *img, int color);
+void 	draw_line(t_data *img, t_vector start, t_vector end, int color);
 
 /**
  * draw_minimap.c
 */
-void	draw_non_walls(t_map *map, t_data *img, t_mapping *mapping);
+void	draw_floor_ceiling(t_map *map, t_data *img, t_mapping *mapping);
 void	draw_player(t_map *map, t_data *img, t_mapping *mapping);
-// void	draw_player(t_map *map);
 void	draw_minimap(t_map *map, t_data *img, t_mapping *mapping);
-// void	draw_intersections(t_map *map);
 void	draw_intersections(t_map *map, t_data *img, t_mapping *mapping);
 void	draw_view(t_map *map, t_data *img, t_mapping *mapping);
 
@@ -228,19 +228,20 @@ void	debug_print_int_values(char *str);
 void	debug_print_map(const t_map *map);
 
 
-t_vector 			map_vec(t_vector v, t_mapping m);
+t_vector 			map_vec(t_vector v, t_map *m);
+t_vector			map_vec_adjust(t_vector v, t_map *m);
 float 				norm(t_vector vec);
 t_vector 			normalize(t_vector vec);
 t_vector 			add(t_vector a, t_vector b);
 t_vector 			add_scalar(t_vector a, float b);
-t_vector			sub_scalar(t_vector a, t_vector b);
+t_vector			sub_vector(t_vector a, t_vector b);
 t_vector 			mul_scalar(t_vector a, float b);
 t_vector			transform_pdirection_to_vector(char direction);
-t_vector rotate(t_vector v, float angle);
+t_vector 			rotate(t_vector v, float angle);
 
 // t_intersections		compute_intersections(t_vector origin, t_vector direction, t_map *map);
 t_intersections	compute_intersections(t_vector or, t_vector dir, t_map *map);
-void			store_intersections(t_compute *c);
+void			store_intersections(t_compute *c, int *n_inter, t_vector **dynamic_res);
 void			initialize_compute(t_vector or, t_vector dir, t_compute *compute);
 int				check_collision(t_map *map, t_compute *c);
 void			update_next_x_and_y(t_vector or, t_vector dir, t_compute *c);
@@ -253,15 +254,14 @@ int				key_press(int keycode, t_map *map);
 int				win_close_key(t_mlx *m_mlx);
 void			event_manager(t_map *map);
 // void			game_loop(t_map *map, t_mlx *m_mlx, t_mapping *mapping);
-void	game_loop(t_map *map);
-void	game_loop_callback(t_map *map);
-void	update_frame(t_map *map);
+void			game_loop(t_map *map);
+int				game_loop_callback(t_map *map);
+void			update_frame(t_map *map);
 
-void	handle_wasd(int keycode, t_map *map);
-void	handle_esc(int keycode, t_map *map);
-void	handle_arrows(int keycode, t_map *map);
+void			handle_wasd(int keycode, t_map *map);
+void			handle_esc(int keycode, t_map *map);
+void			handle_arrows(int keycode, t_map *map);
 
 void				init_mapping(t_map *map, t_mapping *mapping);
-void				test_inter(t_map *map, t_mapping *mapping, t_test *test);
 
 #endif

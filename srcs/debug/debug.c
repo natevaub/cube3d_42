@@ -48,8 +48,8 @@ void debug_print_map(const t_map *map)
 	printf("Ceiling Count: %d\n", map->count_ceiling);
 	printf("Floor Count: %d\n", map->count_floor);
 
-	printf("Rows Count: %d\n", map->rows_count);
-	printf("Rows Width: %d\n", map->rows_width);
+	printf("Rows Count: %d\n", map->rows);
+	printf("Rows Width: %d\n", map->columns);
 	printf("Map Copy:\n");
 	printf("Map Content:\n");
 	

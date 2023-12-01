@@ -1,13 +1,12 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compute.c                                          :+:      :+:    :+:   */
+/*   compute_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:59:24 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/18 16:22:59 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:13:50 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +14,16 @@
 
 void	init_mapping(t_map *map, t_mapping *mapping)
 {
-	mapping->from_width = map->rows_width;
-	mapping->from_height = map->rows_count;
-	mapping->to_width = map->rows_width * MAP_SCALE;
-	mapping->to_height = map->rows_count * MAP_SCALE;
+	mapping->from_width = map->columns;
+	mapping->from_height = map->rows;
+	mapping->to_width = map->columns * MAP_SCALE;
+	mapping->to_height = map->rows * MAP_SCALE;
 }
-
-// void	init_mapping(t_map *map, t_mapping *mapping)
-// {
-// 	mapping->from_width = map->rows_width;
-// 	mapping->from_height = map->rows_count;
-// 	mapping->to_width = map->rows_width * MAP_SCALE + SCREEN_WIDTH/ 2 - (map->rows_width * MAP_SCALE) / 2;
-// 	printf("to_width: %d\n", mapping->to_width);
-// 	mapping->to_height = map->rows_count * MAP_SCALE + 10;
-// 	printf("to_height: %d\n", mapping->to_height);
-// }
 
 void	initialize_compute(t_vector or, t_vector dir, t_compute *compute)
 {
 	t_vector	tmp;
 
-	compute->n_inter = 0;
 	compute->n_direction = normalize(dir);
 	compute->xy = fabs(dir.x / dir.y);
 	compute->yx = fabs(dir.y / dir.x);
@@ -55,13 +43,13 @@ void	initialize_compute(t_vector or, t_vector dir, t_compute *compute)
 void	update_next_x_and_y(t_vector or, t_vector dir, t_compute *c)
 {
 	if (dir.x > 0)
-		c->next_x = c->curr_square.x + 1;
+		c->next_x = floor(c->curr_origin.x + 1);
 	else
-		c->next_x = c->curr_square.x - 1;
+		c->next_x = ceil(c->curr_origin.x - 1);
 	if (dir.y > 0)
-		c->next_y = c->curr_square.y + 1;
+		c->next_y = floor(c->curr_origin.y + 1);
 	else
-		c->next_y = c->curr_square.y - 1;
+		c->next_y = ceil(c->curr_origin.y - 1);
 }
 
 void	update_compute_state(t_compute *c)
@@ -72,13 +60,11 @@ void	update_compute_state(t_compute *c)
 	c->diag_for_len_y = c->y_diag_increment * c->len_y;
 	if (c->diag_for_len_x <= c->diag_for_len_y)
 	{
-		c->curr_square.x = c->next_x;
 		c->new_origin_x = c->next_x;
 		c->new_origin_y = c->curr_origin.y + c->yx * c->len_x;
 	}
 	if (c->diag_for_len_y <= c->diag_for_len_x)
 	{
-		c->curr_square.y = c->next_y;
 		c->new_origin_y = c->next_y;
 		c->new_origin_x = c->curr_origin.x + c->xy * c->len_y;
 	}

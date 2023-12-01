@@ -54,6 +54,7 @@ GRAPHICS_FILES			:=			draw_minimap.c\
 COMPUTE_FILES			:=			compute.c		\
 									compute_init.c		\
 									op_vectors.c		\
+									op_vectors2.c		\
 
 MYMINILIBX_FILES				:=	event_handler.c			\
 									init_handler.c		\

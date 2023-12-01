@@ -53,8 +53,8 @@ typedef struct s_map {
 	int			ceiling_R;
 	int			ceiling_G;
 	int			ceiling_B;
-	int			rows_count;
-	int			rows_width;
+	int			rows;
+	int			columns;
 	int			map_start_line;
 	char		**map;
 	char		**copy;
@@ -86,9 +86,9 @@ typedef struct s_test
 
 typedef struct s_compute
 {
-	t_vector	*dynamic_res;
+	// t_vector	*dynamic_res;
 	t_vector	*tmp;
-	int		n_inter;
+	// int		n_inter;
 	float	xy;
 	float	yx;
 	float	x_diag_increment;
@@ -108,3 +108,14 @@ typedef struct s_compute
 	float	eps;
 	char	x;
 }	t_compute;
+
+typedef struct s_minimap_params
+{
+	t_vector	origin;
+	t_vector	FOV_start;
+	t_vector	FOV_end;
+	t_vector	FOV_start_endpoint;
+	t_vector	FOV_end_endpoint;
+	t_vector	endpoint;
+	t_intersections	intersections;
+}	t_minimap_params;

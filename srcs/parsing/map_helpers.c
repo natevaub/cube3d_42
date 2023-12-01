@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:23 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/09 03:18:18 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:13:50 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,14 @@ char	*fill_map(char *line, t_map *map)
 
 	i = 0;
 	j = 0;
-	new_line = ft_calloc(map->rows_width + 1, sizeof(char));
+	new_line = ft_calloc(map->columns + 1, sizeof(char));
 	if (new_line == NULL)
 		return (NULL);
 	while (line[i] && line[i] == ' ')
 		i++;
 	if (line[i])
 	{
-		while (line[i] && j < map->rows_width)
+		while (line[i] && j < map->columns)
 		{
 			if (line[i] == ' ')
 				new_line[j] = '1';
@@ -107,7 +107,7 @@ char	*fill_map(char *line, t_map *map)
 			j++;
 		}
 	}
-	while (j < map->rows_width)
+	while (j < map->columns)
 	{
 		new_line[j] = '2';
 		j++;

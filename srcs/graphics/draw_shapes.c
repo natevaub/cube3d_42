@@ -50,49 +50,56 @@ void	draw_square_walls(int x, int y, int size, t_data *img)
 	}
 }
 
-
 void draw_line(t_data *img, t_vector start, t_vector end, int color)
 {
-	float x;
-	float y;
-	float dx;
-	float dy;
-	float step;
-	float i;
+	float	step;
+	float	dx;
+	float	dy;
+	float	i;
 
-	dx = end.x - start.x;
-	dy = end.y - start.y;
-	step = (fabs(dx) > fabs(dy)) ? fabs(dx) : fabs(dy);
-	dx /= step;
-	dy /= step;
-	x = start.x;
-	y = start.y;
+	step = fmaxf(fabs(end.x - start.x), fabs(end.y - start.y));
+	dx = (end.x - start.x) / step;
+	dy = (end.y - start.y) / step;
 	i = 0;
 	while (i <= step)
 	{
-		if (x < 0 || x >= img->line_length || y < 0 || y >= img->line_length) {
-		i++;
+		start.x += dx;
+		start.y += dy;
+		if (start.x < 0 || start.x >= img->line_length || start.y < 0 || start.y >= img->line_length) 
+		{
 			continue;
-
 		}
-		my_mlx_pixel_put(img, x, y, color);
-		x += dx;
-		y += dy;
+		my_mlx_pixel_put(img, start.x, start.y, color);
 		i++;
 	}
 }
 
 void draw_disk(int x, int y, int radius, t_data *img, int color)
 {
-	for (int i = x - radius; i <= x + radius; i++) {
-		for (int j = y - radius; j <= y + radius; j++) {
+	int	i;
+	int	dx;
+	int	dy;
+
+	i = x - radius;
+	while (i <= x + radius)
+	{
+		int	j;
+
+		j = y - radius;
+		while (j <= y + radius)
+		{
 			if (i < 0 || i >= img->line_length || j < 0 || j >= img->line_length)
+			{
 				continue;
-			int dx = i - x;
-			int dy = j - y;
-			if (dx * dx + dy * dy <= radius * radius) {
+			}
+			dx = i - x;
+			dy = j - y;
+			if (dx * dx + dy * dy <= radius * radius)
+			{
 				my_mlx_pixel_put(img, i, j, color);
 			}
+			j++;
 		}
+		i++;
 	}
 }

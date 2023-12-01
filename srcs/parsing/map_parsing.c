@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:32 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/24 17:46:23 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/11/29 20:57:52 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	is_valid_map(t_map *map)
 	{
 		// if (!contains_only_valid(map->map[i]))
 		// 	return (0);
-		if ((i == 0 || i == map->rows_count - 1) && !contains_only_1(map->map[i]))
+		if ((i == 0 || i == map->rows - 1) && !contains_only_1(map->map[i]))
 			return (0);
 		if (!contains_1_start_end(map->map[i]))
 			return (0);
