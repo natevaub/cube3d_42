@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 00:23:48 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/01 19:11:45 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/02 17:56:51 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	handle_wasd(int keycode, t_map *map)
 
 	t_vector  move;
 	int is_moved = 0;
-	printf("keycode: %d\n", keycode);
+	// printf("keycode: %d\n", keycode);
 	if (keycode == LINUX_W || keycode == MAC_W)
 	{
 		move =  mul_scalar(dir, 0.1);

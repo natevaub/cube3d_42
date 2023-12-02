@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/01 18:25:17 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/03 00:04:30 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,46 +98,47 @@ void load_textures(t_map *map, t_mlx *mlx)
 {
 	int size = 1024;
 
-    map->m_mlx.img.img_no = mlx_xpm_file_to_image(mlx->mlx_ptr, map->no, &size, &size);
-    map->m_mlx.img.img_so = mlx_xpm_file_to_image(mlx->mlx_ptr, map->so, &size, &size);
-    map->m_mlx.img.img_we = mlx_xpm_file_to_image(mlx->mlx_ptr, map->we, &size, &size);
-    map->m_mlx.img.img_ea = mlx_xpm_file_to_image(mlx->mlx_ptr, map->ea, &size, &size);
+	map->m_mlx.img.img_no = mlx_xpm_file_to_image(mlx->mlx_ptr, map->no, &size, &size);
+	map->m_mlx.img.img_so = mlx_xpm_file_to_image(mlx->mlx_ptr, map->so, &size, &size);
+	map->m_mlx.img.img_we = mlx_xpm_file_to_image(mlx->mlx_ptr, map->we, &size, &size);
+	map->m_mlx.img.img_ea = mlx_xpm_file_to_image(mlx->mlx_ptr, map->ea, &size, &size);
 }
 
 
 void draw_view(t_map *map, t_data *img, t_mapping *mapping)
 {
-    draw_floor_ceiling(map, img, mapping);
+	draw_floor_ceiling(map, img, mapping);
 
-    // Assuming the FOV is 66 degrees
-    float fovRadians = FOV * M_PI / 180;
-    float halfFovTan = tan(fovRadians / 2);
+	// Assuming the FOV is 66 degrees
+	float fovRadians = FOV * M_PI / 180;
+	float halfFovTan = tan(fovRadians / 2);
 
-    // Compute plane vector, perpendicular to the direction vector
-    t_vector plane = {.x = -map->direction.y * halfFovTan, .y = map->direction.x * halfFovTan};
+	// Compute plane vector, perpendicular to the direction vector
+	t_vector plane = {.x = -map->direction.y * halfFovTan, .y = map->direction.x * halfFovTan};
+	// t_vector plane = {.x = -map->direction.y, .y = map->direction.x};
 
-	load_textures(map, &map->m_mlx);
+	// load_textures(map, &map->m_mlx);
 
-    for (int i = 0; i < SCREEN_WIDTH; i++) {
+	for (int i = 0; i < SCREEN_WIDTH; i++) {
 
-        float cameraX = 2 * i / (float)SCREEN_WIDTH - 1; // x-coordinate in camera space
-        t_vector rayDir = {.x = map->direction.x + plane.x * cameraX, .y = map->direction.y + plane.y * cameraX};
+		float cameraX = 2 * i / (float)SCREEN_WIDTH - 1; // x-coordinate in camera space
+		t_vector rayDir = {.x = map->direction.x + plane.x * cameraX, .y = map->direction.y + plane.y * cameraX};
 
-        t_intersections intersections = compute_intersections(map->player_position, rayDir, map);
-        t_vector endpoint = intersections.points[intersections.size - 1];
-        t_vector dist = sub_vector(endpoint, map->player_position);
+		t_intersections intersections = compute_intersections(map->player_position, rayDir, map);
+		t_vector endpoint = intersections.points[intersections.size - 1];
+		t_vector dist = sub_vector(endpoint, map->player_position);
 
-        // Correct for fisheye effect
-        float perpDist = norm(dist) * cos(atan2(rayDir.y, rayDir.x) - atan2(map->direction.y, map->direction.x));
-        float h = SCREEN_HEIGHT / perpDist;
+		// Correct for fisheye effect
+		float perpDist = norm(dist) * cos(atan2(rayDir.y, rayDir.x) - atan2(map->direction.y, map->direction.x));
+		float h = SCREEN_HEIGHT / perpDist;
 
-        t_vector beg = {.x = i, .y = SCREEN_HEIGHT / 2 - h / 2};
-        t_vector end = {.x = i, .y = SCREEN_HEIGHT / 2 + h / 2};
+		t_vector beg = {.x = i, .y = SCREEN_HEIGHT / 2 - h / 2};
+		t_vector end = {.x = i, .y = SCREEN_HEIGHT / 2 + h / 2};
 
-        if (beg.y < 0) beg.y = 0;
-        if (end.y > SCREEN_HEIGHT) end.y = SCREEN_HEIGHT;
+		if (beg.y < 0) beg.y = 0;
+		if (end.y > SCREEN_HEIGHT) end.y = SCREEN_HEIGHT;
 
-        // ... Your existing code for choosing the color and drawing the line ...
+		// ... Your existing code for choosing the color and drawing the line ...
 		if (endpoint.y == (int)endpoint.y) {
 
 			int m = (int)endpoint.y % 3;
@@ -159,11 +160,9 @@ void draw_view(t_map *map, t_data *img, t_mapping *mapping)
 			} else {
 				draw_line(img, beg, end, 0);
 			}	
-
 		}
-
-        free(intersections.points);
-    }
+		free(intersections.points);
+	}
 }
 
 
