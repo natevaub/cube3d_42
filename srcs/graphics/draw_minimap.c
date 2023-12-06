@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/06 12:13:02 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:00:44 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,17 +110,17 @@ void	draw_view(t_map *map, t_data *img, t_mapping *mapping)
 	draw_floor_ceiling(map, img, mapping);
 
 	t_vector start = add(map->player_position, rotate(map->direction, -FOV / 2.0));
-	printf("start: %f, %f\n", start.x, start.y);
+	// printf("start: %f, %f\n", start.x, start.y);
 	t_vector end = add(map->player_position, rotate(map->direction, FOV / 2.0));
-	printf("end: %f, %f\n", end.x, end.y);
+	// printf("end: %f, %f\n", end.x, end.y);
 
 	t_vector line = sub_vector(end, start);
-	printf("line: %f, %f\n", line.x, line.y);
+	// printf("line: %f, %f\n", line.x, line.y);
 	t_vector n_line = normalize(line);
-	printf("n_line: %f, %f\n", n_line.x, n_line.y);
+	// printf("n_line: %f, %f\n", n_line.x, n_line.y);
 
 	float dx = norm(line) / SCREEN_WIDTH;
-	printf("dx: %f\n", dx);
+	// printf("dx: %f\n", dx);
 
 
 	

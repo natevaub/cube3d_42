@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/01 19:04:38 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:38:30 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@
 # define MOUSE_MIDDLE 3
 # define MOUSE_SCROLL_UP 4
 # define MOUSE_SCROLL_DOWN 5
+# define MOUSE_SENSIBILITY 0.5
 
 /* _____ PARSING ______ */
 /**
@@ -272,8 +273,10 @@ void			update_frame(t_map *map);
 void			handle_wasd(int keycode, t_map *map);
 void			handle_esc(int keycode, t_map *map);
 void			handle_arrows(int keycode, t_map *map);
-int				mouse_press(int keycode, t_map *map);
+int				mouse_press(int keycode, int x, int y, t_map *map);
+int				mouse_release(int button, int x, int y, t_map *map);
+int				mouse_move(int x, int y, t_map *map);
 
-void				init_mapping(t_map *map, t_mapping *mapping);
+void			init_mapping(t_map *map, t_mapping *mapping);
 
 #endif
