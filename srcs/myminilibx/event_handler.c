@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 00:23:48 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/06 17:37:54 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:50:06 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,57 +41,26 @@ int mouse_move(int x, int y, t_map *map) {
 }
 
 int mouse_release(int button, int x, int y, t_map *map) {
-	if (button == MOUSE_LEFT) {
-		map->mouse_click = 0;
-		mlx_mouse_show();
-	}
+	map->mouse_click = 0;
+	mlx_mouse_show();
 	return 0;
 }
 
 int mouse_press(int keycode, int x, int y, t_map *map) {
-
 	if (keycode == MOUSE_LEFT)
 	{
-		printf("Mouse left\n");
+		map->mouse_click = 1;
 	}
-	if (keycode == MOUSE_RIGHT)
+	else if (keycode == MOUSE_SCROLL_UP)
 	{
-		printf("Mouse right\n");
+		map->player_position = add(map->player_position, mul_scalar(map->direction, 0.1));
 	}
-	if (keycode == MOUSE_MIDDLE)
+	else if (keycode == MOUSE_SCROLL_DOWN)
 	{
-		printf("Mouse middle\n");
-	}
-	if (keycode == MOUSE_SCROLL_UP)
-	{
-		printf("Mouse scroll up\n");
-	}
-	if (keycode == MOUSE_SCROLL_DOWN)
-	{
-		printf("Mouse scroll down\n");
+		map->player_position = add(map->player_position, mul_scalar(map->direction, -0.1));
 	}
 	mlx_mouse_hide();
-	map->mouse_click = 1;
-	map->mouse_x = x;
-	map->mouse_y = y;
 	return (0);
-	// printf("Mouse position: %d, %d\n", x, y);
-	// map->mouse_x = x;
-	// map->mouse_y = y;
-	// map->mouse_click = handle_mouse(keycode, map, map->mouse_click);
-	// printf("Mouse click: %d\n", map->mouse_click);
-
-	// if (map->mouse_click) {
-	//     mlx_mouse_hide();
-	//     // Exemple de rotation - ajustez selon votre logique
-	//     map->direction = normalize(rotate(map->direction, M_PI / 4));
-	// } else {
-	//     mlx_mouse_show();
-	//     // Exemple de rotation - ajustez selon votre logique
-	//     map->direction = normalize(rotate(map->direction, -M_PI / 4));
-	// }
-
-	// return 0;
 }
 
 int	key_press(int keycode, t_map *map)
