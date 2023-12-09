@@ -61,14 +61,67 @@ void draw_line(t_data *img, t_vector start, t_vector end, int color)
 	dx = (end.x - start.x) / step;
 	dy = (end.y - start.y) / step;
 	i = 0;
-	while (i <= step)
-	{
+	while (i <= step) {
 		start.x += dx;
 		start.y += dy;
 		if (start.x < 0 || start.x >= img->line_length || start.y < 0 || start.y >= img->line_length) 
 		{
 			continue;
 		}
+		my_mlx_pixel_put(img, start.x, start.y, color);
+		i++;
+	}
+}
+
+void draw_juicy_line(t_data *img, t_map *map, t_vector endpoint, t_vector start, t_vector end) {
+
+	float x = endpoint.x - floor(endpoint.x);
+	float y = endpoint.y - floor(endpoint.y);
+	
+	t_data* texture;
+	float variant;
+	if (x == 0 ) {
+		variant = y;
+		if ((int)endpoint.y % 2 == 0) {
+			texture = map->texture_so;
+		} else {
+			texture = map->texture_no;
+		}
+	}
+	if (y == 0) {
+		variant = x;
+		if ((int)endpoint.x % 2 == 0) {
+			texture = map->texture_so;
+		} else {
+			texture = map->texture_no;
+		}
+	}
+
+	int u = (int)(floor(x + y)) % 2;
+	
+	int texture_col = (int)floor(variant * 1024);
+
+
+	float	step;
+	float	dx;
+	float	dy;
+	float	i;
+
+	step = end.y - start.y;
+	dy = (end.y - start.y) / step;
+	i = 0;
+	while (i <= step)
+	{
+		start.y += dy;
+
+		if (start.x < 0 || start.x >= img->line_length || start.y < 0 || start.y >= img->line_length) 
+		{
+			continue;
+		}
+
+
+		int texture_row = i * 1023 / step;
+		int color = get_texture_color(texture, texture_col, texture_row);
 		my_mlx_pixel_put(img, start.x, start.y, color);
 		i++;
 	}

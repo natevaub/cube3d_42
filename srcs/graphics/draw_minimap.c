@@ -6,11 +6,77 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/06 12:13:02 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/09 15:34:35 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
+
+// void	draw_view(t_map *map, t_data *img, t_mapping *mapping)
+// {
+// 	draw_floor_ceiling(map, img, mapping);
+
+// 	t_vector start = add(map->player_position, rotate(map->direction, -FOV / 2.0));
+// 	t_vector end = add(map->player_position, rotate(map->direction, FOV / 2.0));
+// 	t_vector line = sub_vector(end, start);
+// 	t_vector n_line = normalize(line);
+// 	float dx = norm(line) / SCREEN_WIDTH;
+
+// 	for (int i = 0; i < SCREEN_WIDTH; i++) {
+
+// 		t_vector point = add(start, mul_scalar(n_line, dx * i));
+// 		t_vector dir = normalize(sub_vector(point, map->player_position));
+
+// 		t_intersections intersections = compute_intersections(map->player_position, dir, map);
+// 		t_vector endpoint = intersections.points[intersections.size - 1];
+// 		t_vector dist = sub_vector(endpoint, map->player_position);
+
+// 		float perpDist = norm(dist) * cos(atan2(dir.y, dir.x) - atan2(map->direction.y, map->direction.x));
+// 		float h = 200 / perpDist;
+
+
+// 		t_vector beg = (t_vector){.x = i, .y = SCREEN_HEIGHT / 2 - h / 2};
+// 		t_vector end = (t_vector){.x = i, .y = SCREEN_HEIGHT / 2 + h / 2};
+
+// 		t_vector n = sub_vector(end, beg);
+
+// 		// clamp beg and end to 0, screen_height
+// 		if (beg.y < 0)
+// 		{
+// 			beg.y = 0;
+// 		}
+
+// 		if (end.y > SCREEN_HEIGHT)
+// 		{
+// 			end.y = SCREEN_HEIGHT;
+// 		}
+
+// 		if (endpoint.y == (int)endpoint.y) 
+// 		{
+// 			if(map->player_position.y > endpoint.y) 
+// 			{
+// 				draw_line(img, beg, end, BLUE);
+// 			}
+// 			else
+// 			{
+// 				draw_line(img, beg, end, GREEN);
+// 			}
+// 		}
+
+// 		if (endpoint.x == (int)endpoint.x) 
+// 		{
+// 			if(map->player_position.x > endpoint.x)
+// 			{
+// 				draw_line(img, beg, end, MAGENTA);
+// 			}
+// 			else 
+// 			{
+// 				draw_line(img, beg, end, CYAN);
+// 			}
+// 		}
+// 		free(intersections.points);
+// 	}
+// }
 
 void	draw_minimap(t_map *map, t_data *img, t_mapping *mapping)
 {
@@ -98,33 +164,63 @@ void load_textures(t_map *map, t_mlx *mlx)
 {
 	int size = 1024;
 
-	map->m_mlx.img.img_no = mlx_xpm_file_to_image(mlx->mlx_ptr, map->no, &size, &size);
-	map->m_mlx.img.img_so = mlx_xpm_file_to_image(mlx->mlx_ptr, map->so, &size, &size);
-	map->m_mlx.img.img_we = mlx_xpm_file_to_image(mlx->mlx_ptr, map->we, &size, &size);
-	map->m_mlx.img.img_ea = mlx_xpm_file_to_image(mlx->mlx_ptr, map->ea, &size, &size);
+	map->texture_no = malloc(sizeof(t_data));
+	map->texture_no->img = mlx_xpm_file_to_image(mlx->mlx_ptr, map->no, &size, &size);
+	map->texture_no->addr = mlx_get_data_addr(map->texture_no->img, &map->texture_no->bits_per_pixel, &map->texture_no->line_length, &map->texture_no->endian);
+	map->texture_so = malloc(sizeof(t_data));
+	map->texture_so->img = mlx_xpm_file_to_image(mlx->mlx_ptr, map->so, &size, &size);
+	map->texture_so->addr = mlx_get_data_addr(map->texture_so->img, &map->texture_so->bits_per_pixel, &map->texture_so->line_length, &map->texture_so->endian);
+	map->texture_we = malloc(sizeof(t_data));
+	map->texture_we->img = mlx_xpm_file_to_image(mlx->mlx_ptr, map->we, &size, &size);
+	map->texture_we->addr = mlx_get_data_addr(map->texture_we->img, &map->texture_we->bits_per_pixel, &map->texture_we->line_length, &map->texture_we->endian);
+	map->texture_ea = malloc(sizeof(t_data));
+	map->texture_ea->img = mlx_xpm_file_to_image(mlx->mlx_ptr, map->ea, &size, &size);
+	map->texture_ea->addr = mlx_get_data_addr(map->texture_ea->img, &map->texture_ea->bits_per_pixel, &map->texture_ea->line_length, &map->texture_ea->endian);
 }
 
+int	get_texture_color(t_data *texture, int x, int y)
+{
+	int	color;
+
+	color = *(int *)(texture->addr + (y * texture->line_length + x * (texture->bits_per_pixel / 8)));
+	return (color);
+}
+
+void	draw_square_text(t_map *map, t_data *img, t_mapping *mapping)
+{
+	t_data	*texture;
+
+	for (int i = 0; i < SCREEN_WIDTH; i++)
+	{
+		for (int j = 0; j < SCREEN_HEIGHT; j++)
+		{
+			my_mlx_pixel_put(img, i, j, CYAN);
+		}
+	}
+	load_textures(map, &map->m_mlx);
+	texture = map->texture_ea;
+	for (int i = 0; i < SCREEN_WIDTH; i++)
+	{
+		for (int j = 0; j < SCREEN_HEIGHT; j++)
+		{
+			my_mlx_pixel_put(img, i, j, get_texture_color(texture, i, j));
+		}
+	}
+}
 
 void	draw_view(t_map *map, t_data *img, t_mapping *mapping)
 {
 	draw_floor_ceiling(map, img, mapping);
+	
 
 	t_vector start = add(map->player_position, rotate(map->direction, -FOV / 2.0));
-	printf("start: %f, %f\n", start.x, start.y);
 	t_vector end = add(map->player_position, rotate(map->direction, FOV / 2.0));
-	printf("end: %f, %f\n", end.x, end.y);
-
 	t_vector line = sub_vector(end, start);
-	printf("line: %f, %f\n", line.x, line.y);
 	t_vector n_line = normalize(line);
-	printf("n_line: %f, %f\n", n_line.x, n_line.y);
-
+	t_data *texture;
 	float dx = norm(line) / SCREEN_WIDTH;
-	printf("dx: %f\n", dx);
 
-
-	
-	for (int i = 0; i < SCREEN_WIDTH; i++) {
+	for (int i = 0; i < SCREEN_WIDTH /* SCREEN_HEIGHT */; i++) {
 
 		t_vector point = add(start, mul_scalar(n_line, dx * i));
 		t_vector dir = normalize(sub_vector(point, map->player_position));
@@ -134,60 +230,60 @@ void	draw_view(t_map *map, t_data *img, t_mapping *mapping)
 		t_vector dist = sub_vector(endpoint, map->player_position);
 
 		float perpDist = norm(dist) * cos(atan2(dir.y, dir.x) - atan2(map->direction.y, map->direction.x));
-		float h = 200 / perpDist;
+		float h = SCREEN_HEIGHT / perpDist;
 
 
 		t_vector beg = (t_vector){.x = i, .y = SCREEN_HEIGHT / 2 - h / 2};
 		t_vector end = (t_vector){.x = i, .y = SCREEN_HEIGHT / 2 + h / 2};
-
 		t_vector n = sub_vector(end, beg);
 
+		
+		texture = map->texture_no;
+
 		// clamp beg and end to 0, screen_height
-		if (beg.y < 0) {
+		if (beg.y < 0)
+		{
 			beg.y = 0;
 		}
-		if (end.y > SCREEN_HEIGHT) {
+		if (end.y > SCREEN_HEIGHT)
+		{
 			end.y = SCREEN_HEIGHT;
 		}
 
-		// if (endpoint.y == (int)endpoint.y) {
+		draw_juicy_line(img, map, endpoint, beg, end);
 
-		// 	int m = (int)endpoint.y % 3;
-		// 	if (m == 0) {
+
+		// if (endpoint.y == (int)endpoint.y) 
+		// {
+		// 	if(map->player_position.y > endpoint.y) 
+		// 	{
 		// 		draw_line(img, beg, end, BLUE);
-		// 	} else if (m == 1) {
-		// 		draw_line(img, beg, end, RED);
-		// 	} else {
+		// 		// texture = map->texture_no;
+		// 		// draw_wall_texture(map, img, mapping, intersections, i);
+		// 	}
+		// 	else
+		// 	{
 		// 		draw_line(img, beg, end, GREEN);
+		// 		// texture = map->texture_so;
+		// 		// draw_wall_texture(map, img, mapping, intersections, i);
 		// 	}
 		// }
-		// if (endpoint.x == (int)endpoint.x) {
-		// 	int m = (int)endpoint.x % 3;
 
-		// 	if (m == 0) {
-		// 		draw_line(img, beg, end, LIGHT_GRAY);
-		// 	} else if (m == 1) {
-		// 		draw_line(img, beg, end, DARK_GRAY);
-		// 	} else {
-		// 		draw_line(img, beg, end, 0);
-		// 	}	
+		// if (endpoint.x == (int)endpoint.x) 
+		// {
+		// 	if(map->player_position.x > endpoint.x)
+		// 	{
+		// 		draw_line(img, beg, end, MAGENTA);
+		// 		// texture = map->texture_we;
+		// 		// draw_wall_texture(map, img, mapping, intersections, i);
+		// 	}
+		// 	else 
+		// 	{
+		// 		draw_line(img, beg, end, CYAN);
+		// 		// texture = map->texture_ea;
+		// 		// draw_wall_texture(map, img, mapping, intersections, i);
+		// 	}
 		// }
-
-		if (endpoint.y == (int)endpoint.y) {
-			if(map->player_position.y > endpoint.y) {
-				draw_line(img, beg, end, BLUE);
-			} else {
-				draw_line(img, beg, end, GREEN);
-			}
-		}
-
-		if (endpoint.x == (int)endpoint.x) {
-			if(map->player_position.x > endpoint.x) {
-				draw_line(img, beg, end, MAGENTA);
-			} else {
-				draw_line(img, beg, end, CYAN);
-			}
-		}
 		free(intersections.points);
 	}
 }

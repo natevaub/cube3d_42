@@ -1,16 +1,16 @@
-NO ./textures/wood.xpm     
+NO ./textures/xpm/1.xpm 
 
 
 
 
 
 
-WE          ./textures/planks.xpm     
+WE          ./textures/xpm/1.xpm
 
 
 F                               70    ,  70    ,        70       
 
-EA              ./textures/redbrick.xpm     
+EA              ./textures/xpm/1.xpm
 
 
 
@@ -24,7 +24,7 @@ EA              ./textures/redbrick.xpm
 
 C 0, 255, 204
 
-SO ./textures/greystone.xpm
+SO ./textures/xpm/1.xpm
 
 
 

@@ -4,10 +4,6 @@
 */
 typedef struct	s_data {
 	void	*img;
-	void	*img_so;
-	void	*img_no;
-	void	*img_we;
-	void	*img_ea;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
@@ -49,6 +45,10 @@ typedef struct s_map {
 	char		*no;
 	char		*we;
 	char		*ea;
+	struct s_data	*texture_no;
+	struct s_data	*texture_so;
+	struct s_data	*texture_we;
+	struct s_data	*texture_ea;
 	int			count_floor;
 	int			count_ceiling;
 	int			floor_R;
@@ -60,15 +60,13 @@ typedef struct s_map {
 	int			rows;
 	int			columns;
 	int			map_start_line;
+	char		player_direction;
 	char		**map;
 	char		**copy;
 	t_vector	player_position;
 	t_vector	direction;
-	char		player_direction;
 	t_mlx		m_mlx;
 	t_mapping	mapping;
-	// int			mouse_x;
-	// int			mouse_y;
 	int frames;
 	int start_time;
 }	t_map;

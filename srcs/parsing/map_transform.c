@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:28 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/30 11:13:50 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/09 16:55:28 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,12 @@ int	map_check_hole(t_map *map)
 				{
 					if (map->map[i][j + 1] == '2' || map->map[i][j - 1] == '2'
 						|| map->map[i + 1][j] == '2' || map->map[i - 1][j] == '2')
-						return (1);
+						{
+							printf("i = %d, j = %d\n", i, j);
+							printf("map[i][j] = %c\n", map->map[i][j]);
+							return (1);
+						}
+						
 				}
 			}
 			j++;

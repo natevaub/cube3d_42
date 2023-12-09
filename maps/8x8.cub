@@ -1,7 +1,7 @@
-NO ./textures/xpm/concrete.xpm
-SO ./textures/xpm/grafiti.xpm
-WE ./textures/xpm/stone.xpm
-EA ./textures/xpm/wood.xpm
+NO ./textures/xpm/1.xpm
+SO ./textures/xpm/checkboard.xpm
+WE ./textures/xpm/checkboard.xpm
+EA ./textures/xpm/checkboard.xpm
 
 F 70,70,70
 C 0,     255,204

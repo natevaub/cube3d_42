@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:43:35 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/30 16:21:31 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/08 20:00:32 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,10 @@ void update_frame(t_map *map)
 
 void	game_loop(t_map *map)
 {
+
 	map->frames = 0;
 	map->start_time = (int)time(NULL);
+	load_textures(map, &map->m_mlx);
 	event_manager(map);
 	// render_on_screen(m_mlx, map, mapping);
 	// render_on_screen(map);
@@ -85,7 +87,6 @@ void	game_loop(t_map *map)
 
 int	game_loop_callback(t_map *map)
 {
-	// usleep(1000000);
 	t_data new_image;
 	new_image.img = mlx_new_image(map->m_mlx.mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 	new_image.addr = mlx_get_data_addr(new_image.img, &new_image.bits_per_pixel, &new_image.line_length, &new_image.endian);
@@ -93,6 +94,7 @@ int	game_loop_callback(t_map *map)
 	draw_view(map, &new_image, &map->mapping);
 	draw_minimap(map, &new_image, &map->mapping);
 	draw_player(map, &new_image, &map->mapping);
+	// draw_square_text(map, &new_image, &map->mapping);
 	
 
 	// Destroy the previous image

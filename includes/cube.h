@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/01 19:04:38 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/08 18:33:02 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@
 # define ERR_MSG_10 "Error: Invalid element found\n"
 # define ERR_MSG_11 "MALLOC ERROR\n"
 
-# define SCREEN_WIDTH 700
-# define SCREEN_HEIGHT 700
+# define SCREEN_WIDTH 1024
+# define SCREEN_HEIGHT 1024
 # define GAME_WIDTH 500
 # define GAME_HEIGHT 500
 # define MAP_SCALE 10
@@ -210,6 +210,7 @@ void	draw_square(int x, int y, int size, t_data *img);
 void	draw_square_walls(int x, int y, int size, t_data *img);
 void 	draw_disk(int x, int y, int radius, t_data *img, int color);
 void 	draw_line(t_data *img, t_vector start, t_vector end, int color);
+void 	draw_juicy_line(t_data *img, t_map *map, t_vector endpoint, t_vector start, t_vector end);
 
 /**
  * draw_minimap.c
@@ -219,6 +220,7 @@ void	draw_player(t_map *map, t_data *img, t_mapping *mapping);
 void	draw_minimap(t_map *map, t_data *img, t_mapping *mapping);
 void	draw_intersections(t_map *map, t_data *img, t_mapping *mapping);
 void	draw_view(t_map *map, t_data *img, t_mapping *mapping);
+void	draw_square_text(t_map *map, t_data *img, t_mapping *mapping);
 
 
 /**
