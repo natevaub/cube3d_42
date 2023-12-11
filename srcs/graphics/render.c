@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:43:35 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/08 20:00:32 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/11 11:33:40 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void update_frame(t_map *map)
 
 void	game_loop(t_map *map)
 {
-
 	map->frames = 0;
 	map->start_time = (int)time(NULL);
 	load_textures(map, &map->m_mlx);
@@ -87,6 +86,7 @@ void	game_loop(t_map *map)
 
 int	game_loop_callback(t_map *map)
 {
+	usleep(500000);
 	t_data new_image;
 	new_image.img = mlx_new_image(map->m_mlx.mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 	new_image.addr = mlx_get_data_addr(new_image.img, &new_image.bits_per_pixel, &new_image.line_length, &new_image.endian);

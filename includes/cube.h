@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/08 18:33:02 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/09 17:27:56 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,6 +259,8 @@ void			initialize_compute(t_vector or, t_vector dir, t_compute *compute);
 int				check_collision(t_map *map, t_compute *c);
 void			update_next_x_and_y(t_vector or, t_vector dir, t_compute *c);
 void			update_compute_state(t_compute *c);
+void			load_textures(t_map *map, t_mlx *m_mlx);
+int				get_texture_color(t_data *texture, int x, int y);
 
 
 int 			init_mlx(t_mlx *m_mlx);

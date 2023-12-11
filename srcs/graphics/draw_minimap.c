@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/09 15:34:35 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/11 12:17:25 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,13 +220,14 @@ void	draw_view(t_map *map, t_data *img, t_mapping *mapping)
 	t_data *texture;
 	float dx = norm(line) / SCREEN_WIDTH;
 
-	for (int i = 0; i < SCREEN_WIDTH /* SCREEN_HEIGHT */; i++) {
+	for (int i = 0; i < SCREEN_HEIGHT /* SCREEN_HEIGHT */; i++) {
 
 		t_vector point = add(start, mul_scalar(n_line, dx * i));
 		t_vector dir = normalize(sub_vector(point, map->player_position));
 
 		t_intersections intersections = compute_intersections(map->player_position, dir, map);
 		t_vector endpoint = intersections.points[intersections.size - 1];
+		printf("for i = %d Endpoint = %f, %f\n", i, endpoint.x, endpoint.y);
 		t_vector dist = sub_vector(endpoint, map->player_position);
 
 		float perpDist = norm(dist) * cos(atan2(dir.y, dir.x) - atan2(map->direction.y, map->direction.x));
@@ -241,14 +242,14 @@ void	draw_view(t_map *map, t_data *img, t_mapping *mapping)
 		texture = map->texture_no;
 
 		// clamp beg and end to 0, screen_height
-		if (beg.y < 0)
-		{
-			beg.y = 0;
-		}
-		if (end.y > SCREEN_HEIGHT)
-		{
-			end.y = SCREEN_HEIGHT;
-		}
+		// if (beg.y < 0)
+		// {
+		// 	beg.y = 0;
+		// }
+		// if (end.y > SCREEN_HEIGHT)
+		// {
+		// 	end.y = SCREEN_HEIGHT;
+		// }
 
 		draw_juicy_line(img, map, endpoint, beg, end);
 

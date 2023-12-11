@@ -76,7 +76,13 @@ void draw_line(t_data *img, t_vector start, t_vector end, int color)
 void draw_juicy_line(t_data *img, t_map *map, t_vector endpoint, t_vector start, t_vector end) {
 
 	float x = endpoint.x - floor(endpoint.x);
+	printf("endpoint.x: %f\n", endpoint.x);
+	printf("floor(endpoint.x): %f\n", floor(endpoint.x));
+	printf("x: %f\n", x);
 	float y = endpoint.y - floor(endpoint.y);
+	printf("endpoint.y: %f\n", endpoint.y);
+	printf("floor(endpoint.y): %f\n", floor(endpoint.y));
+	printf("y: %f\n", y);
 	
 	t_data* texture;
 	float variant;
@@ -125,6 +131,7 @@ void draw_juicy_line(t_data *img, t_map *map, t_vector endpoint, t_vector start,
 		my_mlx_pixel_put(img, start.x, start.y, color);
 		i++;
 	}
+	printf("\n\n");
 }
 
 void draw_disk(int x, int y, int radius, t_data *img, int color)
