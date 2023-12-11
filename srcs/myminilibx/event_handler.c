@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 00:23:48 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/11 12:49:49 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/11 12:54:06 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ int mouse_move(int x, int y, t_map *map) {
 
 int mouse_release(int button, int x, int y, t_map *map) {
 	map->mouse_click = 0;
-	mlx_mouse_show();
+	// mlx_mouse_show();
 	return (0);
 }
 
 int mouse_press(int keycode, int x, int y, t_map *map) {
+	printf("Mouse Press x, y: %d, %d\n", x, y);
 	if (keycode == MOUSE_LEFT)
 	{
 		map->mouse_click = 1;
@@ -57,7 +58,7 @@ int mouse_press(int keycode, int x, int y, t_map *map) {
 	{
 		map->player_position = add(map->player_position, mul_scalar(map->direction, -0.1));
 	}
-	mlx_mouse_hide();
+	// mlx_mouse_hide();
 	return (0);
 }
 

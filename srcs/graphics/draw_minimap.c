@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/11 12:40:25 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/11 13:22:33 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,6 +232,7 @@ void	draw_view(t_map *map, t_data *img, t_mapping *mapping)
 
 		float perpDist = norm(dist) * cos(atan2(dir.y, dir.x) - atan2(map->direction.y, map->direction.x));
 		float h = SCREEN_HEIGHT / perpDist;
+		printf("i = %d --- h = %f\n", i, h);
 
 
 		t_vector beg = (t_vector){.x = i, .y = SCREEN_HEIGHT / 2 - h / 2};
