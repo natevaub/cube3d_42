@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 00:23:48 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/09 15:31:57 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/11 12:42:38 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,39 @@ void	event_manager(t_map *map)
 	int mouse_y;
 
 	mlx_hook(map->m_mlx.mlx_win, ON_KEYPRESS, 1L<<0, key_press, map);
-	// mlx_mouse_get_pos(map->m_mlx.mlx_win, &map->mouse_x, &map->mouse_y);
-	// printf("Mouse position: %d, %d\n", map->mouse_x, map->mouse_y);
 	mlx_mouse_hook(map->m_mlx.mlx_win, mouse_press, map);
+	mlx_hook(map->m_mlx.mlx_win, 5, 0, mouse_release, map);
+	mlx_hook(map->m_mlx.mlx_win, 6, 0, mouse_move, map);
 	mlx_hook(map->m_mlx.mlx_win, ON_DESTROY, 1L << 17, win_close_click, map);
 }
-void	handle_mouse(int keycode, t_map *map)
-{
-	int mouse_x;
-	int mouse_y;
 
-	// mlx_mouse_get_pos(map->m_mlx.mlx_win, &mouse_x, &mouse_y);
-	// printf("Mouse position: %d, %d\n", mouse_x, mouse_y);
+int mouse_move(int x, int y, t_map *map) {
+	int dx;
+	float angle;
+
+	if (map->mouse_click) {
+		dx = x - map->mouse_x;
+		angle = dx * MOUSE_SENSIBILITY;
+		map->direction = normalize(rotate(map->direction, angle));
+		map->mouse_x = x;
+		map->mouse_y = y;
+	}
+	return (0);
+}
+
+int mouse_release(int button, int x, int y, t_map *map) {
+	if (button == MOUSE_LEFT) {
+		map->mouse_click = 0;
+		mlx_mouse_show();
+	}
+	return 0;
+}
+
+int mouse_press(int keycode, int x, int y, t_map *map) {
+
 	if (keycode == MOUSE_LEFT)
 	{
 		printf("Mouse left\n");
-		// printf("Mouse position: %d, %d\n", map->mouse_x, map->mouse_y);
 	}
 	if (keycode == MOUSE_RIGHT)
 	{
@@ -51,14 +68,28 @@ void	handle_mouse(int keycode, t_map *map)
 	{
 		printf("Mouse scroll down\n");
 	}
-}
-
-int	mouse_press(int keycode, t_map *map)
-{
-	// printf("Mouse keycode: %d\n", keycode);
-	// printf("\nPlayer position: %f, %f\n", map->player_position.x, map->player_position.y);
-	handle_mouse(keycode, map);
+	mlx_mouse_hide();
+	map->mouse_click = 1;
+	map->mouse_x = x;
+	map->mouse_y = y;
 	return (0);
+	// printf("Mouse position: %d, %d\n", x, y);
+	// map->mouse_x = x;
+	// map->mouse_y = y;
+	// map->mouse_click = handle_mouse(keycode, map, map->mouse_click);
+	// printf("Mouse click: %d\n", map->mouse_click);
+
+	// if (map->mouse_click) {
+	//     mlx_mouse_hide();
+	//     // Exemple de rotation - ajustez selon votre logique
+	//     map->direction = normalize(rotate(map->direction, M_PI / 4));
+	// } else {
+	//     mlx_mouse_show();
+	//     // Exemple de rotation - ajustez selon votre logique
+	//     map->direction = normalize(rotate(map->direction, -M_PI / 4));
+	// }
+
+	// return 0;
 }
 
 int	key_press(int keycode, t_map *map)

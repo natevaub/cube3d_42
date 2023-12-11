@@ -25,6 +25,7 @@ void init_map(t_map *map, char **av)
 	map->map_start_line = 0;
 	map->map = NULL;
 	map->copy = NULL;
+	map->mouse_click = 0;
 }
 
 void free_map(t_map *map)
