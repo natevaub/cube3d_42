@@ -127,6 +127,7 @@ void draw_juicy_line(t_data *img, t_map *map, t_vector endpoint, t_vector start,
 
 
 		int texture_row = i * 1023 / step;
+		// int texture_row = (int)(i * 1023) / 1024;
 		int color = get_texture_color(texture, texture_col, texture_row);
 		my_mlx_pixel_put(img, start.x, start.y, color);
 		i++;

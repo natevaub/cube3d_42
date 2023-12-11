@@ -6,77 +6,11 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/11 13:22:33 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/11 17:25:22 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
-
-// void	draw_view(t_map *map, t_data *img, t_mapping *mapping)
-// {
-// 	draw_floor_ceiling(map, img, mapping);
-
-// 	t_vector start = add(map->player_position, rotate(map->direction, -FOV / 2.0));
-// 	t_vector end = add(map->player_position, rotate(map->direction, FOV / 2.0));
-// 	t_vector line = sub_vector(end, start);
-// 	t_vector n_line = normalize(line);
-// 	float dx = norm(line) / SCREEN_WIDTH;
-
-// 	for (int i = 0; i < SCREEN_WIDTH; i++) {
-
-// 		t_vector point = add(start, mul_scalar(n_line, dx * i));
-// 		t_vector dir = normalize(sub_vector(point, map->player_position));
-
-// 		t_intersections intersections = compute_intersections(map->player_position, dir, map);
-// 		t_vector endpoint = intersections.points[intersections.size - 1];
-// 		t_vector dist = sub_vector(endpoint, map->player_position);
-
-// 		float perpDist = norm(dist) * cos(atan2(dir.y, dir.x) - atan2(map->direction.y, map->direction.x));
-// 		float h = 200 / perpDist;
-
-
-// 		t_vector beg = (t_vector){.x = i, .y = SCREEN_HEIGHT / 2 - h / 2};
-// 		t_vector end = (t_vector){.x = i, .y = SCREEN_HEIGHT / 2 + h / 2};
-
-// 		t_vector n = sub_vector(end, beg);
-
-// 		// clamp beg and end to 0, screen_height
-// 		if (beg.y < 0)
-// 		{
-// 			beg.y = 0;
-// 		}
-
-// 		if (end.y > SCREEN_HEIGHT)
-// 		{
-// 			end.y = SCREEN_HEIGHT;
-// 		}
-
-// 		if (endpoint.y == (int)endpoint.y) 
-// 		{
-// 			if(map->player_position.y > endpoint.y) 
-// 			{
-// 				draw_line(img, beg, end, BLUE);
-// 			}
-// 			else
-// 			{
-// 				draw_line(img, beg, end, GREEN);
-// 			}
-// 		}
-
-// 		if (endpoint.x == (int)endpoint.x) 
-// 		{
-// 			if(map->player_position.x > endpoint.x)
-// 			{
-// 				draw_line(img, beg, end, MAGENTA);
-// 			}
-// 			else 
-// 			{
-// 				draw_line(img, beg, end, CYAN);
-// 			}
-// 		}
-// 		free(intersections.points);
-// 	}
-// }
 
 void	draw_minimap(t_map *map, t_data *img, t_mapping *mapping)
 {
@@ -236,11 +170,10 @@ void	draw_view(t_map *map, t_data *img, t_mapping *mapping)
 
 
 		t_vector beg = (t_vector){.x = i, .y = SCREEN_HEIGHT / 2 - h / 2};
+		printf("beg = %f, %f\n", beg.x, beg.y);
 		t_vector end = (t_vector){.x = i, .y = SCREEN_HEIGHT / 2 + h / 2};
+		printf("end = %f, %f\n", end.x, end.y);
 		t_vector n = sub_vector(end, beg);
-
-		
-		texture = map->texture_no;
 
 		// clamp beg and end to 0, screen_height
 		// if (beg.y < 0)
@@ -254,38 +187,6 @@ void	draw_view(t_map *map, t_data *img, t_mapping *mapping)
 
 		draw_juicy_line(img, map, endpoint, beg, end);
 
-
-		// if (endpoint.y == (int)endpoint.y) 
-		// {
-		// 	if(map->player_position.y > endpoint.y) 
-		// 	{
-		// 		draw_line(img, beg, end, BLUE);
-		// 		// texture = map->texture_no;
-		// 		// draw_wall_texture(map, img, mapping, intersections, i);
-		// 	}
-		// 	else
-		// 	{
-		// 		draw_line(img, beg, end, GREEN);
-		// 		// texture = map->texture_so;
-		// 		// draw_wall_texture(map, img, mapping, intersections, i);
-		// 	}
-		// }
-
-		// if (endpoint.x == (int)endpoint.x) 
-		// {
-		// 	if(map->player_position.x > endpoint.x)
-		// 	{
-		// 		draw_line(img, beg, end, MAGENTA);
-		// 		// texture = map->texture_we;
-		// 		// draw_wall_texture(map, img, mapping, intersections, i);
-		// 	}
-		// 	else 
-		// 	{
-		// 		draw_line(img, beg, end, CYAN);
-		// 		// texture = map->texture_ea;
-		// 		// draw_wall_texture(map, img, mapping, intersections, i);
-		// 	}
-		// }
 		free(intersections.points);
 	}
 }
