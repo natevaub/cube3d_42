@@ -12,12 +12,12 @@
 
 #include "../includes/cube.h"
 
-void	draw_minimap(t_map *map, t_data *img, t_mapping *mapping)
+void draw_minimap(t_map *map, t_data *img, t_mapping *mapping)
 {
-	t_vector	start;
-	int			size;
-	int			i;
-	int			j;
+	t_vector start;
+	int size;
+	int i;
+	int j;
 
 	start = (t_vector){.x = SCREEN_WIDTH / 2 - (map->columns * MAP_SCALE) / 2, .y = 10};
 	size = MAP_SCALE;
@@ -41,10 +41,10 @@ void	draw_minimap(t_map *map, t_data *img, t_mapping *mapping)
 	}
 }
 
-void	draw_player(t_map *map, t_data *img, t_mapping *mapping)
+void draw_player(t_map *map, t_data *img, t_mapping *mapping)
 {
-	t_minimap_params 	params;
-	t_vector			mapped;
+	t_minimap_params params;
+	t_vector mapped;
 
 	draw_intersections(map, img, mapping);
 	mapped = map_vec_adjust(map->player_position, map);
@@ -65,10 +65,10 @@ void	draw_player(t_map *map, t_data *img, t_mapping *mapping)
 	free(params.intersections.points);
 }
 
-void	draw_floor_ceiling(t_map *map, t_data *img, t_mapping *mapping)
+void draw_floor_ceiling(t_map *map, t_data *img, t_mapping *mapping)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 
 	i = 0;
 	while (i < SCREEN_WIDTH)
@@ -112,17 +112,17 @@ void load_textures(t_map *map, t_mlx *mlx)
 	map->texture_ea->addr = mlx_get_data_addr(map->texture_ea->img, &map->texture_ea->bits_per_pixel, &map->texture_ea->line_length, &map->texture_ea->endian);
 }
 
-int	get_texture_color(t_data *texture, int x, int y)
+int get_texture_color(t_data *texture, int x, int y)
 {
-	int	color;
+	int color;
 
 	color = *(int *)(texture->addr + (y * texture->line_length + x * (texture->bits_per_pixel / 8)));
 	return (color);
 }
 
-void	draw_square_text(t_map *map, t_data *img, t_mapping *mapping)
+void draw_square_text(t_map *map, t_data *img, t_mapping *mapping)
 {
-	t_data	*texture;
+	t_data *texture;
 
 	for (int i = 0; i < SCREEN_WIDTH; i++)
 	{
@@ -142,10 +142,9 @@ void	draw_square_text(t_map *map, t_data *img, t_mapping *mapping)
 	}
 }
 
-void	draw_view(t_map *map, t_data *img, t_mapping *mapping)
+void draw_view(t_map *map, t_data *img, t_mapping *mapping)
 {
 	draw_floor_ceiling(map, img, mapping);
-	
 
 	t_vector start = add(map->player_position, rotate(map->direction, -FOV / 2.0));
 	t_vector end = add(map->player_position, rotate(map->direction, FOV / 2.0));
@@ -154,25 +153,21 @@ void	draw_view(t_map *map, t_data *img, t_mapping *mapping)
 	t_data *texture;
 	float dx = norm(line) / SCREEN_WIDTH;
 
-	for (int i = 0; i < SCREEN_HEIGHT /* SCREEN_HEIGHT */; i++) {
+	for (int i = 0; i < SCREEN_HEIGHT /* SCREEN_HEIGHT */; i++)
+	{
 
 		t_vector point = add(start, mul_scalar(n_line, dx * i));
 		t_vector dir = normalize(sub_vector(point, map->player_position));
 
 		t_intersections intersections = compute_intersections(map->player_position, dir, map);
 		t_vector endpoint = intersections.points[intersections.size - 1];
-		printf("for i = %d Endpoint = %f, %f\n", i, endpoint.x, endpoint.y);
 		t_vector dist = sub_vector(endpoint, map->player_position);
 
 		float perpDist = norm(dist) * cos(atan2(dir.y, dir.x) - atan2(map->direction.y, map->direction.x));
 		float h = SCREEN_HEIGHT / perpDist;
-		printf("i = %d --- h = %f\n", i, h);
-
 
 		t_vector beg = (t_vector){.x = i, .y = SCREEN_HEIGHT / 2 - h / 2};
-		printf("beg = %f, %f\n", beg.x, beg.y);
 		t_vector end = (t_vector){.x = i, .y = SCREEN_HEIGHT / 2 + h / 2};
-		printf("end = %f, %f\n", end.x, end.y);
 		t_vector n = sub_vector(end, beg);
 
 		// clamp beg and end to 0, screen_height
@@ -190,4 +185,3 @@ void	draw_view(t_map *map, t_data *img, t_mapping *mapping)
 		free(intersections.points);
 	}
 }
-

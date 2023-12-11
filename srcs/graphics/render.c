@@ -10,14 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/cube.h"
 
-void	draw_intersections(t_map *map, t_data *img, t_mapping *mapping)
+void draw_intersections(t_map *map, t_data *img, t_mapping *mapping)
 {
-	int				i;
-	t_intersections	intersections;
-	t_vector		v;
+	int i;
+	t_intersections intersections;
+	t_vector v;
 
 	v = map->direction;
 	intersections = compute_intersections(map->player_position, v, map);
@@ -33,15 +32,18 @@ void	draw_intersections(t_map *map, t_data *img, t_mapping *mapping)
 
 void update_frame(t_map *map)
 {
-	if (map->m_mlx.img.img) {
+	if (map->m_mlx.img.img)
+	{
 		mlx_put_image_to_window(map->m_mlx.mlx_ptr, map->m_mlx.mlx_win, map->m_mlx.img.img, 0, 0);
-	} else {
+	}
+	else
+	{
 		// Handle the case where the image pointer is NULL
 		// fprintf(stderr, "Error: Invalid image pointer in update_frame\n");
 	}
 }
 
-void	game_loop(t_map *map)
+void game_loop(t_map *map)
 {
 	map->frames = 0;
 	map->start_time = (int)time(NULL);
@@ -52,11 +54,8 @@ void	game_loop(t_map *map)
 	int current_time = (int)time(NULL);
 }
 
-
-
-int	game_loop_callback(t_map *map)
+int game_loop_callback(t_map *map)
 {
-	sleep(2);
 	t_data new_image;
 	new_image.img = mlx_new_image(map->m_mlx.mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 	new_image.addr = mlx_get_data_addr(new_image.img, &new_image.bits_per_pixel, &new_image.line_length, &new_image.endian);
@@ -64,7 +63,6 @@ int	game_loop_callback(t_map *map)
 	draw_view(map, &new_image, &map->mapping);
 	draw_minimap(map, &new_image, &map->mapping);
 	draw_player(map, &new_image, &map->mapping);
-	
 
 	// Destroy the previous image
 	if (map->m_mlx.img.img)
