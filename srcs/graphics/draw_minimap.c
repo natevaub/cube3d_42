@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/11 17:25:22 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/12 18:32:52 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,31 @@ void draw_view(t_map *map, t_data *img, t_mapping *mapping)
 		// 	end.y = SCREEN_HEIGHT;
 		// }
 
-		draw_juicy_line(img, map, endpoint, beg, end);
+		if (endpoint.y == (int)endpoint.y) 
+		{
+			if(map->player_position.y > endpoint.y) 
+			{
+				draw_juicy_line(map->texture_no, img, map, endpoint, beg, end);
+			}
+			else
+			{
+				draw_juicy_line(map->texture_so, img, map, endpoint, beg, end);
+			}
+		}
+
+		if (endpoint.x == (int)endpoint.x) 
+		{
+			if(map->player_position.x > endpoint.x)
+			{
+				draw_juicy_line(map->texture_we, img, map, endpoint, beg, end);
+			}
+			else 
+			{
+				draw_juicy_line(map->texture_ea, img, map, endpoint, beg, end);
+			}
+		}
+
+		// draw_juicy_line(img, map, endpoint, beg, end);
 
 		free(intersections.points);
 	}

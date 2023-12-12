@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/11 12:42:53 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/12 18:28:05 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,8 @@ void	draw_square(int x, int y, int size, t_data *img);
 void	draw_square_walls(int x, int y, int size, t_data *img);
 void 	draw_disk(int x, int y, int radius, t_data *img, int color);
 void 	draw_line(t_data *img, t_vector start, t_vector end, int color);
-void 	draw_juicy_line(t_data *img, t_map *map, t_vector endpoint, t_vector start, t_vector end);
+// void 	draw_juicy_line(t_data *img, t_map *map, t_vector endpoint, t_vector start, t_vector end);
+void 	draw_juicy_line(t_data *texture, t_data *img, t_map *map, t_vector endpoint, t_vector start, t_vector end);
 
 /**
  * draw_minimap.c
