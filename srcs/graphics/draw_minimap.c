@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/12 18:32:52 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/15 15:16:13 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,16 @@ void draw_player(t_map *map, t_data *img, t_mapping *mapping)
 	draw_intersections(map, img, mapping);
 	mapped = map_vec_adjust(map->player_position, map);
 	draw_disk(mapped.x, mapped.y, 3, img, GREEN);
-	params.FOV_start = map_vec(rotate(map->direction, -FOV / 2), map);
-	params.FOV_end = map_vec(rotate(map->direction, FOV / 2), map);
+	params.fov_start = map_vec(rotate(map->direction, -FOV / 2), map);
+	params.fov_end = map_vec(rotate(map->direction, FOV / 2), map);
 	params.origin = map_vec_adjust(map->player_position, map);
-	params.FOV_start_endpoint = add(params.FOV_start, params.origin);
-	params.intersections = compute_intersections(map->player_position, params.FOV_start, map);
+	params.fov_start_endpoint = add(params.fov_start, params.origin);
+	params.intersections = compute_intersections(map->player_position, params.fov_start, map);
 	params.endpoint = params.intersections.points[params.intersections.size - 1];
 	params.endpoint = map_vec_adjust(params.endpoint, map);
 	draw_line(img, params.origin, params.endpoint, BLUE);
 	free(params.intersections.points);
-	params.intersections = compute_intersections(map->player_position, params.FOV_end, map);
+	params.intersections = compute_intersections(map->player_position, params.fov_end, map);
 	params.endpoint = params.intersections.points[params.intersections.size - 1];
 	params.endpoint = map_vec_adjust(params.endpoint, map);
 	draw_line(img, params.origin, params.endpoint, BLUE);
@@ -76,7 +76,7 @@ void draw_floor_ceiling(t_map *map, t_data *img, t_mapping *mapping)
 		j = 0;
 		while (j < SCREEN_HEIGHT / 2)
 		{
-			my_mlx_pixel_put(img, i, j, encode_rgb(0, map->ceiling_R, map->ceiling_G, map->ceiling_B));
+			my_mlx_pixel_put(img, i, j, encode_rgb(0, map->ceiling_r, map->ceiling_g, map->ceiling_b));
 			j++;
 		}
 		i++;
@@ -87,7 +87,7 @@ void draw_floor_ceiling(t_map *map, t_data *img, t_mapping *mapping)
 		j = SCREEN_HEIGHT / 2;
 		while (j < SCREEN_HEIGHT)
 		{
-			my_mlx_pixel_put(img, i, j, encode_rgb(0, map->floor_R, map->floor_G, map->floor_B));
+			my_mlx_pixel_put(img, i, j, encode_rgb(0, map->floor_r, map->floor_g, map->floor_b));
 			j++;
 		}
 		i++;

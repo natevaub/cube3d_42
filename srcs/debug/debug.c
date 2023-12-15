@@ -21,18 +21,18 @@ void debug_print_map(const t_map *map)
 	printf("West Texture: %s\n", map->we ? map->we : "Not defined");
 
 	printf("Floor Color: ");
-	if (map->floor_R >= 0 && map->floor_G >= 0 && map->floor_B >= 0)
+	if (map->floor_r >= 0 && map->floor_g >= 0 && map->floor_b >= 0)
 	{
-		printf("%d,%d,%d\n", map->floor_R, map->floor_G, map->floor_B);
+		printf("%d,%d,%d\n", map->floor_r, map->floor_g, map->floor_b);
 	}
 	else
 	{
 		printf("Not defined\n");
 	}
 	printf("Ceiling Color: ");
-	if (map->ceiling_R >= 0 && map->ceiling_G >= 0 && map->ceiling_B >= 0)
+	if (map->ceiling_r >= 0 && map->ceiling_g >= 0 && map->ceiling_b >= 0)
 	{
-		printf("%d,%d,%d\n", map->ceiling_R, map->ceiling_G, map->ceiling_B);
+		printf("%d,%d,%d\n", map->ceiling_r, map->ceiling_g, map->ceiling_b);
 	}
 	else
 	{

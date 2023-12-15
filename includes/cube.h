@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/12 18:28:05 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:05:32 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <time.h>
-
 
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -209,10 +208,9 @@ int		encode_rgb(int t, int r, int g, int b);
  */
 void	draw_square(int x, int y, int size, t_data *img);
 void	draw_square_walls(int x, int y, int size, t_data *img);
-void 	draw_disk(int x, int y, int radius, t_data *img, int color);
-void 	draw_line(t_data *img, t_vector start, t_vector end, int color);
-// void 	draw_juicy_line(t_data *img, t_map *map, t_vector endpoint, t_vector start, t_vector end);
-void 	draw_juicy_line(t_data *texture, t_data *img, t_map *map, t_vector endpoint, t_vector start, t_vector end);
+void	draw_disk(int x, int y, int radius, t_data *img, int color);
+void	draw_line(t_data *img, t_vector start, t_vector end, int color);
+void	draw_juicy_line(t_data *texture, t_data *img, t_map *map, t_vector endpoint, t_vector start, t_vector end);
 
 /**
  * draw_minimap.c
@@ -223,6 +221,8 @@ void	draw_minimap(t_map *map, t_data *img, t_mapping *mapping);
 void	draw_intersections(t_map *map, t_data *img, t_mapping *mapping);
 void	draw_view(t_map *map, t_data *img, t_mapping *mapping);
 void	draw_square_text(t_map *map, t_data *img, t_mapping *mapping);
+void			load_textures(t_map *map, t_mlx *m_mlx);
+int				get_texture_color(t_data *texture, int x, int y);
 
 
 /**
@@ -230,9 +230,9 @@ void	draw_square_text(t_map *map, t_data *img, t_mapping *mapping);
  * 
  * 
 */
-// void	render_on_screen(t_mlx *m_mlx, t_map *map, t_mapping *mapping);
-void	render_on_screen(t_map *map);
-
+void			update_frame(t_map *map);
+int				game_loop_callback(t_map *map);
+void			game_loop(t_map *map);
 
 /**
  *
@@ -242,46 +242,71 @@ void	render_on_screen(t_map *map);
 void	debug_print_int_values(char *str);
 void	debug_print_map(const t_map *map);
 
+/* _____ COMPUTE ______ */
+/**
+ * compute_init.c
+ *
+ * Norme: ❌ , Leak: ✅
+ */
+void			init_mapping(t_map *map, t_mapping *mapping);
+void			initialize_compute(t_vector or, t_vector dir, t_compute *compute);
+void			update_next_x_and_y(t_vector or, t_vector dir, t_compute *c);
+void			update_compute_state(t_compute *c);
 
+/**
+ * compute.c
+ *
+ * Norme: ❌ , Leak: ✅
+ */
+t_intersections	compute_intersections(t_vector or, t_vector dir, t_map *map);
+void			store_intersections(t_compute *c, int *n_inter, t_vector **dynamic_res);
+int				check_collision(t_map *map, t_compute *c);
+
+/**
+ * op_vectors.c
+ *
+ * Norme: ❌ , Leak: ✅
+ */
 t_vector 			map_vec(t_vector v, t_map *m);
 t_vector			map_vec_adjust(t_vector v, t_map *m);
 float 				norm(t_vector vec);
 t_vector 			normalize(t_vector vec);
-t_vector 			add(t_vector a, t_vector b);
-t_vector 			add_scalar(t_vector a, float b);
-t_vector			sub_vector(t_vector a, t_vector b);
-t_vector 			mul_scalar(t_vector a, float b);
-t_vector			transform_pdirection_to_vector(char direction);
 t_vector 			rotate(t_vector v, float angle);
 
-// t_intersections		compute_intersections(t_vector origin, t_vector direction, t_map *map);
-t_intersections	compute_intersections(t_vector or, t_vector dir, t_map *map);
-void			store_intersections(t_compute *c, int *n_inter, t_vector **dynamic_res);
-void			initialize_compute(t_vector or, t_vector dir, t_compute *compute);
-int				check_collision(t_map *map, t_compute *c);
-void			update_next_x_and_y(t_vector or, t_vector dir, t_compute *c);
-void			update_compute_state(t_compute *c);
-void			load_textures(t_map *map, t_mlx *m_mlx);
-int				get_texture_color(t_data *texture, int x, int y);
 
+/**
+ * op_vectors2.c
+ *
+ * Norme: ❌ , Leak: ✅
+ */
+t_vector 			add(t_vector a, t_vector b);
+t_vector			sub_vector(t_vector a, t_vector b);
+t_vector 			add_scalar(t_vector a, float b);
+t_vector 			mul_scalar(t_vector a, float b);
+t_vector			transform_pdirection_to_vector(char direction);
 
-int 			init_mlx(t_mlx *m_mlx);
-int				win_close_click();
-int				key_press(int keycode, t_map *map);
-int				win_close_key(t_mlx *m_mlx);
+/* _____ MYMINILIBX ______ */
+/**
+ * init_handler.c
+ *
+ * Norme: ❌ , Leak: ✅
+ */
+int				init_mlx(t_mlx *m_mlx);
+
+/**
+ * event_handler.c
+ *
+ * Norme: ❌ , Leak: ✅
+ */
 void			event_manager(t_map *map);
-// void			game_loop(t_map *map, t_mlx *m_mlx, t_mapping *mapping);
-void			game_loop(t_map *map);
-int				game_loop_callback(t_map *map);
-void			update_frame(t_map *map);
-
-void			handle_wasd(int keycode, t_map *map);
-void			handle_esc(int keycode, t_map *map);
-void			handle_arrows(int keycode, t_map *map);
-int				mouse_press(int keycode, int x, int y, t_map *map);
-int				mouse_release(int button, int x, int y, t_map *map);
 int				mouse_move(int x, int y, t_map *map);
-
-void			init_mapping(t_map *map, t_mapping *mapping);
+int				mouse_release(int button, int x, int y, t_map *map);
+int				mouse_press(int keycode, int x, int y, t_map *map);
+int				key_press(int keycode, t_map *map);
+int				win_close_click();
+int				win_close_key(t_mlx *m_mlx);
+void			handle_wasd(int keycode, t_map *map);
+void			handle_arrows(int keycode, t_map *map);
+void			handle_esc(int keycode, t_map *map);
 
 #endif

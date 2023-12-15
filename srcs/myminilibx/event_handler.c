@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 00:23:48 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/11 12:54:06 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/15 15:58:31 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int mouse_press(int keycode, int x, int y, t_map *map) {
 	return (0);
 }
 
-
 int	key_press(int keycode, t_map *map)
 {
 	handle_wasd(keycode, map);
@@ -101,7 +100,6 @@ void	handle_wasd(int keycode, t_map *map)
 
 	t_vector  move;
 	int is_moved = 0;
-	printf("keycode: %d\n", keycode);
 	if (keycode == LINUX_W || keycode == MAC_W)
 	{
 		move =  mul_scalar(dir, 0.1);

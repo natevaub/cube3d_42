@@ -214,7 +214,6 @@ void draw_juicy_line(t_data *texture, t_data *img, t_map *map, t_vector endpoint
 		my_mlx_pixel_put(img, start.x, start.y, color);
 		i++;
 	}
-	printf("\n\n");
 }
 
 void draw_disk(int x, int y, int radius, t_data *img, int color)

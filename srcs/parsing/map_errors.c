@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:04 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/01 16:17:58 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/15 15:13:51 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int	is_valid_elements(t_map *map)
 		ft_putstr_fd(ERR_MSG_7, 2);
 		return (0);
 	}
-	if (map->floor_R == -1 || map->floor_G == -1 || map->floor_B == -1
-		|| map->ceiling_R == -1 || map->ceiling_G == -1 || map->ceiling_B == -1)
+	if (map->floor_r == -1 || map->floor_g == -1 || map->floor_b == -1
+		|| map->ceiling_r == -1 || map->ceiling_g == -1 || map->ceiling_b == -1)
 	{
 		ft_putstr_fd(ERR_MSG_8, 2);
 		return (0);

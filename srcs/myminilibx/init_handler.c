@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 23:25:32 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/23 16:01:26 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:06:24 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ int init_mlx(t_mlx *m_mlx)
 	m_mlx->img.img = mlx_new_image(m_mlx->mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 	m_mlx->img.addr = mlx_get_data_addr(m_mlx->img.img,
 		&m_mlx->img.bits_per_pixel, &m_mlx->img.line_length, &m_mlx->img.endian);
+	return (0);
 }

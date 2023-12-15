@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:23 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/09 17:22:26 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/15 15:13:51 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int	helper_valid_ceiling_color(char **ceilingValues, t_map *map)
 			return (0);
 		}
 		if (i == 0)
-			map->ceiling_R = value;
+			map->ceiling_r = value;
 		else if (i == 1)
-			map->ceiling_G = value;
+			map->ceiling_g = value;
 		else if (i == 2)
-			map->ceiling_B = value;
+			map->ceiling_b = value;
 		i++;
 	}
 	return (1);
@@ -50,11 +50,11 @@ int	helper_valid_floor_color(char **floorValues, t_map *map)
 			return (0);
 		}
 		if (i == 0)
-			map->floor_R = value;
+			map->floor_r = value;
 		else if (i == 1)
-			map->floor_G = value;
+			map->floor_g = value;
 		else if (i == 2)
-			map->floor_B = value;
+			map->floor_b = value;
 		i++;
 	}
 	return (1);

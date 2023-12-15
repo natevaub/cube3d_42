@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:43:35 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/11 17:24:13 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:05:57 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void game_loop(t_map *map)
 	mlx_loop(map->m_mlx.mlx_ptr);
 	int current_time = (int)time(NULL);
 }
-
 int game_loop_callback(t_map *map)
 {
 	t_data new_image;
