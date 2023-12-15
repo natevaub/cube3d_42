@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:32 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/15 18:08:50 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/16 00:31:11 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,23 +95,19 @@ int	contains_spawn(char **map, t_map *m)
 	int	j;
 
 	flag = 0;
-	i = 0;
-	while (map[i])
+	i = -1;
+	while (map[++i])
 	{
-		j = 0;
-		while (map[i][j])
+		j = -1;
+		while (map[i][++j])
 		{
 			if (map[i][j] == 'N' || map[i][j] == 'S' ||
 				map[i][j] == 'E' || map[i][j] == 'W')
 			{
-					m->player_position.y = i + 0.5;
-					m->player_position.x = j + 0.5;
-					m->direction = transform_pdirection_to_vector(map[i][j]);
-					flag++;
+				m->direction = transform_pdirection_to_vector(map[i][j]);
+				contains_spawns_helper(m, &flag, &i, &j);
 			}
-			j++;
 		}
-		i++;
 	}
 	if (flag != 1)
 	{

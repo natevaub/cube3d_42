@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/15 17:45:18 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/16 00:11:32 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
-// #include "../libs/mlx_linux/mlx.h"
+# include "../libs/mlx_linux/mlx.h"
 # include "../libs/libmlx/mlx.h"
 # include "../libs/ftprintf/ft_printf.h"
 # include "../libs/libft/libft.h"
@@ -42,6 +42,7 @@
 # define ERR_MSG_9 "Error: Found empty line in map\n"
 # define ERR_MSG_10 "Error: Invalid element found\n"
 # define ERR_MSG_11 "MALLOC ERROR\n"
+# define ERR_MSG_12 "Error: Hole detected in map\n"
 
 # define SCREEN_WIDTH 1024
 # define SCREEN_HEIGHT 1024
@@ -164,6 +165,7 @@ int		count_split_elements(char **tab);
 int		ft_strcmp(char *s1, char *s2);
 int		count_occurences(char *str, char c);
 char	*front_trim(char *line);
+void	contains_spawns_helper(t_map *map, int *flag, int *i, int *j);
 
 /**
  * map_open.c

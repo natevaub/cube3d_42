@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:28 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/15 18:10:05 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/16 00:33:28 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	map_transform_to_parsable(t_map *map)
 	int	i;
 
 	i = 0;
-	map->map = (char **)malloc(sizeof(char *) * (map->rows + 1));
+	map->map = (char **)ft_calloc(sizeof(char *), (map->rows + 1));
 	if (map->map == NULL)
 		return (5);
 	map->map[map->rows] = NULL;
@@ -39,15 +39,14 @@ int	map_check_hole(t_map *map)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = -1;
 	debug_print_map(map);
-	while (map->map[i])
+	while (map->map[++i])
 	{
-		j = 0;
-		while (map->map[i][j])
+		j = -1;
+		while (map->map[i][++j])
 		{
-			if (i > 0 && i < map->rows - 1 && j > 0
-				&& j < map->columns - 1)
+			if (i > 0 && i < map->rows - 1 && j > 0 && j < map->columns - 1)
 			{
 				if (map->map[i][j] == '0' || map->map[i][j] == 'N'
 					|| map->map[i][j] == 'S'
@@ -59,9 +58,7 @@ int	map_check_hole(t_map *map)
 						return (1);
 				}
 			}
-			j++;
 		}
-		i++;
 	}
 	return (0);
 }

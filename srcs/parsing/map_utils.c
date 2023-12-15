@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:01:23 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/10/24 16:02:58 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/16 00:30:27 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,11 @@ char	*front_trim(char *line)
 	}
 	new_line[i] = '\0';
 	return (new_line);
+}
+
+void	contains_spawns_helper(t_map *map, int *flag, int *i, int *j)
+{
+	map->player_position.y = *i + 0.5;
+	map->player_position.x = *j + 0.5;
+	(*flag)++;
 }

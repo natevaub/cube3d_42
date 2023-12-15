@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:26:10 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/15 18:15:02 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/15 23:48:20 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,15 @@ void	free_map(t_map *map)
 		free(map->we);
 		free(map->ea);
 	}
-	// if (map->map)
-	// {
-	// 	i = 0;
-	// 	while (map->map[i])
-	// 	{
-	// 		printf("i = %d\n", i);
-	// 		free(map->map[i]);
-	// 		map->map[i] = NULL;
-	// 		i++;
-	// 	}
-	// 	free(map->map);
-	// }
+	if (map->map)
+	{
+		i = 0;
+		while (map->map[i] != NULL)
+		{
+			free(map->map[i]);
+			map->map[i] = NULL;
+			i++;
+		}
+		free(map->map);
+	}
 }
