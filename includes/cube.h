@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/15 16:05:32 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/15 17:45:18 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define ERR_MSG_5 "Error: Invalid number of textures\n"
 # define ERR_MSG_6 "Error: Invalid texture path\n"
 # define ERR_MSG_7 "Error: Invalid number of floor & ceiling informations\n"
-# define ERR_MSG_8 "Error: Invalidd color\n"
+# define ERR_MSG_8 "Error: Invalid color\n"
 # define ERR_MSG_9 "Error: Found empty line in map\n"
 # define ERR_MSG_10 "Error: Invalid element found\n"
 # define ERR_MSG_11 "MALLOC ERROR\n"
@@ -174,6 +174,7 @@ int		open_cub_file(char *path, t_map *map);
 int		cub_copy(int fd, t_map *map);
 int		parser(t_map *map);
 int		cub_copy_to_map(t_map *map);
+int		map_check_found_or_empty(int *map_start_at, char *res);
 
 /**
  * map_transform.c
@@ -272,7 +273,6 @@ t_vector			map_vec_adjust(t_vector v, t_map *m);
 float 				norm(t_vector vec);
 t_vector 			normalize(t_vector vec);
 t_vector 			rotate(t_vector v, float angle);
-
 
 /**
  * op_vectors2.c

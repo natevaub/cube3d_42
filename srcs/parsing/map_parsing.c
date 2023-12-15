@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:32 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/29 20:57:52 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:08:50 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int	is_valid_map(t_map *map)
 	j = 0;
 	while (map->map[i])
 	{
-		// if (!contains_only_valid(map->map[i]))
-		// 	return (0);
 		if ((i == 0 || i == map->rows - 1) && !contains_only_1(map->map[i]))
 			return (0);
 		if (!contains_1_start_end(map->map[i]))
@@ -62,7 +60,6 @@ int	contains_only_valid(char *line)
 			&& line[i] != 'N' && line[i] != 'S'
 			&& line[i] != 'E' && line[i] != 'W')
 		{
-			ft_printf("%s\n", line);
 			ft_putstr_fd(ERR_MSG_2, 2);
 			return (0);
 		}
@@ -106,13 +103,12 @@ int	contains_spawn(char **map, t_map *m)
 		{
 			if (map[i][j] == 'N' || map[i][j] == 'S' ||
 				map[i][j] == 'E' || map[i][j] == 'W')
-				{
+			{
 					m->player_position.y = i + 0.5;
 					m->player_position.x = j + 0.5;
-					// m->player_direction = map[i][j];
 					m->direction = transform_pdirection_to_vector(map[i][j]);
 					flag++;
-				}
+			}
 			j++;
 		}
 		i++;

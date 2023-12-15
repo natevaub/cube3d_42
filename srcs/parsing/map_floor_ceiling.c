@@ -6,11 +6,12 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:11 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/09 03:08:03 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/15 17:24:02 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
+
 int	valid_floor_color(char *floorValues, t_map *map)
 {
 	char	**parsed_rgb;
@@ -66,7 +67,7 @@ char	*concat_split(char **split, int i)
 	char	*concat;
 	char	*tmp;
 	int		size;
-	int 	j;
+	int		j;
 
 	concat = NULL;
 	tmp = ft_strdup("");
@@ -86,7 +87,8 @@ char	*concat_split(char **split, int i)
 
 /**
  * Except for the map, 
- * each type of information from an element can be separated by one or more space(s).
+ * each type of information from an element can be 
+ * separated by one or more space(s).
 */
 void	parse_floor(char *line, t_map *map)
 {

@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:28 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/30 11:13:50 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/15 17:44:55 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	cub_copy(int fd, t_map *map)
 	char	*to_free;
 	char	*res;
 	int		map_start_at;
+	int		err;
 
 	res = NULL;
 	to_free = ft_strdup("");
@@ -71,18 +72,38 @@ int	cub_copy(int fd, t_map *map)
 		line = get_next_line(fd);
 	}
 	search_map(0, &map_start_at, res);
-	if (map_start_at == -1)
+	// if (map_start_at == -1)
+	// {
+	// 	free(res);
+	// 	return (1);
+	// }
+	// if (found_empty_line(&res[map_start_at]))
+	// {
+	// 	free(res);
+	// 	return (2);
+	// }
+	err = map_check_found_or_empty(&map_start_at, res);
+	if (err)
+		return (err);
+	// if (map_parsing_tools(&map_start_at, res))
+	// 	return (1);
+	map->copy = ft_split(res, '\n');
+	free(res);
+	return (0);
+}
+
+int	map_check_found_or_empty(int *map_start_at, char *res)
+{
+	if (*map_start_at == -1)
 	{
 		free(res);
 		return (1);
 	}
-	if (found_empty_line(&res[map_start_at]))
+	if (found_empty_line(&res[*map_start_at]))
 	{
 		free(res);
 		return (2);
 	}
-	map->copy = ft_split(res, '\n');
-	free(res);
 	return (0);
 }
 

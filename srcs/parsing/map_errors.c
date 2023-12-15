@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:04 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/15 15:13:51 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/15 17:58:52 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int	manage_errors(int code_error)
 			ft_putstr_fd(ERR_MSG_9, 2);
 		else if (code_error == 3)
 			ft_putstr_fd(ERR_MSG_10, 2);
+		printf("Error code: %d\n", code_error);
 		return (1);
 	}
 	return (0);

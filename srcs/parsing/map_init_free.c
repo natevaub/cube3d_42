@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_init_free.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/15 17:26:10 by nvaubien          #+#    #+#             */
+/*   Updated: 2023/12/15 18:15:02 by nvaubien         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/cube.h"
 
-void init_map(t_map *map, char **av)
+void	init_map(t_map *map, char **av)
 {
 	map->path = ft_strdup(av[1]);
 	map->so = NULL;
@@ -28,9 +39,9 @@ void init_map(t_map *map, char **av)
 	map->mouse_click = 0;
 }
 
-void free_map(t_map *map)
+void	free_map(t_map *map)
 {
-	int i;
+	int	i;
 
 	free(map->path);
 	if (map->copy)
@@ -41,14 +52,16 @@ void free_map(t_map *map)
 		free(map->we);
 		free(map->ea);
 	}
-	if (map->map)
-	{
-		i = 0;
-		while (map->map[i])
-		{
-			free(map->map[i]);
-			i++;
-		}
-		free(map->map);
-	}
+	// if (map->map)
+	// {
+	// 	i = 0;
+	// 	while (map->map[i])
+	// 	{
+	// 		printf("i = %d\n", i);
+	// 		free(map->map[i]);
+	// 		map->map[i] = NULL;
+	// 		i++;
+	// 	}
+	// 	free(map->map);
+	// }
 }
