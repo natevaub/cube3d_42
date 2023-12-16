@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:31:29 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 12:39:05 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 13:19:01 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	main(int ac, char **av)
 	code_error = parser(&map);
 	if (code_error)
 	{
-		// free_map(&map);
 		ft_printf("😔 Why are you doing this to me ? 😔\n");
 		return (1);
 	}
@@ -36,6 +35,5 @@ int	main(int ac, char **av)
 	map.m_mlx = m_mlx;
 	map.mapping = mapping;
 	game_loop(&map);
-	// free_map(&map);
 	return (0);
 }
