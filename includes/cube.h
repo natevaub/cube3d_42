@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 17:52:44 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 18:53:40 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define GAME_HEIGHT 500
 # define MAP_SCALE 10
 # define FOV 66
+# define DELAY_THRESHOLD 2
 
 # define RED		0x00FF0000
 # define GREEN 		0x0000FF00

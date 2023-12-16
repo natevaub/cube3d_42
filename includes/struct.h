@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:50 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 15:55:52 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 18:52:35 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_map {
 	struct s_data	*texture_we;
 	struct s_data	*texture_ea;
 	struct s_data	*texture_fight[4];
+	int				fight_mode_counter;
 	int				count_floor;
 	int				count_ceiling;
 	int				floor_r;

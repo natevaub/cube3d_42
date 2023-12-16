@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 00:23:48 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 17:14:04 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 19:01:42 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ void	event_manager(t_map *map)
 
 int	mouse_move(int x, int y, t_map *map)
 {
-	int		dx;
-	float	angle;
-	static int ignore_event = 0;
+	int			dx;
+	float		angle;
+	static int	ignore_event = 0;
 
-    if (ignore_event)
+	if (ignore_event)
 	{
-        ignore_event = 0;
-        return (0);
-    }
+		ignore_event = 0;
+		return (0);
+	}
 	mlx_mouse_hide();
 	dx = x - map->mouse_x;
 	angle = dx * MOUSE_SENSIBILITY;
@@ -40,21 +40,20 @@ int	mouse_move(int x, int y, t_map *map)
 	map->mouse_y = y;
 	if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT)
 	{
-		printf("mouse out of bounds\n");
-        ignore_event = 1;
-        mlx_mouse_move(map->m_mlx.mlx_win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-        map->mouse_x = SCREEN_WIDTH / 2;
-        map->mouse_y = SCREEN_HEIGHT / 2;
-    }
-	if (map->fight_mode == 1)
-	{
-		map->fight_index++;
-		if (map->fight_index == 4)
-		{
-			map->fight_index = 0;
-			map->fight_mode = 0;
-		}
+		ignore_event = 1;
+		mlx_mouse_move(map->m_mlx.mlx_win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+		map->mouse_x = SCREEN_WIDTH / 2;
+		map->mouse_y = SCREEN_HEIGHT / 2;
 	}
+	// if (map->fight_mode == 1)
+	// {
+	// 	map->fight_index++;
+	// 	if (map->fight_index == 4)
+	// 	{
+	// 		map->fight_index = 0;
+	// 		map->fight_mode = 0;
+	// 	}
+	// }
 	return (0);
 }
 
@@ -66,6 +65,31 @@ int	mouse_release(int button, int x, int y, t_map *map)
 	(void)map;
 	// map->mouse_click = 0;
 	return (0);
+}
+
+void	attack(t_map *map)
+{
+	while (map->fight_index < 4)
+	{
+		mlx_destroy_image(map->m_mlx.mlx_ptr, map->texture_fight[map->fight_index]->img);
+		mlx_put_image_to_window(map->m_mlx.mlx_ptr, map->m_mlx.mlx_win,
+			map->texture_fight[map->fight_index]->img, 0, 0);
+		map->fight_index++;
+		usleep(1000);
+	}
+	map->fight_index = 0;
+	// 	map->fight_mode_counter++;
+	// 	if (map->fight_mode_counter >= DELAY_THRESHOLD)
+	// 	{
+	// 		map->fight_index++;
+	// 		if (map->fight_index == 4)
+	// 		{
+	// 			map->fight_index = 0;
+	// 			map->fight_mode = 0;
+	// 		}
+	// 		map->fight_mode_counter = 0;
+	// 	}
+	// }
 }
 
 int	mouse_press(int keycode, int x, int y, t_map *map)

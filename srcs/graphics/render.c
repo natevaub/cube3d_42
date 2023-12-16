@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:43:35 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 17:56:42 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 19:02:19 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void game_loop(t_map *map)
 	mlx_loop_hook(map->m_mlx.mlx_ptr, game_loop_callback, map);
 	mlx_loop(map->m_mlx.mlx_ptr);
 }
+void	attack(t_map *map);
 
 int game_loop_callback(t_map *map)
 {
@@ -63,6 +64,10 @@ int game_loop_callback(t_map *map)
 	if (map->m_mlx.img.img)
 		mlx_destroy_image(map->m_mlx.mlx_ptr, map->m_mlx.img.img);
 	map->m_mlx.img = new_image;
+	if (map->fight_mode == 1)
+	{
+		attack(map);
+	}
 	update_frame(map);
 	map->frames++;
 	return (0);

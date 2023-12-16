@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:26:10 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 15:50:55 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 18:53:09 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ void	init_map(t_map *map, char **av)
 	map->map = NULL;
 	map->copy = NULL;
 	map->fight_index = 0;
+	map->fight_mode_counter = 0;
 }
