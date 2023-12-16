@@ -6,84 +6,39 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 17:59:44 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 18:32:20 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-// void	draw_minimap(t_map *map, t_data *img)
-// {
-// 	t_vector	start;
-// 	int			size;
-// 	int			i;
-// 	int			j;
-
-// 	start = (t_vector){.x = SCREEN_WIDTH / 2 - (map->columns * MAP_SCALE) / 2,
-// 		.y = 10};
-// 	size = MAP_SCALE;
-// 	i = -1;
-// 	while (++i < map->rows)
-// 	{
-// 		j = -1;
-// 		while (++j < map->columns)
-// 		{
-// 			if (map->map[i][j] == '1')
-// 				draw_square_walls(start.x, start.y, size, img);
-// 			else
-// 				draw_square(start.x, start.y, size, img);
-// 			start.x += MAP_SCALE;
-// 		}
-// 		start.x = SCREEN_WIDTH / 2 - (map->columns * MAP_SCALE) / 2;
-// 		j = 0;
-// 		start.y += MAP_SCALE;
-// 	}
-// }
-
-int	max(int a, int b)
+void	draw_minimap(t_map *map, t_data *img)
 {
-	if (a > b)
-		return (a);
-	return (b);
+	t_vector	start;
+	int			size;
+	int			i;
+	int			j;
+
+	start = (t_vector){.x = SCREEN_WIDTH / 2 - (map->columns * MAP_SCALE) / 2,
+		.y = 10};
+	size = MAP_SCALE;
+	i = -1;
+	while (++i < map->rows)
+	{
+		j = -1;
+		while (++j < map->columns)
+		{
+			if (map->map[i][j] == '1')
+				draw_square_walls(start.x, start.y, size, img);
+			else
+				draw_square(start.x, start.y, size, img);
+			start.x += MAP_SCALE;
+		}
+		start.x = SCREEN_WIDTH / 2 - (map->columns * MAP_SCALE) / 2;
+		j = 0;
+		start.y += MAP_SCALE;
+	}
 }
-
-int	min(int a, int b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
-
-void draw_minimap(t_map *map, t_data *img)
-{
-    t_vector start;
-    int size;
-    int i, j;
-    int min_i, max_i, min_j, max_j;
-
-    size = MAP_SCALE;
-    int range = 5;
-    min_i = max(map->player_position.y - range, 0);
-    max_i = min(map->player_position.y + range, map->rows);
-    min_j = max(map->player_position.x - range, 0);
-    max_j = min(map->player_position.x + range, map->columns);
-
-    start.y = 10;
-    for (i = min_i; i < max_i; i++)
-    {
-        start.x = SCREEN_WIDTH / 2 - (range * size);
-        for (j = min_j; j < max_j; j++)
-        {
-            if (map->map[i][j] == '1')
-                draw_square_walls(start.x, start.y, size, img);
-            else
-                draw_square(start.x, start.y, size, img);
-            start.x += size;
-        }
-        start.y += size;
-    }
-}
-
 
 void	draw_player(t_map *map, t_data *img)
 {
