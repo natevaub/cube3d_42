@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_open.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:28 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 00:32:55 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/16 12:49:10 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	open_cub_file(char *path, t_map *map)
 {
 	int	fd;
 
+	(void)map;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
@@ -35,21 +36,13 @@ int	parser(t_map *map)
 	if (fd == -1)
 		return (1);
 	if (manage_errors(cub_copy(fd, map)))
-	{
 		return (1);
-	}
 	if (manage_errors(cub_copy_to_map(map)))
-	{
 		return (1);
-	}
 	if (manage_errors(map_transform_to_parsable(map)))
-	{
 		return (1);
-	}
 	if (manage_errors(map_transform_to_usable(map)))
-	{
 		return (1);
-	}
 	return (0);
 }
 
@@ -67,7 +60,6 @@ int	cub_copy(int fd, t_map *map)
 	while (line != NULL)
 	{
 		res = ft_strjoin(to_free, line);
-		free_lines(to_free, line);
 		to_free = res;
 		line = get_next_line(fd);
 	}
@@ -76,22 +68,15 @@ int	cub_copy(int fd, t_map *map)
 	if (err)
 		return (err);
 	map->copy = ft_split(res, '\n');
-	free(res);
 	return (0);
 }
 
 int	map_check_found_or_empty(int *map_start_at, char *res)
 {
 	if (*map_start_at == -1)
-	{
-		free(res);
 		return (1);
-	}
 	if (found_empty_line(&res[*map_start_at]))
-	{
-		free(res);
 		return (2);
-	}
 	return (0);
 }
 
@@ -116,7 +101,7 @@ int	cub_copy_to_map(t_map *map)
 	map->map_start_line = i;
 	while (map->copy[i])
 	{
-		if (ft_strlen(map->copy[i]) > map->columns)
+		if (ft_strlen(map->copy[i]) > (size_t)map->columns)
 			map->columns = ft_strlen(map->copy[i]);
 		map->rows++;
 		i++;

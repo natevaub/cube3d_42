@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_vectors2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:42:11 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/29 20:42:37 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/16 12:24:19 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ t_vector	transform_pdirection_to_vector(char direction)
 		v = (t_vector){.x = 1, .y = 0};
 	else if (direction == 'W')
 		v = (t_vector){.x = -1, .y = 0};
+	else
+		v = (t_vector){.x = 0, .y = 0};
 	return (v);
 }

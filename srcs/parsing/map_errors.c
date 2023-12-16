@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_errors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:04 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/15 23:55:28 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/16 12:46:22 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,7 @@ int	unwanted_elements(char *line)
 		&& ft_strcmp(test[0], "F") != 0
 		&& ft_strcmp(test[0], "C") != 0
 		&& ft_strcmp(test[0], " ") != 0)
-	{
-		free_split(test);
 		return (1);
-	}
-	free_split(test);
 	return (0);
 }
 
@@ -58,25 +54,6 @@ int	is_valid_elements(t_map *map)
 		return (0);
 	}
 	return (1);
-}
-
-void	free_lines(char *line, char *current_line)
-{
-	free(line);
-	free(current_line);
-}
-
-void	free_split(char **split)
-{
-	int	i;
-
-	i = 0;
-	while (split[i] != NULL)
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
 }
 
 int	manage_errors(int code_error)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 00:11:32 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/16 13:08:06 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
-# include "../libs/mlx_linux/mlx.h"
-# include "../libs/libmlx/mlx.h"
-# include "../libs/ftprintf/ft_printf.h"
-# include "../libs/libft/libft.h"
+// # include "../libs/mlx_linux/mlx.h"
+// # include "../libs/libmlx/mlx.h"
+// # include "../libs/ftprintf/ft_printf.h"
+# include "../libs/mlx/mlx.h"
+# include "../libs/libft/includes/mylib.h"
 # include "../includes/struct.h"
 # include "../includes/enums.h"
 
@@ -98,8 +99,7 @@ void	parse_west_texture(char *line, t_map *map);
 void	parse_north_texture(char *line, t_map *map);
 void	parse_south_texture(char *line, t_map *map);
 void	parse_elements(char *line, t_map *map);
-void	check_access_textures(char **texture_info, t_map *map,
-			int count_info);
+void	check_access_textures(char **texture_info, t_map *map);
 
 /**
  * map_floor_ceiling.c
@@ -162,7 +162,7 @@ char	*fill_map(char *line, t_map *map);
  */
 
 int		count_split_elements(char **tab);
-int		ft_strcmp(char *s1, char *s2);
+// int		ft_strcmp(char *s1, char *s2);
 int		count_occurences(char *str, char c);
 char	*front_trim(char *line);
 void	contains_spawns_helper(t_map *map, int *flag, int *i, int *j);
@@ -213,17 +213,16 @@ void	draw_square(int x, int y, int size, t_data *img);
 void	draw_square_walls(int x, int y, int size, t_data *img);
 void	draw_disk(int x, int y, int radius, t_data *img, int color);
 void	draw_line(t_data *img, t_vector start, t_vector end, int color);
-void	draw_juicy_line(t_data *texture, t_data *img, t_map *map, t_vector endpoint, t_vector start, t_vector end);
+void	draw_juicy_line(t_data *texture, t_data *img, t_vector endpoint, t_vector start, t_vector end);
 
 /**
  * draw_minimap.c
 */
-void	draw_floor_ceiling(t_map *map, t_data *img, t_mapping *mapping);
+void	draw_floor_ceiling(t_map *map, t_data *img);
 void	draw_player(t_map *map, t_data *img, t_mapping *mapping);
-void	draw_minimap(t_map *map, t_data *img, t_mapping *mapping);
+void	draw_minimap(t_map *map, t_data *img);
 void	draw_intersections(t_map *map, t_data *img, t_mapping *mapping);
-void	draw_view(t_map *map, t_data *img, t_mapping *mapping);
-void	draw_square_text(t_map *map, t_data *img, t_mapping *mapping);
+void	draw_view(t_map *map, t_data *img);
 void			load_textures(t_map *map, t_mlx *m_mlx);
 int				get_texture_color(t_data *texture, int x, int y);
 

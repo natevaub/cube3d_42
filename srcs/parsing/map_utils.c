@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:01:23 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 00:30:27 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/16 12:52:21 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,6 @@ int	count_split_elements(char **tab)
 		i++;
 	}
 	return (i);
-}
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	if (s1 == NULL || s2 == NULL)
-		return (0);
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		++i;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
 int	count_occurences(char *str, char c)
@@ -67,7 +55,7 @@ char	*front_trim(char *line)
 		j--;
 		size++;
 	}
-	new_line = malloc(sizeof(char) * (j + 2));
+	new_line = ft_gc_malloc(sizeof(char) * (j + 2));
 	if (new_line == NULL)
 		return (NULL);
 	i = 0;

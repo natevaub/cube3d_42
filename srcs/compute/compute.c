@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 23:38:43 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/08 19:12:43 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/16 13:16:59 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ t_intersections	compute_intersections(t_vector or, t_vector dir, t_map *map)
 	int			n_inter;
 
 	n_inter = 0;
-	c = (t_compute *)malloc(sizeof(t_compute));
-	dynamic_res = (t_vector *)malloc(sizeof(t_vector));
+	c = (t_compute *)ft_gc_malloc(sizeof(t_compute));
+	dynamic_res = (t_vector *)ft_gc_malloc(sizeof(t_vector));
 	initialize_compute(or, dir, c);
 	while ((int)c->curr_origin.x >= 0 && (int)c->curr_origin.x <= map->columns
 		&& (int)c->curr_origin.y >= 0 && (int)c->curr_origin.y <= map->rows)
@@ -35,7 +35,6 @@ t_intersections	compute_intersections(t_vector or, t_vector dir, t_map *map)
 			store_intersections(c, &n_inter, &dynamic_res);
 		}
 	}
-	free(c);
 	return ((t_intersections){.size = n_inter, .points = dynamic_res});
 }
 
@@ -48,7 +47,7 @@ void	store_intersections(t_compute *c, int *n_inter, t_vector **dynamic_res)
 		(*dynamic_res)[0] = c->curr_origin;
 	else
 	{
-		c->tmp = (t_vector *)malloc(sizeof(t_vector) * (*n_inter + 1));
+		c->tmp = (t_vector *)ft_gc_malloc(sizeof(t_vector) * (*n_inter + 1));
 		i = 0;
 		while (i < *n_inter)
 		{
@@ -56,7 +55,6 @@ void	store_intersections(t_compute *c, int *n_inter, t_vector **dynamic_res)
 			i++;
 		}
 		c->tmp[*n_inter] = c->curr_origin;
-		free(*dynamic_res);
 		*dynamic_res = c->tmp;
 	}
 	*n_inter += 1;

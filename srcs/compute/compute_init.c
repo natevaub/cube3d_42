@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:59:24 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/11/30 11:13:50 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/16 12:23:42 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	initialize_compute(t_vector or, t_vector dir, t_compute *compute)
 
 void	update_next_x_and_y(t_vector or, t_vector dir, t_compute *c)
 {
+	(void)or;
 	if (dir.x > 0)
 		c->next_x = floor(c->curr_origin.x + 1);
 	else

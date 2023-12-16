@@ -1,7 +1,7 @@
-NO ./textures/xpm/1.xpm
-SO ./textures/xpm/1.xpm
-WE ./textures/xpm/1.xpm
-EA ./textures/xpm/1.xpm
+NO ./textures/xpm/grafiti.xpm
+SO ./textures/xpm/concrete.xpm
+WE ./textures/xpm/stone.xpm
+EA ./textures/xpm/wood.xpm
 
 F 0,0,0
 C 255, 255 , 255

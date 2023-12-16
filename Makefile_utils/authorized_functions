@@ -1,0 +1,10 @@
+close
+exit
+free
+malloc
+open
+perror
+printf
+read
+strerror
+write
