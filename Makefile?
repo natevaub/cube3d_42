@@ -1,4 +1,3 @@
-
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
@@ -24,7 +23,6 @@ OBJSDIR = objs
 HDRDIR = ./includes
 LIBFT = ./libs/libft
 MLX = ./libs/mlx
-MLX_LINUX = ./libs/mlx_linux
 OBJS_FOLDERS = ${shell find ${SRCSDIR} -type d | sed "s|${SRCSDIR}|${OBJSDIR}|"}
 MAKEFILE_UTILS = ./Makefile_utils
 
@@ -34,19 +32,17 @@ OBJS			= ${patsubst ${SRCSDIR}%,${OBJSDIR}%,${SRCS:%.c=%.o}}
 
 # Compiler and Flags
 CC = gcc
-# CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 LDFLAGS_Linux = -L${MLX} -lmlx -L/usr/lib -lXext -lX11 -lm
 LDFLAGS_Mac = -L${MLX} -lmlx -framework OpenGL -framework AppKit
 
 # OS Specific Configuration
 OS = ${shell uname}
 ifeq (${OS},Linux)
-	MLX_DIR = ${MLX_LINUX}
     ECHO = echo -e
 	MLX_ARCHIVE = ${MAKEFILE_UTILS}/archives/minilibx_mms_20200219_beta.tgz
     LDFLAGS = ${LDFLAGS_Linux}
 else
-	MLX_DIR = ${MLX}
     ECHO = echo
 	MLX_ARCHIVE = ${MAKEFILE_UTILS}/archives/minilibx_opengl.tgz
     LDFLAGS = ${LDFLAGS_Mac}
@@ -116,8 +112,8 @@ BS_N			= ${ECHO} "\n"
 #                                 COMPILATION                                  #
 # **************************************************************************** #
 
-EXTRACT_MLX		= if [ ! -d "${MLX_DIR}" ]; then tar -xzf ${MLX_ARCHIVE} -C ./libs && ${MV} ./libs/minilibx* ${MLX_DIR}; fi
-MAKE_LIB		= ${MAKE} ${MLX_DIR} > /dev/null 2>&1
+EXTRACT_MLX		= if [ ! -d "${MLX}" ]; then tar -xzf ${MLX_ARCHIVE} -C ./libs && ${MV} ./libs/minilibx* ${MLX}; fi
+MAKE_LIB		= ${MAKE} ${MLX} > /dev/null 2>&1
 CC_LIB			= ${CC} ${CFLAGS} ${OBJS} ${LIBFT}/objs/*/*.o ${LDFLAGS} -o ${NAME}
 COMPILATION		= ${MAKE_LIB} && ${CC_LIB}
 

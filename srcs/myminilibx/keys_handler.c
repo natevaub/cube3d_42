@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 12:13:03 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/16 15:42:15 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 19:08:15 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	handle_wasd(int keycode, t_map *map)
 
 	move = (t_vector){0, 0};
 	move_speed = 0.1;
+	printf("keycode: %d\n", keycode);
 	if (keycode == LINUX_W || keycode == MAC_W)
 		move = mul_scalar(normalize(map->direction), move_speed);
 	else if (keycode == LINUX_S || keycode == MAC_S)

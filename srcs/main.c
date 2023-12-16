@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:31:29 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 14:24:08 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 19:09:41 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	main(int ac, char **av)
 	t_mlx		m_mlx;
 	int			code_error;
 
-	(void)ac;
+	if (ac != 2)
+		return (1);
 	init_map(&map, av);
 	code_error = parser(&map);
 	if (code_error)
