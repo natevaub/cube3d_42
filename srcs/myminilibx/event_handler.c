@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 00:23:48 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 19:01:42 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 19:36:35 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,20 @@ int	mouse_release(int button, int x, int y, t_map *map)
 
 void	attack(t_map *map)
 {
-	while (map->fight_index < 4)
-	{
-		mlx_destroy_image(map->m_mlx.mlx_ptr, map->texture_fight[map->fight_index]->img);
-		mlx_put_image_to_window(map->m_mlx.mlx_ptr, map->m_mlx.mlx_win,
-			map->texture_fight[map->fight_index]->img, 0, 0);
-		map->fight_index++;
-		usleep(1000);
-	}
+
+	map->attackStartTime = getCurrentTime();
+	// while (map->fight_index < 3)
+	// {
+	// 	mlx_clear_window(map->m_mlx.mlx_ptr, map->m_mlx.mlx_win);
+	// 	map->fight_index++;
+	// 	usleep(100000);
+	// 	draw_view(map, &map->m_mlx.img);
+	// 	draw_minimap(map, &map->m_mlx.img);
+	// 	draw_player(map, &map->m_mlx.img);
+	// 	draw_hand(map, &map->m_mlx.img);
+	// }
 	map->fight_index = 0;
+	map->fight_mode = 1;
 	// 	map->fight_mode_counter++;
 	// 	if (map->fight_mode_counter >= DELAY_THRESHOLD)
 	// 	{
@@ -95,7 +100,7 @@ void	attack(t_map *map)
 int	mouse_press(int keycode, int x, int y, t_map *map)
 {
 	if (keycode == MOUSE_LEFT)
-		map->fight_mode = 1;
+		attack(map);
 	(void)x;
 	(void)y;
 	if (keycode == MOUSE_SCROLL_UP)
