@@ -6,17 +6,16 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:28 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 12:49:10 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:23:30 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube.h"
+#include "cube.h"
 
-int	open_cub_file(char *path, t_map *map)
+int	open_cub_file(char *path)
 {
 	int	fd;
 
-	(void)map;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
@@ -32,7 +31,7 @@ int	parser(t_map *map)
 {
 	int	fd;
 
-	fd = open_cub_file(map->path, map);
+	fd = open_cub_file(map->path);
 	if (fd == -1)
 		return (1);
 	if (manage_errors(cub_copy(fd, map)))

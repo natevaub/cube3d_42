@@ -6,11 +6,11 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:31:29 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 13:19:01 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:24:08 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube.h"
+#include "cube.h"
 
 int	main(int ac, char **av)
 {

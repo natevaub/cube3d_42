@@ -6,22 +6,18 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 12:13:03 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/16 12:53:17 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 15:42:15 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube.h"
+#include "cube.h"
 
 void	handle_arrows(int keycode, t_map *map)
 {
 	if (keycode == LINUX_EAST_ARROW || keycode == MAC_EAST_ARROW)
-	{
 		map->direction = normalize(rotate(map->direction, 2));
-	}
 	if (keycode == LINUX_WEST_ARROW || keycode == MAC_WEST_ARROW)
-	{
 		map->direction = normalize(rotate(map->direction, -2));
-	}
 }
 
 void	handle_wasd(int keycode, t_map *map)

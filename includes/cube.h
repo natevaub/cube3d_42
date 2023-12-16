@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 13:08:06 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 17:52:44 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
-// # include "../libs/mlx_linux/mlx.h"
-// # include "../libs/libmlx/mlx.h"
-// # include "../libs/ftprintf/ft_printf.h"
 # include "../libs/mlx/mlx.h"
 # include "../libs/libft/includes/mylib.h"
 # include "../includes/struct.h"
@@ -94,66 +91,64 @@
  *
  * Norme: ✅ , Leak: ✅
  */
-void	parse_east_texture(char *line, t_map *map);
-void	parse_west_texture(char *line, t_map *map);
-void	parse_north_texture(char *line, t_map *map);
-void	parse_south_texture(char *line, t_map *map);
-void	parse_elements(char *line, t_map *map);
-void	check_access_textures(char **texture_info, t_map *map);
+void			parse_east_texture(char *line, t_map *map);
+void			parse_west_texture(char *line, t_map *map);
+void			parse_north_texture(char *line, t_map *map);
+void			parse_south_texture(char *line, t_map *map);
+void			parse_elements(char *line, t_map *map);
+void			check_access_textures(char **texture_info, t_map *map);
 
 /**
  * map_floor_ceiling.c
  *
  * Norme: ✅ , Leak: ✅
  */
-void	parse_floor(char *line, t_map *map);
-void	parse_ceiling(char *line, t_map *map);
-int		valid_ceiling_color(char *ceilingValues, t_map *map);
-int		valid_floor_color(char *floorValues, t_map *map);
-char	*concat_split(char **split, int i);
+void			parse_floor(char *line, t_map *map);
+void			parse_ceiling(char *line, t_map *map);
+int				valid_ceiling_color(char *ceilingValues, t_map *map);
+int				valid_floor_color(char *floorValues, t_map *map);
+char			*concat_split(char **split, int i);
 
 /**
  * map_search.c
  *
  * Norme: ✅ , Leak: ✅
  */
-void	search_map(int i, int *res, char *raw);
-int		search_map_end(int *i, int *res, char *raw);
-int		search_map_1(int *i, int *res, char *raw);
-int		found_empty_line(char *raw);
+void			search_map(int i, int *res, char *raw);
+int				search_map_end(int *i, int *res, char *raw);
+int				search_map_1(int *i, int *res, char *raw);
+int				found_empty_line(char *raw);
 
 /**
  * map_errors.c
  *
  * Norme: ✅ , Leak: ✅
  */
-int		unwanted_elements(char *line);
-int		is_valid_elements(t_map *map);
-void	free_lines(char *line, char *current_line);
-void	free_split(char **split);
-int		manage_errors(int code_error);
+int				unwanted_elements(char *line);
+int				is_valid_elements(t_map *map);
+int				manage_errors(int code_error);
 
 /**
  * map_parsing.c
  *
  * Norme: ✅ , Leak: ✅
  */
-int		is_valid_map(t_map *map);;
-int		contains_only_valid(char *line);
-int		contains_only_1(char *line);
-int		contains_1_start_end(char *line);
-int		contains_spawn(char **map, t_map *m);
+int				is_valid_map(t_map *map);;
+int				contains_only_valid(char *line);
+int				contains_only_1(char *line);
+int				contains_1_start_end(char *line);
+int				contains_spawn(char **map, t_map *m);
 
 /**
  * map_helpers.c
  *
  * Norme: ❌ , Leak: ✅
  */
-int		helper_valid_ceiling_color(char **ceilingValues, t_map *map);
-int		helper_valid_floor_color(char **floorValues, t_map *map);
-void	parse_elements(char *line, t_map *map);
-int		map_start(char *line);
-char	*fill_map(char *line, t_map *map);
+int				helper_valid_ceiling_color(char **ceilingValues, t_map *map);
+int				helper_valid_floor_color(char **floorValues, t_map *map);
+void			parse_elements(char *line, t_map *map);
+int				map_start(char *line);
+char			*fill_map(char *line, t_map *map);
 
 /**
  * map_utils.c
@@ -161,39 +156,37 @@ char	*fill_map(char *line, t_map *map);
  * Norme: ✅ , Leak: ✅
  */
 
-int		count_split_elements(char **tab);
-// int		ft_strcmp(char *s1, char *s2);
-int		count_occurences(char *str, char c);
-char	*front_trim(char *line);
-void	contains_spawns_helper(t_map *map, int *flag, int *i, int *j);
+int				count_split_elements(char **tab);
+int				count_occurences(char *str, char c);
+char			*front_trim(char *line);
+void			contains_spawns_helper(t_map *map, int *flag, int *i, int *j);
 
 /**
  * map_open.c
  *
  * Norme: ❌ , Leak: ✅
  */
-int		open_cub_file(char *path, t_map *map);
-int		cub_copy(int fd, t_map *map);
-int		parser(t_map *map);
-int		cub_copy_to_map(t_map *map);
-int		map_check_found_or_empty(int *map_start_at, char *res);
+int				open_cub_file(char *path);
+int				cub_copy(int fd, t_map *map);
+int				parser(t_map *map);
+int				cub_copy_to_map(t_map *map);
+int				map_check_found_or_empty(int *map_start_at, char *res);
 
 /**
  * map_transform.c
  *
  * Norme:  , Leak: 
 */
-int		map_transform_to_parsable(t_map *map);
-int		map_transform_to_usable(t_map *map);
-int		map_check_hole(t_map *map);
+int				map_transform_to_parsable(t_map *map);
+int				map_transform_to_usable(t_map *map);
+int				map_check_hole(t_map *map);
 
 /**
  * map_init_free.c
  * 
  * Norme: ✅ , Leak: ✅
 */
-void	init_map(t_map *map, char **av);
-void	free_map(t_map *map);
+void			init_map(t_map *map, char **av);
 
 /* _____ GRAPHICS ______ */
 /**
@@ -201,28 +194,29 @@ void	free_map(t_map *map);
  *
  * Norme: ❌ , Leak: ✅
  */
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int		encode_rgb(int t, int r, int g, int b);
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int				encode_rgb(int t, int r, int g, int b);
 
 /**
  * draw_shapes.c
  *
  * Norme: ✅ , Leak: ✅
  */
-void	draw_square(int x, int y, int size, t_data *img);
-void	draw_square_walls(int x, int y, int size, t_data *img);
-void	draw_disk(int x, int y, int radius, t_data *img, int color);
-void	draw_line(t_data *img, t_vector start, t_vector end, int color);
-void	draw_juicy_line(t_data *texture, t_data *img, t_vector endpoint, t_vector start, t_vector end);
+void			draw_square(int x, int y, int size, t_data *img);
+void			draw_square_walls(int x, int y, int size, t_data *img);
+void			draw_disk(int x, int y, int radius, t_data *img, int color);
+void			draw_line(t_data *img, t_vector start, t_vector end, int color);
+void			draw_juicy_line(t_data *texture, t_data *img, t_vector endpoint, t_vector start, t_vector end);
 
 /**
  * draw_minimap.c
 */
-void	draw_floor_ceiling(t_map *map, t_data *img);
-void	draw_player(t_map *map, t_data *img, t_mapping *mapping);
-void	draw_minimap(t_map *map, t_data *img);
-void	draw_intersections(t_map *map, t_data *img, t_mapping *mapping);
-void	draw_view(t_map *map, t_data *img);
+void			draw_floor_ceiling(t_map *map, t_data *img);
+void			draw_player(t_map *map, t_data *img);
+void			draw_minimap(t_map *map, t_data *img);
+void			draw_intersections(t_map *map, t_data *img);
+void			draw_view(t_map *map, t_data *img);
+void			draw_hand(t_map *map, t_data *img);
 void			load_textures(t_map *map, t_mlx *m_mlx);
 int				get_texture_color(t_data *texture, int x, int y);
 
@@ -241,8 +235,8 @@ void			game_loop(t_map *map);
  *
  *
  */
-void	debug_print_int_values(char *str);
-void	debug_print_map(const t_map *map);
+void			debug_print_int_values(char *str);
+void			debug_print_map(const t_map *map);
 
 /* _____ COMPUTE ______ */
 /**
@@ -269,22 +263,22 @@ int				check_collision(t_map *map, t_compute *c);
  *
  * Norme: ❌ , Leak: ✅
  */
-t_vector 			map_vec(t_vector v, t_map *m);
-t_vector			map_vec_adjust(t_vector v, t_map *m);
-float 				norm(t_vector vec);
-t_vector 			normalize(t_vector vec);
-t_vector 			rotate(t_vector v, float angle);
+t_vector 		map_vec(t_vector v, t_map *m);
+t_vector		map_vec_adjust(t_vector v, t_map *m);
+float 			norm(t_vector vec);
+t_vector 		normalize(t_vector vec);
+t_vector 		rotate(t_vector v, float angle);
 
 /**
  * op_vectors2.c
  *
  * Norme: ❌ , Leak: ✅
  */
-t_vector 			add(t_vector a, t_vector b);
-t_vector			sub_vector(t_vector a, t_vector b);
-t_vector 			add_scalar(t_vector a, float b);
-t_vector 			mul_scalar(t_vector a, float b);
-t_vector			transform_pdirection_to_vector(char direction);
+t_vector 		add(t_vector a, t_vector b);
+t_vector		sub_vector(t_vector a, t_vector b);
+t_vector 		add_scalar(t_vector a, float b);
+t_vector 		mul_scalar(t_vector a, float b);
+t_vector		transform_pdirection_to_vector(char direction);
 
 /* _____ MYMINILIBX ______ */
 /**

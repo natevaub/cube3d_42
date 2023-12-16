@@ -6,11 +6,11 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 23:25:32 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 11:59:31 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:24:08 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube.h"
+#include "cube.h"
 
 int	init_mlx(t_mlx *m_mlx)
 {

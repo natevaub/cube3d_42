@@ -6,11 +6,11 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:11 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 12:46:59 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:24:08 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube.h"
+#include "cube.h"
 
 int	valid_floor_color(char *floorValues, t_map *map)
 {

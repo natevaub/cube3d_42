@@ -6,11 +6,11 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 19:34:24 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/01 16:51:43 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 17:58:22 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube.h"
+#include "cube.h"
 
 /**
  * map_vec - Maps a vector from one coordinate system to another.
@@ -33,16 +33,27 @@ t_vector	map_vec(t_vector v, t_map *m)
 	return (screen);
 }
 
-t_vector	map_vec_adjust(t_vector v, t_map *m)
+t_vector map_vec_adjust(t_vector v, t_map *m)
 {
-	t_vector	screen;
+    t_vector screen;
 
-	screen.x = (v.x / m->mapping.from_width) * m->mapping.to_width;
-	screen.y = (v.y / m->mapping.from_height) * m->mapping.to_height;
-	screen.x += SCREEN_WIDTH / 2 - (m->columns * MAP_SCALE) / 2;
-	screen.y += 10;
-	return (screen);
+    screen.x = SCREEN_WIDTH / 2 + (v.x - m->player_position.x) * MAP_SCALE;
+    screen.y = SCREEN_HEIGHT / 2 + (v.y - m->player_position.y) * MAP_SCALE;
+	screen.y -= 450;
+	screen.x += 5;
+    return screen;
 }
+
+// t_vector	map_vec_adjust(t_vector v, t_map *m)
+// {
+// 	t_vector	screen;
+
+// 	screen.x = (v.x / m->mapping.from_width) * m->mapping.to_width;
+// 	screen.y = (v.y / m->mapping.from_height) * m->mapping.to_height;
+// 	screen.x += SCREEN_WIDTH / 2 - (m->columns * MAP_SCALE) / 2;
+// 	screen.y += 10;
+// 	return (screen);
+// }
 
 /**
  * norm - Calculates the Euclidean norm (magnitude) of a vector.

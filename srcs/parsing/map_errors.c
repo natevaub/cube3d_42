@@ -6,11 +6,11 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:04 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 12:46:22 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:23:30 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube.h"
+#include "cube.h"
 
 int	unwanted_elements(char *line)
 {

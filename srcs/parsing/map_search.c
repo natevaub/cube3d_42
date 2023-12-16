@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_search.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:36 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/10/24 16:00:37 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:23:30 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube.h"
+#include "cube.h"
 
 void	search_map(int i, int *res, char *raw)
 {

@@ -6,11 +6,11 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:48 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 12:51:34 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:23:30 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube.h"
+#include "cube.h"
 
 void	parse_east_texture(char *line, t_map *map)
 {

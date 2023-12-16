@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_init_free.c                                    :+:      :+:    :+:   */
+/*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:26:10 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 12:47:24 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 15:50:55 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube.h"
+#include "cube.h"
 
 void	init_map(t_map *map, char **av)
 {
@@ -36,5 +36,5 @@ void	init_map(t_map *map, char **av)
 	map->map_start_line = 0;
 	map->map = NULL;
 	map->copy = NULL;
-	map->mouse_click = 0;
+	map->fight_index = 0;
 }

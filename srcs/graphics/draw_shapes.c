@@ -6,11 +6,11 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 13:09:16 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/16 13:10:50 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:24:08 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube.h"
+#include "cube.h"
 
 void	draw_square(int x, int y, int size, t_data *img)
 {

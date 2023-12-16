@@ -6,15 +6,14 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:43:35 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 12:56:42 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 17:56:42 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube.h"
+#include "cube.h"
 
-void draw_intersections(t_map *map, t_data *img, t_mapping *mapping)
+void draw_intersections(t_map *map, t_data *img)
 {
-	(void)mapping;
 	int i;
 	t_intersections intersections;
 	t_vector v;
@@ -28,15 +27,12 @@ void draw_intersections(t_map *map, t_data *img, t_mapping *mapping)
 		draw_disk(mapped.x, mapped.y, 3, img, RED);
 		i++;
 	}
-// free(intersections.points);
 }
 
 void update_frame(t_map *map)
 {
 	if (map->m_mlx.img.img)
-	{
 		mlx_put_image_to_window(map->m_mlx.mlx_ptr, map->m_mlx.mlx_win, map->m_mlx.img.img, 0, 0);
-	}
 	else
 	{
 		// Handle the case where the image pointer is NULL
@@ -52,8 +48,8 @@ void game_loop(t_map *map)
 	event_manager(map);
 	mlx_loop_hook(map->m_mlx.mlx_ptr, game_loop_callback, map);
 	mlx_loop(map->m_mlx.mlx_ptr);
-	// int current_time = (int)time(NULL);
 }
+
 int game_loop_callback(t_map *map)
 {
 	t_data new_image;
@@ -61,24 +57,13 @@ int game_loop_callback(t_map *map)
 	new_image.addr = mlx_get_data_addr(new_image.img, &new_image.bits_per_pixel, &new_image.line_length, &new_image.endian);
 
 	draw_view(map, &new_image);
+	draw_hand(map, &new_image);
 	draw_minimap(map, &new_image);
-	draw_player(map, &new_image, &map->mapping);
-
-	// Destroy the previous image
+	draw_player(map, &new_image);
 	if (map->m_mlx.img.img)
-	{
 		mlx_destroy_image(map->m_mlx.mlx_ptr, map->m_mlx.img.img);
-	}
-
-	// Update the image pointer in the map
 	map->m_mlx.img = new_image;
-
-	// Call the update_frame function to display the new frame
 	update_frame(map);
-	// int current_time = (int)time(NULL);
 	map->frames++;
-	// float fps = (float)map->frames / (current_time - map->start_time);
-	// printf("\033[2J\033[H");
-	// printf("FPS: %f\n", fps);
 	return (0);
 }

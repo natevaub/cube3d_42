@@ -6,11 +6,11 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:59:24 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 12:23:42 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:23:30 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube.h"
+#include "cube.h"
 
 void	init_mapping(t_map *map, t_mapping *mapping)
 {

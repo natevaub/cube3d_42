@@ -6,11 +6,11 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 13:11:15 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/16 13:12:45 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:24:08 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube.h"
+#include "cube.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {

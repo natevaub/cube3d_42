@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:50 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/15 15:19:48 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/16 15:55:52 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,14 @@ typedef struct s_map {
 	char			*no;
 	char			*we;
 	char			*ea;
+	char 			*fight[4];
+	int				fight_mode;
+	int				fight_index;
 	struct s_data	*texture_no;
 	struct s_data	*texture_so;
 	struct s_data	*texture_we;
 	struct s_data	*texture_ea;
+	struct s_data	*texture_fight[4];
 	int				count_floor;
 	int				count_ceiling;
 	int				floor_r;
@@ -85,7 +89,6 @@ typedef struct s_map {
 	t_vector		direction;
 	t_mlx			m_mlx;
 	t_mapping		mapping;
-	int				mouse_click;
 	int				mouse_x;
 	int				mouse_y;
 	int				frames;
