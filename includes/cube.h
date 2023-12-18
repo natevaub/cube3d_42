@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 17:55:48 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:31:01 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,6 @@ int				count_split_elements(char **tab);
 int				count_occurences(char *str, char c);
 char			*front_trim(char *line);
 void			contains_spawns_helper(t_map *map, int *flag, int *i, int *j);
-void        	update_map(t_map *map, t_vector position, char target, char replacement);
 
 /**
  * map_open.c
@@ -192,6 +191,8 @@ int				map_check_found_or_empty(int *map_start_at, char *res);
 int				map_transform_to_parsable(t_map *map);
 int				map_transform_to_usable(t_map *map);
 int				map_check_hole(t_map *map);
+void           	update_map(t_map *map, t_vector position, char target, char replacement);
+void			open_door(t_map *map);
 
 /**
  * map_init_free.c
@@ -260,6 +261,7 @@ void			init_mapping(t_map *map, t_mapping *mapping);
 void			initialize_compute(t_vector or, t_vector dir, t_compute *compute);
 void			update_next_x_and_y(t_vector or, t_vector dir, t_compute *c);
 void			update_compute_state(t_compute *c);
+int         	check_position_items(t_map *map, t_vector position, int range, char item);
 
 /**
  * compute.c
@@ -321,5 +323,19 @@ void			handle_esc(int keycode);
  * Norme: ✅ , Leak: ✅
  */
 void			attack(t_map *map);
+
+/**
+ * handle_speed.c
+ *
+ * Norme: ✅ , Leak: ✅
+ */
+void	handle_speed(int keycode, t_map *map);
+
+/**
+ * map_door_parsing.c
+ *
+ * Norme: ✅ , Leak: ✅
+ */
+void			parse_door_texture(char *line, t_map *map);
 
 #endif

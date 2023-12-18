@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:28 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 14:23:30 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:18:28 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,43 @@ int	map_transform_to_usable(t_map *map)
 	if (!is_valid_map(map))
 		return (8);
 	return (0);
+}
+
+void	update_map(t_map *map, t_vector position, char target, char replacement)
+{
+	int	i;
+	int	j;
+	int	range;
+
+	range = 2;
+	i = position.y - range - 1;
+	while (++i <= position.y + range)
+	{
+		j = position.x - range - 1;
+		while (++j <= position.x + range)
+		{
+			if (map->map[i][j] == target)
+			{
+				map->map[i][j] = replacement;
+				map->copy[i][j] = replacement;
+			}
+		}
+	}
+}
+
+void	open_door(t_map *map)
+{
+	t_vector	position;
+	int			range;
+
+	position = map->player_position;
+	range = 2;
+	if (check_position_items(map, position, range, 'D'))
+		update_map(map, position, 'D', 'O');
+	else if (check_position_items(map, position, range, 'O'))
+	{
+		if (map->map[(int)position.y][(int)position.x] == 'O')
+			return ;
+		update_map(map, position, 'O', 'D');
+	}
 }

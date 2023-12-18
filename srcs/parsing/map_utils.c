@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:01:23 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 17:50:54 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:28:00 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,24 +75,22 @@ void	contains_spawns_helper(t_map *map, int *flag, int *i, int *j)
 	(*flag)++;
 }
 
-void	update_map(t_map *map, t_vector position, char target, char replacement)
+int	check_position_items(t_map *map, t_vector position, int range, char item)
 {
 	int	i;
 	int	j;
-	int	range;
 
-	range = 2;
-	i = position.y - range - 1;
-	while (++i <= position.y + range)
+	i = position.y - range;
+	while (i <= position.y + range)
 	{
-		j = position.x - range - 1;
-		while (++j <= position.x + range)
+		j = position.x - range;
+		while (j <= position.x + range)
 		{
-			if (map->map[i][j] == target)
-			{
-				map->map[i][j] = replacement;
-				map->copy[i][j] = replacement;
-			}
+			if (map->map[i][j] == item)
+				return (1);
+			j++;
 		}
+		i++;
 	}
+	return (0);
 }

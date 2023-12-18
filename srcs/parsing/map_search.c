@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:36 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 10:34:11 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:29:48 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	search_map_1(int *i, int *res, char *raw)
 	return (0);
 }
 
-int search_map_d(int *i, int *res, char *raw)
+int	search_map_d(int *i, int *res, char *raw)
 {
 	if (raw[*i] == 'D')
 	{

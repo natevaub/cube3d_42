@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 00:23:48 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 17:52:07 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:18:20 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,43 +55,6 @@ int	mouse_move(int x, int y, t_map *map)
 		map->mouse_y = SCREEN_HEIGHT / 2;
 	}
 	return (0);
-}
-
-int	check_position_items(t_map *map, t_vector position, int range, char item)
-{
-	int	i;
-	int	j;
-
-	i = position.y - range;
-	while (i <= position.y + range)
-	{
-		j = position.x - range;
-		while (j <= position.x + range)
-		{
-			if (map->map[i][j] == item)
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-void	open_door(t_map *map)
-{
-	t_vector	position;
-	int			range;
-
-	position = map->player_position;
-	range = 2;
-	if (check_position_items(map, position, range, 'D'))
-		update_map(map, position, 'D', 'O');
-	else if (check_position_items(map, position, range, 'O'))
-	{
-		if (map->map[(int)position.y][(int)position.x] == 'O')
-			return ;
-		update_map(map, position, 'O', 'D');
-	}
 }
 
 int	mouse_press(int keycode, int x, int y, t_map *map)

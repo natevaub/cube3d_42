@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:23 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 18:14:32 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:31:20 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,6 @@ int	helper_valid_floor_color(char **floorValues, t_map *map)
 	return (1);
 }
 
-void	parse_door(char *line, t_map *map)
-{
-	if ((line[0] == 'D' && line[1] == ' ') || (line[0] == 'O' && line[1] == ' '))
-	{
-		map->ct_door = ft_atoi(line + 2);
-		if (map->ct_door < 0 || map->ct_door > 1)
-			map->ct_door = 0;
-	}
-}
-
 void	parse_elements(char *line, t_map *map)
 {
 	parse_east_texture(line, map);
@@ -78,7 +68,7 @@ void	parse_elements(char *line, t_map *map)
 	parse_south_texture(line, map);
 	parse_floor(line, map);
 	parse_ceiling(line, map);
-	parse_door(line, map);
+	parse_door_texture(line, map);
 }
 
 int	map_start(char *line)

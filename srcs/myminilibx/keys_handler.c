@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 12:13:03 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/18 17:36:01 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:23:43 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	handle_wasd(int keycode, t_map *map)
 		move = mul_scalar(normalize((t_vector){map->direction.y,
 					-map->direction.x}), map->speed);
 	new_position = add(map->player_position, move);
-	if (map->map[(int)new_position.y][(int)new_position.x] != '1' && map->map[(int)new_position.y][(int)new_position.x] != 'D')
+	if (map->map[(int)new_position.y][(int)new_position.x] != '1'
+		&& map->map[(int)new_position.y][(int)new_position.x] != 'D')
 		map->player_position = new_position;
 }
 
@@ -45,17 +46,6 @@ void	handle_esc(int keycode)
 {
 	if (keycode == LINUX_ESCAPE || keycode == MAC_ESCAPE)
 		exit(0);
-}
-
-void	handle_speed(int keycode, t_map *map)
-{
-	if (keycode == LINUX_SHIFT || keycode == MAC_SHIFT || keycode == LINUX_CTRL || keycode == MAC_CTRL
-	|| keycode == LINUX_SPACE || keycode == MAC_SPACE)
-		map->speed *= 2;
-	else if (((keycode == LINUX_CTRL || keycode == MAC_CTRL) && (keycode == LINUX_SHIFT || keycode == MAC_SHIFT))
-	|| ((keycode == LINUX_SPACE || keycode == MAC_SPACE) && (keycode == LINUX_SHIFT || keycode == MAC_SHIFT))
-	|| ((keycode == LINUX_CTRL || keycode == MAC_CTRL) && (keycode == LINUX_SPACE || keycode == MAC_SPACE)))
-		map->speed *= 4;
 }
 
 int	key_press(int keycode, t_map *map)
