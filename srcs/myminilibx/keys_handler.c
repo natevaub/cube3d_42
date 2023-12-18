@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 12:13:03 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/18 18:23:43 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:34:50 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ int	key_press(int keycode, t_map *map)
 	handle_wasd(keycode, map);
 	handle_arrows(keycode, map);
 	handle_esc(keycode);
+	// if (keycode == LINUX_M || keycode == MAC_M)
+	// {
+	// 	map->mouse_view = 0;
+	// }
 	return (0);
 }
 
