@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:50 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 19:22:16 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 15:34:32 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_map {
 	char			*we;
 	char			*ea;
 	char 			*fight[4];
+	char			*door;
 	int				fight_mode;
 	int				fight_index;
 	struct s_data	*texture_no;
@@ -71,6 +72,7 @@ typedef struct s_map {
 	struct s_data	*texture_we;
 	struct s_data	*texture_ea;
 	struct s_data	*texture_fight[4];
+	struct s_data	*texture_door;
 	int				fight_mode_counter;
 	time_t			attackStartTime;
 	int				count_floor;
@@ -81,8 +83,10 @@ typedef struct s_map {
 	int				ceiling_r;
 	int				ceiling_g;
 	int				ceiling_b;
+	int				ct_door;
 	int				rows;
 	int				columns;
+	double			speed;
 	int				map_start_line;
 	char			player_direction;
 	char			**map;

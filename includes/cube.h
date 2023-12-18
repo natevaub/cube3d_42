@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 20:00:07 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 15:30:40 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@
 # define LINUX_A 97
 # define LINUX_S 115
 # define LINUX_D 100
+# define LINUX_CTRL 65507
+# define LINUX_SHIFT 65505
+# define LINUX_SPACE 32
 # define LINUX_EAST_ARROW 65363
 # define LINUX_WEST_ARROW 65361
 # define LINUX_ESCAPE 65307
@@ -78,6 +81,9 @@
 # define MAC_A 0
 # define MAC_S 1
 # define MAC_D 2
+# define MAC_CTRL 256
+# define MAC_SHIFT 257
+# define MAC_SPACE 49
 # define MAC_EAST_ARROW 124
 # define MAC_WEST_ARROW 123
 # define MAC_ESCAPE 53
@@ -87,6 +93,7 @@
 # define MOUSE_SCROLL_UP 4
 # define MOUSE_SCROLL_DOWN 5
 # define MOUSE_SENSIBILITY 0.5
+# define SPEED 0.1
 
 /* _____ PARSING ______ */
 /**

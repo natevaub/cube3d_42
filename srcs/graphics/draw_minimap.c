@@ -6,11 +6,14 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 19:15:43 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 15:35:38 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+void	draw_door(int x, int y, int size, t_data *img);
+void	draw_open_door(int x, int y, int size, t_data *img);
 
 void	draw_minimap(t_map *map, t_data *img)
 {
@@ -30,6 +33,10 @@ void	draw_minimap(t_map *map, t_data *img)
 		{
 			if (map->map[i][j] == '1')
 				draw_square_walls(start.x, start.y, size, img);
+			else if (map->map[i][j] == 'D')
+				draw_door(start.x, start.y, size, img);
+			else if (map->map[i][j] == 'O')
+				draw_open_door(start.x, start.y, size, img);
 			else
 				draw_square(start.x, start.y, size, img);
 			start.x += MAP_SCALE;
@@ -137,6 +144,13 @@ void	load_textures(t_map *map, t_mlx *mlx)
 		map->fight_index++;
 	}
 	map->fight_index = 0;
+	map->door = ft_strdup("textures/xpm/door.xpm");
+	map->texture_door = ft_gc_malloc(sizeof(t_data));
+	map->texture_door->img = mlx_xpm_file_to_image(mlx->mlx_ptr, map->door, &size,
+			&size);
+	map->texture_door->addr = mlx_get_data_addr(map->texture_door->img,
+			&map->texture_door->bits_per_pixel, &map->texture_door->line_length,
+			&map->texture_door->endian);
 }
 
 int	get_texture_color(t_data *texture, int x, int y)
@@ -184,20 +198,26 @@ void	draw_view(t_map *map, t_data *img)
 		h = SCREEN_HEIGHT / perp_dist;
 		beg = (t_vector){.x = i, .y = SCREEN_HEIGHT / 2 - h / 2};
 		end = (t_vector){.x = i, .y = SCREEN_HEIGHT / 2 + h / 2};
-		if (endpoint.y == (int)endpoint.y)
+		char cell = map->map[(int)endpoint.y][(int)endpoint.x];
+		t_data *texture = NULL;
+		if (cell == 'D')
+			texture = map->texture_door;
+		else if (endpoint.y == (int)endpoint.y)
 		{
 			if (map->player_position.y > endpoint.y)
-				draw_juicy_line(map->texture_no, img, endpoint, beg, end);
+				texture = map->texture_no;
 			else
-				draw_juicy_line(map->texture_so, img, endpoint, beg, end);
+				texture = map->texture_so;
 		}
-		if (endpoint.x == (int)endpoint.x)
+		else if (endpoint.x == (int)endpoint.x)
 		{
 			if (map->player_position.x > endpoint.x)
-				draw_juicy_line(map->texture_we, img, endpoint, beg, end);
+				texture = map->texture_we;
 			else
-				draw_juicy_line(map->texture_ea, img, endpoint, beg, end);
+				texture = map->texture_ea;
 		}
+		if (texture)
+			draw_juicy_line(texture, img, endpoint, beg, end);
 	}
 }
 
