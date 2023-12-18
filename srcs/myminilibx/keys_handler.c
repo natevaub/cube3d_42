@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 12:13:03 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/18 15:43:03 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 15:45:37 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ void	handle_wasd(int keycode, t_map *map)
 		map->player_position = new_position;
 }
 
-void	handle_esc(int keycode, t_map *map)
+void	handle_esc(int keycode)
 {
-	(void)map;
 	if (keycode == LINUX_ESCAPE || keycode == MAC_ESCAPE)
 		exit(0);
 }
