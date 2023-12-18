@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 16:45:40 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:54:01 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	draw_minimap(t_map *map, t_data *img)
 
 void	draw_player(t_map *map, t_data *img)
 {
-	t_minimap_params	params;
+	t_view_params	params;
 	t_vector			mapped;
 
 	draw_intersections(map, img);
@@ -160,65 +160,6 @@ int	get_texture_color(t_data *texture, int x, int y)
 	color = *(int *)(texture->addr + (y * texture->line_length + x
 				* (texture->bits_per_pixel / 8)));
 	return (color);
-}
-
-void	draw_view(t_map *map, t_data *img)
-{
-	int				i;
-	float			perp_dist;
-	float			h;
-	float			dx;
-	t_vector		start;
-	t_vector		end;
-	t_vector		line;
-	t_vector		n_line;
-	t_vector		point;
-	t_vector		dir;
-	t_intersections	intersections;
-	t_vector		endpoint;
-	t_vector		dist;
-	t_vector		beg;
-
-	draw_floor_ceiling(map, img);
-	start = add(map->player_position, rotate(map->direction, -FOV / 2.0));
-	end = add(map->player_position, rotate(map->direction, FOV / 2.0));
-	line = sub_vector(end, start);
-	n_line = normalize(line);
-	dx = norm(line) / SCREEN_WIDTH;
-	i = -1;
-	while (++i < SCREEN_HEIGHT)
-	{
-		point = add(start, mul_scalar(n_line, dx * i));
-		dir = normalize(sub_vector(point, map->player_position));
-		intersections = compute_intersections(map->player_position, dir, map);
-		endpoint = intersections.points[intersections.size - 1];
-		dist = sub_vector(endpoint, map->player_position);
-		perp_dist = norm(dist) * cos(atan2(dir.y, dir.x)
-				- atan2(map->direction.y, map->direction.x));
-		h = SCREEN_HEIGHT / perp_dist;
-		beg = (t_vector){.x = i, .y = SCREEN_HEIGHT / 2 - h / 2};
-		end = (t_vector){.x = i, .y = SCREEN_HEIGHT / 2 + h / 2};
-		char cell = map->map[(int)endpoint.y][(int)endpoint.x];
-		t_data *texture = NULL;
-		if (cell == 'D')
-			texture = map->texture_door;
-		else if (endpoint.y == (int)endpoint.y)
-		{
-			if (map->player_position.y > endpoint.y)
-				texture = map->texture_no;
-			else
-				texture = map->texture_so;
-		}
-		else if (endpoint.x == (int)endpoint.x)
-		{
-			if (map->player_position.x > endpoint.x)
-				texture = map->texture_we;
-			else
-				texture = map->texture_ea;
-		}
-		if (texture)
-			draw_juicy_line(texture, img, endpoint, beg, end);
-	}
 }
 
 void draw_hand(t_map *map, t_data *img)

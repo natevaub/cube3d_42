@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:50 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 15:34:32 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:24:27 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,15 +138,37 @@ typedef struct s_compute
 	char		x;
 }	t_compute;
 
-typedef struct s_minimap_params
+typedef struct s_view_params
 {
 	t_vector		origin;
 	t_vector		fov_start;
 	t_vector		fov_end;
 	t_vector		fov_start_endpoint;
 	t_vector		fov_end_endpoint;
-	t_vector		endpoint;
 	t_intersections	intersections;
-}	t_minimap_params;
+	/* draw_juicy_line */
+	int				texture_col;
+	int				texture_row;
+	int				color;
+	float			x;
+	float			y;
+	float			variant;
+	float			step;
+	float			dy;
+	/* draw_view */
+	float			perp_dist;
+	float			h;
+	float			dx;
+	t_vector		start;
+	t_vector		end;
+	t_vector		line;
+	t_vector		n_line;
+	t_vector		point;
+	t_vector		dir;
+	t_vector		endpoint;
+	t_vector		dist;
+	t_vector		beg;
+
+}	t_view_params;
 
 #endif

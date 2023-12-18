@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+         #
+#    By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 15:20:40 by rrouille          #+#    #+#              #
-#    Updated: 2023/12/16 17:40:11 by rrouille         ###   ########.fr        #
+#    Updated: 2023/12/18 18:53:15 by nvaubien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ OBJS			= ${patsubst ${SRCSDIR}%,${OBJSDIR}%,${SRCS:%.c=%.o}}
 
 # Compiler and Flags
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+# CFLAGS = -Wall -Wextra -Werror
 LDFLAGS_Linux = -L${MLX} -lmlx -L/usr/lib -lXext -lX11 -lm
 LDFLAGS_Mac = -L${MLX} -lmlx -framework OpenGL -framework AppKit
 

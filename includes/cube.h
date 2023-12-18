@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 18:31:01 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:44:16 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -337,5 +337,9 @@ void	handle_speed(int keycode, t_map *map);
  * Norme: ✅ , Leak: ✅
  */
 void			parse_door_texture(char *line, t_map *map);
+void			set_juicy_params(t_view_params *params, t_vector endpoint, t_vector start, t_vector end);
+void			update_view_params(t_map *map, t_view_params *params, int *i);
+void			set_view_params(t_view_params *params, t_map *map);
+void			assign_texture_view(t_map *map, t_view_params *params, t_data **texture);
 
 #endif
