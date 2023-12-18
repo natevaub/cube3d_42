@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:28 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 18:18:28 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:07:22 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	map_check_hole(t_map *map)
 	int	j;
 
 	i = -1;
-	debug_print_map(map);
 	while (map->map[++i])
 	{
 		j = -1;

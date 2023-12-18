@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:31:29 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 16:49:30 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:07:24 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 int	main(int ac, char **av)
 {
-	t_map		map;
-	t_mapping	mapping;
-	t_mlx		m_mlx;
-	int			code_error;
+	int code_error;
+	t_map map;
 
-	if (ac < 2 || ac > 3)
+	if (ac != 2)
 	{
 		ft_printf("😔 Why are you doing this to me ? 😔\n");
 		return (1);
@@ -31,13 +29,8 @@ int	main(int ac, char **av)
 		ft_printf("😔 Why are you doing this to me ? 😔\n");
 		return (1);
 	}
-	else if (!code_error)
-		ft_printf("🔥 I'm ready to cast rayzzzz 🔥\n");
-	debug_print_map(&map);
-	init_mapping(&map, &mapping);
-	init_mlx(&m_mlx);
-	map.m_mlx = m_mlx;
-	map.mapping = mapping;
+	init_mapping(&map, &map.mapping);
+	init_mlx(&map.m_mlx);
 	game_loop(&map);
 	return (0);
 }
