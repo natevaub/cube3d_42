@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 18:31:01 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:43:16 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@
 # define LINUX_A 97
 # define LINUX_S 115
 # define LINUX_D 100
+# define LINUX_M 109
 # define LINUX_CTRL 65507
 # define LINUX_SHIFT 65505
 # define LINUX_SPACE 32
@@ -81,6 +82,7 @@
 # define MAC_A 0
 # define MAC_S 1
 # define MAC_D 2
+# define MAC_M 46
 # define MAC_CTRL 256
 # define MAC_SHIFT 257
 # define MAC_SPACE 49

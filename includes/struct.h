@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:50 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 15:34:32 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:44:17 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_map {
 	char			*door;
 	int				fight_mode;
 	int				fight_index;
+	int				mouse_view;
 	struct s_data	*texture_no;
 	struct s_data	*texture_so;
 	struct s_data	*texture_we;

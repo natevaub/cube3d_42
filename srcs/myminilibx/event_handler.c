@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 00:23:48 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 18:18:20 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:48:51 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	mouse_move(int x, int y, t_map *map)
 	float		angle;
 	static int	ignore_event = 0;
 
-	if (ignore_event)
+	if (ignore_event || !map->mouse_view)
 	{
 		ignore_event = 0;
 		return (0);
