@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:31:29 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 14:24:08 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 16:49:30 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ int	main(int ac, char **av)
 	t_mlx		m_mlx;
 	int			code_error;
 
-	(void)ac;
+	if (ac < 2 || ac > 3)
+	{
+		ft_printf("😔 Why are you doing this to me ? 😔\n");
+		return (1);
+	}
 	init_map(&map, av);
 	code_error = parser(&map);
 	if (code_error)
