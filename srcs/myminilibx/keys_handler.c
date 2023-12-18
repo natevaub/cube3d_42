@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 12:13:03 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/18 15:45:37 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 15:45:55 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	key_press(int keycode, t_map *map)
 	handle_speed(keycode, map);
 	handle_wasd(keycode, map);
 	handle_arrows(keycode, map);
-	handle_esc(keycode, map);
+	handle_esc(keycode);
 	return (0);
 }
 
