@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:23 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 15:08:21 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:14:32 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	map_start(char *line)
 	i = 0;
 	while (line[i] && line[i] == ' ')
 		i++;
-	if ((line[i] && line[i] == '1') || (line[i] && line[i] == 'D'))
+	if ((line[i] && line[i] == '1'))
 		return (1);
 	return (0);
 }

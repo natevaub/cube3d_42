@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 12:13:03 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/18 15:45:55 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:36:01 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,9 @@ void	handle_arrows(int keycode, t_map *map)
 void	handle_wasd(int keycode, t_map *map)
 {
 	t_vector	move;
-	// float		move_speed;
 	t_vector	new_position;
 
 	move = (t_vector){0, 0};
-	// move_speed = 0.1;
 	if (keycode == LINUX_W || keycode == MAC_W)
 		move = mul_scalar(normalize(map->direction), map->speed);
 	else if (keycode == LINUX_S || keycode == MAC_S)

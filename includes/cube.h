@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 15:46:09 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:55:48 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ int				count_split_elements(char **tab);
 int				count_occurences(char *str, char c);
 char			*front_trim(char *line);
 void			contains_spawns_helper(t_map *map, int *flag, int *i, int *j);
+void        	update_map(t_map *map, t_vector position, char target, char replacement);
 
 /**
  * map_open.c
@@ -306,7 +307,6 @@ int				init_mlx(t_mlx *m_mlx);
  */
 void			event_manager(t_map *map);
 int				mouse_move(int x, int y, t_map *map);
-int				mouse_release(int button, int x, int y, t_map *map);
 int				mouse_press(int keycode, int x, int y, t_map *map);
 int				key_press(int keycode, t_map *map);
 int				win_close_click();
@@ -314,5 +314,12 @@ int				win_close_key(t_mlx *m_mlx);
 void			handle_wasd(int keycode, t_map *map);
 void			handle_arrows(int keycode, t_map *map);
 void			handle_esc(int keycode);
+
+/**
+ * attack.c
+ *
+ * Norme: ✅ , Leak: ✅
+ */
+void			attack(t_map *map);
 
 #endif
