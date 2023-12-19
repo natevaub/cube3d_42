@@ -3,44 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:43:35 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 11:03:08 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 12:48:23 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void draw_intersections(t_map *map, t_data *img)
+void	draw_intersections(t_map *map, t_data *img)
 {
-	int i;
-	t_intersections intersections;
-	t_vector v;
+	int 			i;
+	t_intersections	intersections;
+	t_vector		v;
+	t_vector		mapped;
 
 	v = map->direction;
 	intersections = compute_intersections(map->player_position, v, map);
 	i = 0;
 	while (i < intersections.size)
 	{
-		t_vector mapped = map_vec_adjust(intersections.points[i], map);
+		mapped = map_vec_adjust(intersections.points[i], map);
 		draw_disk(mapped.x, mapped.y, 3, img, RED);
 		i++;
 	}
 }
 
-void update_frame(t_map *map)
+void	update_frame(t_map *map)
 {
 	if (map->m_mlx.img.img)
 		mlx_put_image_to_window(map->m_mlx.mlx_ptr, map->m_mlx.mlx_win, map->m_mlx.img.img, 0, 0);
 	else
 	{
-		// Handle the case where the image pointer is NULL
-		// fprintf(stderr, "Error: Invalid image pointer in update_frame\n");
+		return ;
 	}
 }
 
-void game_loop(t_map *map)
+void	game_loop(t_map *map)
 {
 	map->frames = 0;
 	map->start_time = (int)time(NULL);
@@ -50,9 +50,9 @@ void game_loop(t_map *map)
 	mlx_loop(map->m_mlx.mlx_ptr);
 }
 
-int game_loop_callback(t_map *map)
+int	game_loop_callback(t_map *map)
 {
-	t_data new_image;
+	t_data	new_image;
 	new_image.img = mlx_new_image(map->m_mlx.mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 	new_image.addr = mlx_get_data_addr(new_image.img, &new_image.bits_per_pixel, &new_image.line_length, &new_image.endian);
 

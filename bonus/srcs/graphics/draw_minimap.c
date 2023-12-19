@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 10:56:52 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 12:49:46 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,7 @@ void	draw_view(t_map *map, t_data *img)
 				texture = map->texture_ea;
 		}
 		if (texture)
-			draw_juicy_line(texture, img, endpoint, beg, end);
+			draw_wall_slice(texture, img, endpoint, beg, end);
 	}
 }
 
