@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 16:24:33 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/19 17:49:47 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ int				contains_spawn(char **map, t_map *m);
 /**
  * map_helpers.c
  *
- * Norme: ❌ , Leak: ✅
+ * Norme: ✅, Leak: ✅
  */
 int				helper_valid_ceiling_color(char **ceilingValues, t_map *map);
 int				helper_valid_floor_color(char **floorValues, t_map *map);
@@ -175,7 +175,7 @@ void			contains_spawns_helper(t_map *map, int *flag, int *i, int *j);
 /**
  * map_open.c
  *
- * Norme: ❌ , Leak: ✅
+ * Norme: ✅, Leak: ✅
  */
 int				open_cub_file(char *path);
 int				cub_copy(int fd, t_map *map);
@@ -186,7 +186,7 @@ int				map_check_found_or_empty(int *map_start_at, char *res);
 /**
  * map_transform.c
  *
- * Norme:  , Leak: 
+ * Norme: ✅, Leak: ✅
 */
 int				map_transform_to_parsable(t_map *map);
 int				map_transform_to_usable(t_map *map);
@@ -206,7 +206,7 @@ void			init_map(t_map *map, char **av);
 /**
  * draw_utils.c
  *
- * Norme: ❌ , Leak: ✅
+ * Norme: ✅ , Leak: ✅
  */
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int				encode_rgb(int t, int r, int g, int b);
@@ -218,7 +218,7 @@ void			set_juicy_params(t_view_params *params, t_vector endpoint,
 /**
  * draw_player_view.c
  *
- * Norme: ❌ , Leak: ✅
+ * Norme: ✅ , Leak: ✅
  */
 void			draw_view(t_map *map, t_data *img);
 void			update_view_params(t_map *map, t_view_params *params, int *i);
@@ -239,6 +239,8 @@ void			draw_door(int x, int y, int size, t_data *img);
 
 /**
  * draw_minimap.c
+ *
+ * Norme: ✅ , Leak: ✅
 */
 void			draw_floor_ceiling(t_map *map, t_data *img);
 void			draw_player(t_map *map, t_data *img);
@@ -247,7 +249,8 @@ int				get_texture_color(t_data *texture, int x, int y);
 
 /**
  * render.c
- * 
+ *
+ * Norme: ✅ , Leak: ✅
  * 
 */
 void			update_frame(t_map *map);
@@ -256,9 +259,9 @@ void			game_loop(t_map *map);
 
 /**
  * load_textures.c
- * 
- * 
-*/
+ *
+ * Norme: ✅ , Leak: ✅
+ * */
 void			load_textures_1(t_map *map, t_mlx *mlx);
 void			load_textures_2(t_map *map, t_mlx *mlx);
 
@@ -274,7 +277,7 @@ void			debug_print_map(const t_map *map);
 /**
  * compute_init.c
  *
- * Norme: ❌ , Leak: ✅
+ * Norme: ✅ , Leak: ✅
  */
 void			init_mapping(t_map *map, t_mapping *mapping);
 void			initialize_compute(t_vector or, t_vector dir,
@@ -287,7 +290,7 @@ int				check_position_items(t_map *map, t_vector position, int range,
 /**
  * compute.c
  *
- * Norme: ❌ , Leak: ✅
+ * Norme: ✅ , Leak: ✅
  */
 t_intersections	compute_intersections(t_vector or, t_vector dir, t_map *map);
 void			store_intersections(t_compute *c, int *n_inter,
@@ -297,7 +300,7 @@ int				check_collision(t_map *map, t_compute *c);
 /**
  * op_vectors.c
  *
- * Norme: ❌ , Leak: ✅
+ * Norme: ✅ , Leak: ✅
  */
 t_vector		map_vec(t_vector v, t_map *m);
 t_vector		map_vec_adjust(t_vector v, t_map *m);
@@ -308,7 +311,7 @@ t_vector		rotate(t_vector v, float angle);
 /**
  * op_vectors2.c
  *
- * Norme: ❌ , Leak: ✅
+ * Norme: ✅ , Leak: ✅
  */
 t_vector		add(t_vector a, t_vector b);
 t_vector		sub_vector(t_vector a, t_vector b);
@@ -320,51 +323,28 @@ t_vector		transform_pdirection_to_vector(char direction);
 /**
  * init_handler.c
  *
- * Norme: ❌ , Leak: ✅
+ * Norme: ✅ , Leak: ✅
  */
 int				init_mlx(t_mlx *m_mlx);
 
 /**
+ * keys_handler.c
+ *
+ * Norme: ✅ , Leak: ✅
+ */
+void			handle_arrows(int keycode, t_map *map);
+void			handle_wasd(int keycode, t_map *map, t_keycode_helper *h);
+void			handle_esc(int keycode);
+int				key_press(int keycode, t_map *map);
+int				win_close_key(t_mlx *m_mlx);
+
+/**
  * event_handler.c
  *
- * Norme: ❌ , Leak: ✅
+ * Norme: ✅ , Leak: ✅
  */
 void			event_manager(t_map *map);
-int				mouse_move(int x, int y, t_map *map);
-int				mouse_press(int keycode, int x, int y, t_map *map);
-int				key_press(int keycode, t_map *map);
+int				key_release(int keycode, t_map *map);
 int				win_close_click(void);
-int				win_close_key(t_mlx *m_mlx);
-void			handle_wasd(int keycode, t_map *map, t_keycode_helper *h);
-void			handle_arrows(int keycode, t_map *map);
-void			handle_esc(int keycode);
-
-/**
- * attack.c
- *
- * Norme: ✅ , Leak: ✅
- */
-void			attack(t_map *map);
-
-/**
- * handle_speed.c
- *
- * Norme: ✅ , Leak: ✅
- */
-void			handle_speed(int keycode, t_map *map);
-
-/**
- * map_door_parsing.c
- *
- * Norme: ✅ , Leak: ✅
- */
-void			parse_door_texture(char *line, t_map *map);
-
-/**
- * sounds.c
- *
- * Norme: ✅ , Leak: ✅
- */
-void			plays_sounds(int punch_sound);
 
 #endif
