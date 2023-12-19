@@ -6,7 +6,7 @@
 #    By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 15:20:40 by rrouille          #+#    #+#              #
-#    Updated: 2023/12/19 10:53:24 by rrouille         ###   ########.fr        #
+#    Updated: 2023/12/19 11:32:56 by rrouille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ BONUSDIR = ./bonus
 EXTRABONUSDIR = ./extra_bonus
 OBJS_FOLDERS = ${shell find ${SRCSDIR} -type d | sed "s|${SRCSDIR}|${OBJSDIR}|"}
 MAKEFILE_UTILS = ./Makefile_utils
-# MODEDIR = ${BASICDIR} 
 
 # Source and Object Files
 SRCS			= ${shell find ${SRCSDIR} -type f -name '*.c'}
@@ -59,13 +58,6 @@ PRINT_SCREEN = YES
 FAST_MODE = NO
 MODE = BASIC
 
-# ifeq (${MODE},BONUS)
-# 	MODEDIR = ${BONUSDIR}
-# else ifeq (${MODE},EXTRA_BONUS)
-# 	MODEDIR = ${EXTRABONUSDIR}
-# else
-# 	MODEDIR = ${BASICDIR}
-# endif
 ifeq (${MODE},BASIC)
 	MODEDIR = ${BASICDIR}
 else ifeq (${MODE},BONUS)
@@ -360,14 +352,6 @@ pull:
 # **************************************************************************** #
 #                                   BONUS                                      #
 # **************************************************************************** #
-
-# bonus:		MODE := BONUS
-# bonus:		draw_bonus .WAIT EXTRACT_MLX .WAIT ${NAME}
-# b:			bonus
-
-# extrabonus:	MODE := EXTRA_BONUS
-# extrabonus:	draw_bonus .WAIT extract_mlx .WAIT ${NAME}
-# eb:			extrabonus
 
 basic:
 			@${MAKE} all MODEDIR=$(BASICDIR)
