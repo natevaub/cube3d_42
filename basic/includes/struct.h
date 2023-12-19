@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:50 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 14:07:00 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 16:10:48 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,5 +169,15 @@ typedef struct s_view_params
 	t_vector		beg;
 
 }	t_view_params;
+
+typedef struct s_keycode_helper
+{
+	t_vector	perpendicular;
+	t_vector	dir;
+	t_vector	move;
+	t_vector	nwpos;
+	float		epsilon;
+	int			is_moved;
+}	t_keycode_helper;
 
 #endif
