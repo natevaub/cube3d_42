@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:43:35 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 12:48:23 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:31:56 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	draw_intersections(t_map *map, t_data *img)
 {
-	int 			i;
+	int				i;
 	t_intersections	intersections;
 	t_vector		v;
 	t_vector		mapped;
@@ -33,7 +33,8 @@ void	draw_intersections(t_map *map, t_data *img)
 void	update_frame(t_map *map)
 {
 	if (map->m_mlx.img.img)
-		mlx_put_image_to_window(map->m_mlx.mlx_ptr, map->m_mlx.mlx_win, map->m_mlx.img.img, 0, 0);
+		mlx_put_image_to_window(map->m_mlx.mlx_ptr,
+			map->m_mlx.mlx_win, map->m_mlx.img.img, 0, 0);
 	else
 	{
 		return ;
@@ -44,7 +45,8 @@ void	game_loop(t_map *map)
 {
 	map->frames = 0;
 	map->start_time = (int)time(NULL);
-	load_textures(map, &map->m_mlx);
+	load_textures_1(map, &map->m_mlx);
+	load_textures_2(map, &map->m_mlx);
 	event_manager(map);
 	mlx_loop_hook(map->m_mlx.mlx_ptr, game_loop_callback, map);
 	mlx_loop(map->m_mlx.mlx_ptr);
@@ -53,9 +55,11 @@ void	game_loop(t_map *map)
 int	game_loop_callback(t_map *map)
 {
 	t_data	new_image;
-	new_image.img = mlx_new_image(map->m_mlx.mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
-	new_image.addr = mlx_get_data_addr(new_image.img, &new_image.bits_per_pixel, &new_image.line_length, &new_image.endian);
 
+	new_image.img = mlx_new_image(map->m_mlx.mlx_ptr,
+			SCREEN_WIDTH, SCREEN_HEIGHT);
+	new_image.addr = mlx_get_data_addr(new_image.img, &new_image.bits_per_pixel,
+			&new_image.line_length, &new_image.endian);
 	draw_view(map, &new_image);
 	if (map->m_mlx.img.img)
 		mlx_destroy_image(map->m_mlx.mlx_ptr, map->m_mlx.img.img);

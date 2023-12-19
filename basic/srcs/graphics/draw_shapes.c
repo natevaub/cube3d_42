@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 13:09:16 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/19 12:54:57 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:29:47 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,16 @@ void	draw_square_walls(int x, int y, int size, t_data *img)
 	}
 }
 
-void	draw_disk(int x, int y, int radius, t_data *img, int color)
+void	draw_disk(int x, int y, int radius, t_data *img)
 {
 	int	i;
 	int	dx;
 	int	dy;
 	int	j;
+	int	color;
 
 	i = x - radius - 1;
+	color = CYAN;
 	while (++i <= x + radius)
 	{
 		j = y - radius - 1;

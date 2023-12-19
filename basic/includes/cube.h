@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 13:04:34 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:29:19 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,9 +212,9 @@ void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int				encode_rgb(int t, int r, int g, int b);
 void			draw_line(t_data *img, t_vector start, t_vector end, int color);
 void			draw_wall_slice(t_data *texture, t_data *img, t_vector endpoint,
-		t_vector start, t_vector end);
+			t_vector start, t_vector end);
 void			set_juicy_params(t_view_params *params, t_vector endpoint,
-		t_vector start, t_vector end);
+			t_vector start, t_vector end);
 
 /**
  * draw_player_view.c
@@ -224,7 +224,8 @@ void			set_juicy_params(t_view_params *params, t_vector endpoint,
 void		draw_view(t_map *map, t_data *img);
 void		update_view_params(t_map *map, t_view_params *params, int *i);
 void		set_view_params(t_view_params *params, t_map *map);
-void		assign_texture_view(t_map *map, t_view_params *params, t_data **texture);
+void		assign_texture_view(t_map *map, t_view_params *params,
+			t_data **texture);
 
 
 /**
@@ -234,7 +235,7 @@ void		assign_texture_view(t_map *map, t_view_params *params, t_data **texture);
  */
 void			draw_square(int x, int y, int size, t_data *img);
 void			draw_square_walls(int x, int y, int size, t_data *img);
-void			draw_disk(int x, int y, int radius, t_data *img, int color);
+void			draw_disk(int x, int y, int radius, t_data *img);
 void			draw_open_door(int x, int y, int size, t_data *img);
 void			draw_door(int x, int y, int size, t_data *img);
 
@@ -243,7 +244,6 @@ void			draw_door(int x, int y, int size, t_data *img);
 */
 void			draw_floor_ceiling(t_map *map, t_data *img);
 void			draw_player(t_map *map, t_data *img);
-void			draw_minimap(t_map *map, t_data *img);
 void			load_textures(t_map *map, t_mlx *m_mlx);
 int				get_texture_color(t_data *texture, int x, int y);
 
@@ -255,6 +255,15 @@ int				get_texture_color(t_data *texture, int x, int y);
 void			update_frame(t_map *map);
 int				game_loop_callback(t_map *map);
 void			game_loop(t_map *map);
+
+/**
+ * load_textures.c
+ * 
+ * 
+*/
+void			load_textures_1(t_map *map, t_mlx *mlx);
+void			load_textures_2(t_map *map, t_mlx *mlx);
+
 
 /**
  *

@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 13:11:15 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/19 12:49:46 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:32:33 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	draw_line(t_data *img, t_vector start, t_vector end, int color)
 		i++;
 	}
 }
-
 
 void	draw_wall_slice(t_data *texture, t_data *img,
 		t_vector endpoint, t_vector start, t_vector end)
