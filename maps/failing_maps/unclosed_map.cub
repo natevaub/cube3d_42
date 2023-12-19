@@ -1,7 +1,7 @@
-NO ./textures/xpm/1.xpm
-SO ./textures/xpm/1.xpm
-WE ./textures/xpm/1.xpm
-EA ./textures/xpm/1.xpm
+NO ./textures/xpm/green-brcks1024.xpm
+SO ./textures/xpm/yellow-brcks1024.xpm
+WE ./textures/xpm/grey-brcks1024.xpm
+EA ./textures/xpm/blue-brcks1024.xpm
 
 
 

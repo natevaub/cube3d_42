@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture.xpm
-SO ./path_to_the_south_texture.xpm
-WE ./path_to_the_west_texture.xpm
-EA ./path_to_the_east_texture.xpm
+NO ./textures/xpm/green-brcks1024.xpm
+SO ./textures/xpm/yellow-brcks1024.xpm
+WE ./textures/xpm/grey-brcks1024.xpm
+EA ./textures/xpm/blue-brcks1024.xpm
 
 F 220,100,0
 C 225,30,0,2,2

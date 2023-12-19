@@ -1,7 +1,7 @@
-NO ./textures/planks.xpm
-SO ./textures/planks.xpm
-WE ./textures/planks.xpm
-EA ./textures/planks.xpm
+NO ./textures/xpm/green-brcks1024.xpm
+SO ./textures/xpm/yellow-brcks1024.xpm
+WE ./textures/xpm/grey-brcks1024.xpm
+EA ./textures/xpm/blue-brcks1024.xpm
 
 F 200,200,200
 C 200,            200,200
