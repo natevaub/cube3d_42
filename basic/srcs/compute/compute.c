@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 23:38:43 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 13:49:41 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:32:04 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	check_collision(t_map *map, t_compute *c)
 	c->eps = 0.0001;
 	c->test = add(c->curr_origin, mul_scalar(c->n_direction, c->eps));
 	c->x = map->map[(int)c->test.y][(int)c->test.x];
-	if (c->x == '1' || c->x == 'D')
+	if (c->x == '1')
 		return (1);
 	return (0);
 }

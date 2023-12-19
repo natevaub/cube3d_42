@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player_view.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:46:43 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 12:49:46 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:33:10 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,7 @@ void	set_view_params(t_view_params *params, t_map *map)
 
 void	assign_texture_view(t_map *map, t_view_params *params, t_data **texture)
 {
-	char	cell;
-
-	cell = map->map[(int)params->endpoint.y][(int)params->endpoint.x];
-	if (cell == 'D')
-		*texture = map->texture_door;
-	else if (params->endpoint.y == (int)params->endpoint.y)
+	if (params->endpoint.y == (int)params->endpoint.y)
 	{
 		if (map->player_position.y > params->endpoint.y)
 			*texture = map->texture_no;

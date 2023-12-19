@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:23 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 18:31:20 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:34:06 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	parse_elements(char *line, t_map *map)
 	parse_south_texture(line, map);
 	parse_floor(line, map);
 	parse_ceiling(line, map);
-	parse_door_texture(line, map);
 }
 
 int	map_start(char *line)

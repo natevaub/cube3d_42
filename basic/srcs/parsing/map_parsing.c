@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:32 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 07:15:02 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:35:05 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ int	contains_only_valid(char *line)
 	{
 		if (line[i] != '1' && line[i] != '0' && line[i] != ' '
 			&& line[i] != 'N' && line[i] != 'S'
-			&& line[i] != 'E' && line[i] != 'W' && line[i] != 'D'
-			&& line[i] != 'O')
+			&& line[i] != 'E' && line[i] != 'W')
 		{
 			ft_putstr_fd(ERR_MSG_2, 2);
 			return (0);
