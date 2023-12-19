@@ -6,7 +6,7 @@
 #    By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 15:20:40 by rrouille          #+#    #+#              #
-#    Updated: 2023/12/19 13:18:18 by rrouille         ###   ########.fr        #
+#    Updated: 2023/12/19 13:29:59 by rrouille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -331,6 +331,11 @@ lldb:	clear fast
 norm:
 			@norminette ${SRCSDIR} >/dev/null 2>&1 && norminette ${HDRDIR} >/dev/null 2>&1 && ${MAKE} draw_norm_yes || ${MAKE} draw_norm_no && norminette ${SRCSDIR} && norminette ${HDRDIR}
 n:		norm
+
+# Evaluation check
+eval:
+			@open https://rphlr.github.io/42-Evals/Cursus/Cub3d/
+e:		eval
 
 # **************************************************************************** #
 #                                     GIT                                      #
