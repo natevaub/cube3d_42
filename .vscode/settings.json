@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "initializer_list": "c"
+        "initializer_list": "c",
+        "struct.h": "c"
     }
 }

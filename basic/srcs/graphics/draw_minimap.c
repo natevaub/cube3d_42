@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 13:08:23 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:36:31 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@ void	draw_minimap(t_map *map, t_data *img)
 		{
 			if (map->map[i][j] == '1')
 				draw_square_walls(start.x, start.y, size, img);
-			else if (map->map[i][j] == 'D')
-				draw_door(start.x, start.y, size, img);
-			else if (map->map[i][j] == 'O')
-				draw_open_door(start.x, start.y, size, img);
 			else
 				draw_square(start.x, start.y, size, img);
 			start.x += MAP_SCALE;
