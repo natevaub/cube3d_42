@@ -6,13 +6,13 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:41:22 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/19 18:47:56 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 20:37:01 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	handle_fight_mode(t_map *map, t_data *new_image)
+void	handle_fight_mode(t_map *map)
 {
 	long	current_time;
 	long	elapsed_time;
@@ -28,14 +28,6 @@ void	handle_fight_mode(t_map *map, t_data *new_image)
 		{
 			map->fight_index = 0;
 			map->fight_mode = 0;
-		}
-		else
-		{
-			mlx_clear_window(map->m_mlx.mlx_ptr, map->m_mlx.mlx_win);
-			draw_view(map, new_image);
-			draw_minimap(map, new_image);
-			draw_player(map, new_image);
-			draw_hand(map, new_image);
 		}
 	}
 }
@@ -54,7 +46,10 @@ void	render_and_display(t_map *map)
 	if (!map->fight_mode)
 		draw_hand(map, &new_image);
 	else
-		handle_fight_mode(map, &new_image);
+	{
+		draw_hand(map, &new_image);
+		handle_fight_mode(map);
+	}
 	if (map->m_mlx.img.img)
 		mlx_destroy_image(map->m_mlx.mlx_ptr, map->m_mlx.img.img);
 	map->m_mlx.img = new_image;
