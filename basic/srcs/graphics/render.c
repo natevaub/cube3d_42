@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:43:35 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 13:31:56 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:43:37 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	draw_intersections(t_map *map, t_data *img)
 	while (i < intersections.size)
 	{
 		mapped = map_vec_adjust(intersections.points[i], map);
-		draw_disk(mapped.x, mapped.y, 3, img, RED);
+		draw_disk(mapped.x, mapped.y, 3, img);
 		i++;
 	}
 }

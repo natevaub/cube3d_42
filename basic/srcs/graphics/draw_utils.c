@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 13:11:15 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/19 13:32:33 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:05:58 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,28 +57,30 @@ void	draw_line(t_data *img, t_vector start, t_vector end, int color)
 }
 
 void	draw_wall_slice(t_data *texture, t_data *img,
-		t_vector endpoint, t_vector start, t_vector end)
+		t_view_params *p)
 {
+	t_vector		start;
+	t_vector		end;
+	t_vector		endpoint;
 	t_view_params	*params;
 	int				i;
 
+	start = p->beg;
+	end = p->end;
+	endpoint = p->endpoint;
 	params = ft_gc_malloc(sizeof(t_view_params));
 	set_juicy_params(params, endpoint, start, end);
-	i = 0;
-	while (i <= params->step)
+	i = -1;
+	while (++i <= params->step)
 	{
 		start.y += params->dy;
 		if (start.x < 0 || start.x >= img->line_length || start.y < 0
 			|| start.y >= img->line_length)
-		{
-			i++;
 			continue ;
-		}
 		params->texture_row = i * 1023.0 / params->step;
 		params->color = get_texture_color(texture, params->texture_col,
 				params->texture_row);
 		my_mlx_pixel_put(img, start.x, start.y, params->color);
-		i++;
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player_view.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:46:43 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 13:27:16 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:52:46 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ void	draw_view(t_map *map, t_data *img)
 		update_view_params(map, params, &i);
 		assign_texture_view(map, params, &texture);
 		if (texture)
-			draw_wall_slice(texture, img, params->endpoint,
-				params->beg, params->end);
+			draw_wall_slice(texture, img, params);
 	}
 }
 

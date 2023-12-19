@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:50 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 12:57:57 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:07:00 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,5 @@ typedef struct s_view_params
 	t_vector		beg;
 
 }	t_view_params;
-
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 13:25:30 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:43:23 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	draw_player(t_map *map, t_data *img)
 	t_vector		mapped;
 
 	mapped = map_vec_adjust(map->player_position, map);
-	draw_disk(mapped.x, mapped.y, 3, img, GREEN);
+	draw_disk(mapped.x, mapped.y, 3, img);
 	params.fov_start = map_vec(rotate(map->direction, -FOV / 2), map);
 	params.fov_end = map_vec(rotate(map->direction, FOV / 2), map);
 	params.origin = map_vec_adjust(map->player_position, map);
