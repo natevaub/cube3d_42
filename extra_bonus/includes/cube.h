@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 12:49:46 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/19 19:09:47 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@
  *
  * Norme: ✅ , Leak: ✅
  */
-long			getCurrentTime(void);
+long			get_current_time(void);
 void			parse_east_texture(char *line, t_map *map);
 void			parse_west_texture(char *line, t_map *map);
 void			parse_north_texture(char *line, t_map *map);
@@ -211,7 +211,8 @@ void			init_map(t_map *map, char **av);
  */
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int				encode_rgb(int t, int r, int g, int b);
-
+void			set_juicy_params(t_view_params *params, t_vector endpoint,
+					t_vector start, t_vector end);
 /**
  * draw_shapes.c
  *
@@ -219,10 +220,9 @@ int				encode_rgb(int t, int r, int g, int b);
  */
 void			draw_square(int x, int y, int size, t_data *img);
 void			draw_square_walls(int x, int y, int size, t_data *img);
-void			draw_disk(int x, int y, int radius, t_data *img, int color);
+void			draw_disk(int x, int y, int radius, t_data *img);
 void			draw_line(t_data *img, t_vector start, t_vector end, int color);
-void			draw_wall_slice(t_data *texture, t_data *img, t_vector endpoint,
-					t_vector start, t_vector end);
+void			draw_wall_slice(t_data *texture, t_data *img, t_view_params *p);
 
 /**
  * draw_minimap.c
@@ -246,6 +246,7 @@ void			draw_open_door(int x, int y, int size, t_data *img);
 void			update_frame(t_map *map);
 int				game_loop_callback(t_map *map);
 void			game_loop(t_map *map);
+void			render_and_display(t_map *map);
 
 /**
  *
@@ -350,6 +351,7 @@ void			parse_door_texture(char *line, t_map *map);
  *
  * Norme: ✅ , Leak: ✅
  */
+void			sound_play(char *path);
 void			plays_sounds(int punch_sound);
 
 #endif

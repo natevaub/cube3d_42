@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 07:17:15 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/19 07:29:32 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 19:05:44 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	sound_play(char *path)
 	}
 }
 
-void    plays_sounds(int punch_sound)
+void	plays_sounds(int punch_sound)
 {
-    if (punch_sound)
+	if (punch_sound)
 		sound_play("sounds/punch.mp3");
 }

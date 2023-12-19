@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:31:29 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 19:07:24 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 18:45:52 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(int ac, char **av)
 {
-	int code_error;
-	t_map map;
+	int		code_error;
+	t_map	map;
 
 	if (ac != 2)
 	{
