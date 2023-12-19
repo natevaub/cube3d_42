@@ -6,7 +6,7 @@
 /*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 12:13:03 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/19 16:27:40 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/19 17:50:27 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	key_press(int keycode, t_map *map)
 	t_keycode_helper	*h;
 
 	h = ft_gc_malloc(sizeof(t_keycode_helper));
-	handle_speed(keycode, map);
 	handle_wasd(keycode, map, h);
 	handle_arrows(keycode, map);
 	handle_esc(keycode);
