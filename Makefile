@@ -6,7 +6,7 @@
 #    By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 15:20:40 by rrouille          #+#    #+#              #
-#    Updated: 2023/12/19 09:30:46 by rrouille         ###   ########.fr        #
+#    Updated: 2023/12/19 09:33:24 by rrouille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIBSDIR = ${MODEDIR}/libs
 HDRDIR = ${MODEDIR}/includes
 LIBFT = ${MODEDIR}/libs/libft
 MLX = ${MODEDIR}/libs/mlx
-BASICDIR = ./base
+BASICDIR = ./basic
 BONUSDIR = ./bonus
 EXTRABONUSDIR = ./extra_bonus
 OBJS_FOLDERS = ${shell find ${SRCSDIR} -type d | sed "s|${SRCSDIR}|${OBJSDIR}|"}
