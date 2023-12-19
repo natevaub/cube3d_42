@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:43:35 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 07:34:07 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 11:18:07 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int game_loop_callback(t_map *map)
 	else
 	{
 		long currentTime = getCurrentTime();
-		long elapsedTime = currentTime - map->attackStartTime;
+		long elapsedTime = currentTime - map->attack_start_time;
 		int newIndex = elapsedTime / DELAY_THRESHOLD;
 		if (newIndex != map->fight_index)
 		{

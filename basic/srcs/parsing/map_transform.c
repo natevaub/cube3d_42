@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:28 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 19:07:22 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 11:06:21 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,22 +108,5 @@ void	update_map(t_map *map, t_vector position, char target, char replacement)
 				map->copy[i][j] = replacement;
 			}
 		}
-	}
-}
-
-void	open_door(t_map *map)
-{
-	t_vector	position;
-	int			range;
-
-	position = map->player_position;
-	range = 2;
-	if (check_position_items(map, position, range, 'D'))
-		update_map(map, position, 'D', 'O');
-	else if (check_position_items(map, position, range, 'O'))
-	{
-		if (map->map[(int)position.y][(int)position.x] == 'O')
-			return ;
-		update_map(map, position, 'O', 'D');
 	}
 }

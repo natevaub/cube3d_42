@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 10:46:11 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 11:15:47 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <sys/time.h>
-
 
 # include "../../libs/mlx/mlx.h"
 # include "../../libs/libft/includes/mylib.h"
@@ -103,7 +102,7 @@
  *
  * Norme: ✅ , Leak: ✅
  */
-long getCurrentTime();
+long			getCurrentTime(void);
 void			parse_east_texture(char *line, t_map *map);
 void			parse_west_texture(char *line, t_map *map);
 void			parse_north_texture(char *line, t_map *map);
@@ -193,7 +192,8 @@ int				map_check_found_or_empty(int *map_start_at, char *res);
 int				map_transform_to_parsable(t_map *map);
 int				map_transform_to_usable(t_map *map);
 int				map_check_hole(t_map *map);
-void           	update_map(t_map *map, t_vector position, char target, char replacement);
+void			update_map(t_map *map, t_vector position, char target,
+					char replacement);
 void			open_door(t_map *map);
 
 /**
@@ -221,7 +221,8 @@ void			draw_square(int x, int y, int size, t_data *img);
 void			draw_square_walls(int x, int y, int size, t_data *img);
 void			draw_disk(int x, int y, int radius, t_data *img, int color);
 void			draw_line(t_data *img, t_vector start, t_vector end, int color);
-void			draw_juicy_line(t_data *texture, t_data *img, t_vector endpoint, t_vector start, t_vector end);
+void			draw_juicy_line(t_data *texture, t_data *img, t_vector endpoint,
+					t_vector start, t_vector end);
 
 /**
  * draw_minimap.c
@@ -234,7 +235,8 @@ void			draw_view(t_map *map, t_data *img);
 void			draw_hand(t_map *map, t_data *img);
 void			load_textures(t_map *map, t_mlx *m_mlx);
 int				get_texture_color(t_data *texture, int x, int y);
-
+void			draw_door(int x, int y, int size, t_data *img);
+void			draw_open_door(int x, int y, int size, t_data *img);
 
 /**
  * render.c
@@ -260,10 +262,12 @@ void			debug_print_map(const t_map *map);
  * Norme: ❌ , Leak: ✅
  */
 void			init_mapping(t_map *map, t_mapping *mapping);
-void			initialize_compute(t_vector or, t_vector dir, t_compute *compute);
+void			initialize_compute(t_vector or, t_vector dir,
+					t_compute *compute);
 void			update_next_x_and_y(t_vector or, t_vector dir, t_compute *c);
 void			update_compute_state(t_compute *c);
-int         	check_position_items(t_map *map, t_vector position, int range, char item);
+int				check_position_items(t_map *map, t_vector position, int range,
+					char item);
 
 /**
  * compute.c
@@ -271,7 +275,8 @@ int         	check_position_items(t_map *map, t_vector position, int range, char
  * Norme: ❌ , Leak: ✅
  */
 t_intersections	compute_intersections(t_vector or, t_vector dir, t_map *map);
-void			store_intersections(t_compute *c, int *n_inter, t_vector **dynamic_res);
+void			store_intersections(t_compute *c, int *n_inter,
+					t_vector **dynamic_res);
 int				check_collision(t_map *map, t_compute *c);
 
 /**
@@ -279,21 +284,21 @@ int				check_collision(t_map *map, t_compute *c);
  *
  * Norme: ❌ , Leak: ✅
  */
-t_vector 		map_vec(t_vector v, t_map *m);
+t_vector		map_vec(t_vector v, t_map *m);
 t_vector		map_vec_adjust(t_vector v, t_map *m);
-float 			norm(t_vector vec);
-t_vector 		normalize(t_vector vec);
-t_vector 		rotate(t_vector v, float angle);
+float			norm(t_vector vec);
+t_vector		normalize(t_vector vec);
+t_vector		rotate(t_vector v, float angle);
 
 /**
  * op_vectors2.c
  *
  * Norme: ❌ , Leak: ✅
  */
-t_vector 		add(t_vector a, t_vector b);
+t_vector		add(t_vector a, t_vector b);
 t_vector		sub_vector(t_vector a, t_vector b);
-t_vector 		add_scalar(t_vector a, float b);
-t_vector 		mul_scalar(t_vector a, float b);
+t_vector		add_scalar(t_vector a, float b);
+t_vector		mul_scalar(t_vector a, float b);
 t_vector		transform_pdirection_to_vector(char direction);
 
 /* _____ MYMINILIBX ______ */
@@ -313,7 +318,7 @@ void			event_manager(t_map *map);
 int				mouse_move(int x, int y, t_map *map);
 int				mouse_press(int keycode, int x, int y, t_map *map);
 int				key_press(int keycode, t_map *map);
-int				win_close_click();
+int				win_close_click(void);
 int				win_close_key(t_mlx *m_mlx);
 void			handle_wasd(int keycode, t_map *map);
 void			handle_arrows(int keycode, t_map *map);
@@ -331,7 +336,7 @@ void			attack(t_map *map);
  *
  * Norme: ✅ , Leak: ✅
  */
-void	handle_speed(int keycode, t_map *map);
+void			handle_speed(int keycode, t_map *map);
 
 /**
  * map_door_parsing.c
@@ -345,7 +350,6 @@ void			parse_door_texture(char *line, t_map *map);
  *
  * Norme: ✅ , Leak: ✅
  */
-void            plays_sounds(int punch_sound);
-
+void			plays_sounds(int punch_sound);
 
 #endif

@@ -6,14 +6,11 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 07:15:18 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 10:57:07 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
-void	draw_door(int x, int y, int size, t_data *img);
-void	draw_open_door(int x, int y, int size, t_data *img);
 
 void	draw_minimap(t_map *map, t_data *img)
 {

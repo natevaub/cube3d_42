@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:43:35 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 09:38:39 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 11:03:08 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,6 @@ void game_loop(t_map *map)
 	event_manager(map);
 	mlx_loop_hook(map->m_mlx.mlx_ptr, game_loop_callback, map);
 	mlx_loop(map->m_mlx.mlx_ptr);
-}
-
-long getCurrentTime()
-{
-    struct timeval tv;
-    gettimeofday(&tv, NULL);
-    return tv.tv_sec * 1000 + tv.tv_usec / 1000;
 }
 
 int game_loop_callback(t_map *map)

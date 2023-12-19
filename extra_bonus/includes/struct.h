@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:50 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 18:44:17 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 11:19:01 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_map {
 	char			*no;
 	char			*we;
 	char			*ea;
-	char 			*fight[4];
+	char			*fight[4];
 	char			*door;
 	int				fight_mode;
 	int				fight_index;
@@ -75,7 +75,7 @@ typedef struct s_map {
 	struct s_data	*texture_fight[4];
 	struct s_data	*texture_door;
 	int				fight_mode_counter;
-	time_t			attackStartTime;
+	time_t			attack_start_time;
 	int				count_floor;
 	int				count_ceiling;
 	int				floor_r;
@@ -105,7 +105,7 @@ typedef struct s_map {
 typedef struct s_intersections
 {
 	int			size;
-	t_vector*	points;
+	t_vector	*points;
 }	t_intersections;
 
 typedef struct s_test
