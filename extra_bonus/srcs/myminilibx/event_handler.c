@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 00:23:48 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 18:48:51 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 20:42:24 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	mouse_move(int x, int y, t_map *map)
 		ignore_event = 0;
 		return (0);
 	}
-	mlx_mouse_hide();
 	dx = x - map->mouse_x;
 	angle = dx * MOUSE_SENSIBILITY;
 	map->direction = normalize(rotate(map->direction, angle));
