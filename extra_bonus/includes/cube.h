@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 07:30:38 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 10:46:11 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <sys/time.h>
 
 
-# include "../libs/mlx/mlx.h"
-# include "../libs/libft/includes/mylib.h"
+# include "../../libs/mlx/mlx.h"
+# include "../../libs/libft/includes/mylib.h"
 # include "../includes/struct.h"
 # include "../includes/enums.h"
 

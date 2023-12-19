@@ -6,7 +6,7 @@
 #    By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 15:20:40 by rrouille          #+#    #+#              #
-#    Updated: 2023/12/19 09:33:24 by rrouille         ###   ########.fr        #
+#    Updated: 2023/12/19 10:53:24 by rrouille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,15 +20,16 @@ NAME = cub3D
 # Directories
 SRCSDIR = ${MODEDIR}/srcs
 OBJSDIR = objs
-LIBSDIR = ${MODEDIR}/libs
+LIBSDIR = libs
 HDRDIR = ${MODEDIR}/includes
-LIBFT = ${MODEDIR}/libs/libft
-MLX = ${MODEDIR}/libs/mlx
+LIBFT = libs/libft
+MLX = libs/mlx
 BASICDIR = ./basic
 BONUSDIR = ./bonus
 EXTRABONUSDIR = ./extra_bonus
 OBJS_FOLDERS = ${shell find ${SRCSDIR} -type d | sed "s|${SRCSDIR}|${OBJSDIR}|"}
 MAKEFILE_UTILS = ./Makefile_utils
+# MODEDIR = ${BASICDIR} 
 
 # Source and Object Files
 SRCS			= ${shell find ${SRCSDIR} -type f -name '*.c'}
@@ -58,6 +59,13 @@ PRINT_SCREEN = YES
 FAST_MODE = NO
 MODE = BASIC
 
+# ifeq (${MODE},BONUS)
+# 	MODEDIR = ${BONUSDIR}
+# else ifeq (${MODE},EXTRA_BONUS)
+# 	MODEDIR = ${EXTRABONUSDIR}
+# else
+# 	MODEDIR = ${BASICDIR}
+# endif
 ifeq (${MODE},BASIC)
 	MODEDIR = ${BASICDIR}
 else ifeq (${MODE},BONUS)
@@ -66,11 +74,12 @@ else ifeq (${MODE},EXTRA_BONUS)
 	MODEDIR = ${EXTRABONUSDIR}
 endif
 
+
 # Commands
 RM				= rm -rf
 MV				= mv
 MKDIR			= mkdir -p
-MAKE			= make -C
+MAKE			= make
 GIT				= git
 DEBUG			= -fsanitize=address -g
 
@@ -126,7 +135,7 @@ BS_N			= ${ECHO} "\n"
 # **************************************************************************** #
 
 EXTRACT_MLX		= if [ ! -d "${MLX}" ]; then tar -xzf ${MLX_ARCHIVE} -C ${LIBSDIR} && ${MV} ${LIBSDIR}/minilibx* ${MLX}; fi
-MAKE_LIB		= ${MAKE} ${MLX} > /dev/null 2>&1
+MAKE_LIB		= ${MAKE} -C ${MLX} > /dev/null 2>&1
 CC_LIB			= ${CC} ${CFLAGS} ${OBJS} ${LIBFT}/objs/*/*.o ${LDFLAGS} -o ${NAME}
 COMPILATION		= ${MAKE_LIB} && ${CC_LIB}
 
@@ -134,7 +143,7 @@ COMPILATION		= ${MAKE_LIB} && ${CC_LIB}
 #                                  COMMANDS                                    #
 # **************************************************************************** #
 
-all: draw_begining .WAIT extract_mlx .WAIT MODE=BASIC .WAIT ${NAME}
+all:		draw_begining .WAIT extract_mlx .WAIT ${NAME}
 
 os:
 			@${ECHO} "${OS}"
@@ -150,7 +159,7 @@ ${OBJSDIR}/%.o : ${SRCSDIR}/%.c .WAIT lib
 			@${CC} ${CFLAGS} -I ${HDRDIR} -c $< -o $@
 
 # Linking rule
-${NAME}: ${OBJS} .WAIT
+${NAME}: ${OBJS}
 			@${CHARG_LINE}
 			${COMPILATION}
 			${END_COMP}
@@ -189,7 +198,7 @@ draw_ready:
 				printf '%s' "$$line"
 			@sleep 0.3
 			@${ECHO} "${ENDCOLOR}"
-			@make help PRINT_SCREEN=NO
+			@${MAKE} help PRINT_SCREEN=NO
 
 draw_run:
 			@for i in 1 2 3; do \
@@ -228,12 +237,12 @@ lib:	clear
 					${ECHO} "${GREEN}🎉 Library already exists, updating it. 🔄\n${RESET}"; \
 					git -C ${LIBFT} pull; \
 					${ECHO} ""; \
-					make -C ${LIBFT}; \
+					${MAKE} -C ${LIBFT}; \
 					${ECHO} "\c"; \
 					sleep 0.3; \
 				else \
 					git clone https://github.com/rphlr/mylib --quiet ${LIBFT}; \
-					make -C ${LIBFT}; \
+					${MAKE} -C ${LIBFT}; \
 					${ECHO} "\c"; \
 					sleep 0.3; \
 					${START}; \
@@ -241,17 +250,17 @@ lib:	clear
 			else \
 				if [ -d ${LIBFT} ]; then \
 					git -C ${LIBFT} pull; \
-					make fast -C ${LIBFT}; \
+					${MAKE} fast -C ${LIBFT}; \
 				else \
 					git clone https://github.com/rphlr/mylib --quiet ${LIBFT}; \
-					make fast -C ${LIBFT}; \
+					${MAKE} fast -C ${LIBFT}; \
 				fi; \
 			fi
 
 help:
 			@if [ "${PRINT_SCREEN}" = "YES" ]; then \
 				${ECHO} "${CLEAR}\c"; \
-				make draw_help; \
+				${MAKE} draw_help; \
 				for i in 3 2 1 0; do \
 					printf '\r${BLUE}Help will be shown in: %d${ENDCOLOR}' "$$i"; \
 					sleep 1; \
@@ -325,7 +334,7 @@ lldb:	clear fast
 
 # Norminette check
 norm:
-			@norminette ${SRCSDIR} >/dev/null 2>&1 && norminette ${HDRDIR} >/dev/null 2>&1 && make draw_norm_yes || make draw_norm_no && norminette ${SRCSDIR} && norminette ${HDRDIR}
+			@norminette ${SRCSDIR} >/dev/null 2>&1 && norminette ${HDRDIR} >/dev/null 2>&1 && ${MAKE} draw_norm_yes || ${MAKE} draw_norm_no && norminette ${SRCSDIR} && norminette ${HDRDIR}
 n:		norm
 
 # **************************************************************************** #
@@ -352,11 +361,24 @@ pull:
 #                                   BONUS                                      #
 # **************************************************************************** #
 
-bonus: draw_bonus .WAIT extract_mlx .WAIT MODE=BONUS .WAIT ${NAME}
-b:		bonus
+# bonus:		MODE := BONUS
+# bonus:		draw_bonus .WAIT EXTRACT_MLX .WAIT ${NAME}
+# b:			bonus
 
-extra_bonus: draw_bonus .WAIT extract_mlx .WAIT MODE=EXTRA_BONUS .WAIT ${NAME}
-eb:		extra_bonus
+# extrabonus:	MODE := EXTRA_BONUS
+# extrabonus:	draw_bonus .WAIT extract_mlx .WAIT ${NAME}
+# eb:			extrabonus
+
+basic:
+			@${MAKE} all MODEDIR=$(BASICDIR)
+
+bonus:
+			@${MAKE} all MODEDIR=$(BONUSDIR)
+b:			bonus
+
+extrabonus:
+			@${MAKE} all MODEDIR=$(EXTRABONUSDIR)
+eb:			extrabonus
 
 # **************************************************************************** #
 #                                   DUMMY                                      #
