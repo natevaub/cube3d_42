@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:28 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 07:14:34 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:43:20 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,19 @@ int	open_cub_file(char *path)
 	int	fd;
 
 	fd = open(path, O_RDONLY);
-	if (fd == -1)
+	if (ft_strncmp(&path[ft_strlen(path) - 4], ".cub", 4) != 0)
 	{
-		ft_putstr_fd("Cannot open ", 2);
-		ft_putstr_fd(path, 2);
-		ft_putstr_fd("\n", 2);
+		ft_printf("Error\nFile %s is not a .cub file\n", path);
+		return (-1);
+	}
+	else if (fd == -1)
+	{
+		ft_printf("Error\nCannot open %s\n", path);
+		return (-1);
+	}
+	else if (get_next_line(open(path, O_RDONLY)) == NULL)
+	{
+		ft_printf("Error\nFile %s is empty\n", path);
 		return (-1);
 	}
 	return (fd);
