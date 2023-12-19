@@ -6,7 +6,7 @@
 #    By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 15:20:40 by rrouille          #+#    #+#              #
-#    Updated: 2023/12/19 11:32:56 by rrouille         ###   ########.fr        #
+#    Updated: 2023/12/19 13:18:18 by rrouille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -270,6 +270,9 @@ help:
 			@${ECHO} "\t- Use ${ITALIC}\`make clear\`${ENDCOLOR}${GRAY} or ${ITALIC}\`make c\`${ENDCOLOR}${GRAY} to clear the screen."
 			@${ECHO} "\t- Use ${ITALIC}\`make clean\`${ENDCOLOR}${GRAY} to clean the object files."
 			@${ECHO} "\t- Use ${ITALIC}\`make fclean\`${ENDCOLOR}${GRAY} to clean the object files and the executable."
+			@${ECHO} "\t- Use ${ITALIC}\`make re\`${ENDCOLOR}${GRAY} to clean the object files and the executable and recompile."
+			@${ECHO} "\t- Use ${ITALIC}\`make bonus\`${ENDCOLOR}${GRAY} or ${ITALIC}\`make b\`${ENDCOLOR}${GRAY} to compile the bonus part."
+			@${ECHO} "\t- Use ${ITALIC}\`make extrabonus\`${ENDCOLOR}${GRAY} or ${ITALIC}\`make eb\`${ENDCOLOR}${GRAY} to compile the extra bonus part."
 			@${ECHO} ""
 			@${ECHO} "${YELLOW}🌟 Use ${ITALIC}\`make help\`${ENDCOLOR}${YELLOW} or ${ITALIC}\`make h\`${ENDCOLOR}${YELLOW} to display these helpful tips. 🚀${ENDCOLOR}"
 h:		help
