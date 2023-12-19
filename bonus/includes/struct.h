@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:50 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 11:19:00 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 17:44:12 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,15 +139,42 @@ typedef struct s_compute
 	char		x;
 }	t_compute;
 
-typedef struct s_minimap_params
+typedef struct s_view_params
 {
 	t_vector		origin;
 	t_vector		fov_start;
 	t_vector		fov_end;
 	t_vector		fov_start_endpoint;
 	t_vector		fov_end_endpoint;
-	t_vector		endpoint;
 	t_intersections	intersections;
-}	t_minimap_params;
+	int				texture_col;
+	int				texture_row;
+	int				color;
+	float			x;
+	float			y;
+	float			variant;
+	float			step;
+	float			dy;
+	float			perp_dist;
+	float			h;
+	float			dx;
+	t_vector		start;
+	t_vector		end;
+	t_vector		line;
+	t_vector		n_line;
+	t_vector		point;
+	t_vector		dir;
+	t_vector		endpoint;
+	t_vector		dist;
+	t_vector		beg;
+
+}	t_view_params;
+
+void	set_juicy_params(t_view_params *params, t_vector endpoint,
+	t_vector start, t_vector end);
+void	load_textures_1(t_map *map, t_mlx *mlx);
+void	load_textures_2(t_map *map, t_mlx *mlx);
+void	handle_fight_mode(t_map *map, t_data *new_image);
+void	render_and_display(t_map *map);
 
 #endif
