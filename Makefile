@@ -6,7 +6,7 @@
 #    By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 15:20:40 by rrouille          #+#    #+#              #
-#    Updated: 2023/12/16 17:40:11 by rrouille         ###   ########.fr        #
+#    Updated: 2023/12/19 09:30:46 by rrouille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,15 @@
 NAME = cub3D
 
 # Directories
-SRCSDIR = ./srcs
+SRCSDIR = ${MODEDIR}/srcs
 OBJSDIR = objs
-HDRDIR = ./includes
-LIBFT = ./libs/libft
-MLX = ./libs/mlx
+LIBSDIR = ${MODEDIR}/libs
+HDRDIR = ${MODEDIR}/includes
+LIBFT = ${MODEDIR}/libs/libft
+MLX = ${MODEDIR}/libs/mlx
+BASICDIR = ./base
+BONUSDIR = ./bonus
+EXTRABONUSDIR = ./extra_bonus
 OBJS_FOLDERS = ${shell find ${SRCSDIR} -type d | sed "s|${SRCSDIR}|${OBJSDIR}|"}
 MAKEFILE_UTILS = ./Makefile_utils
 
@@ -52,6 +56,15 @@ endif
 ARGS = ${filter-out $@, ${MAKECMDGOALS}}
 PRINT_SCREEN = YES
 FAST_MODE = NO
+MODE = BASIC
+
+ifeq (${MODE},BASIC)
+	MODEDIR = ${BASICDIR}
+else ifeq (${MODE},BONUS)
+	MODEDIR = ${BONUSDIR}
+else ifeq (${MODE},EXTRA_BONUS)
+	MODEDIR = ${EXTRABONUSDIR}
+endif
 
 # Commands
 RM				= rm -rf
@@ -112,7 +125,7 @@ BS_N			= ${ECHO} "\n"
 #                                 COMPILATION                                  #
 # **************************************************************************** #
 
-EXTRACT_MLX		= if [ ! -d "${MLX}" ]; then tar -xzf ${MLX_ARCHIVE} -C ./libs && ${MV} ./libs/minilibx* ${MLX}; fi
+EXTRACT_MLX		= if [ ! -d "${MLX}" ]; then tar -xzf ${MLX_ARCHIVE} -C ${LIBSDIR} && ${MV} ${LIBSDIR}/minilibx* ${MLX}; fi
 MAKE_LIB		= ${MAKE} ${MLX} > /dev/null 2>&1
 CC_LIB			= ${CC} ${CFLAGS} ${OBJS} ${LIBFT}/objs/*/*.o ${LDFLAGS} -o ${NAME}
 COMPILATION		= ${MAKE_LIB} && ${CC_LIB}
@@ -121,14 +134,14 @@ COMPILATION		= ${MAKE_LIB} && ${CC_LIB}
 #                                  COMMANDS                                    #
 # **************************************************************************** #
 
-all: draw_begining .WAIT extract_mlx .WAIT  ${NAME}
+all: draw_begining .WAIT extract_mlx .WAIT MODE=BASIC .WAIT ${NAME}
 
 os:
 			@${ECHO} "${OS}"
 
 extract_mlx:
 			@${ECHO} "${CLEAR}\c"
-			@${MKDIR} -p ./libs
+			@${MKDIR} -p ${LIBSDIR}
 			@${EXTRACT_MLX}
 
 # Build rule for object files
@@ -336,6 +349,16 @@ pull:
 			@${GIT} pull
 
 # **************************************************************************** #
+#                                   BONUS                                      #
+# **************************************************************************** #
+
+bonus: draw_bonus .WAIT extract_mlx .WAIT MODE=BONUS .WAIT ${NAME}
+b:		bonus
+
+extra_bonus: draw_bonus .WAIT extract_mlx .WAIT MODE=EXTRA_BONUS .WAIT ${NAME}
+eb:		extra_bonus
+
+# **************************************************************************** #
 #                                   DUMMY                                      #
 # **************************************************************************** #
 
@@ -350,7 +373,7 @@ pull:
 clean:
 			@${ECHO} "${CLEAR}\c"
 			@${S_OBJS}
-			@${RM} objs/ libs/
+			@${RM} ${OBJSDIR} ${LIBSDIR}
 			@${ECHO} "${CLEAR}\c"
 			@${ECHO} "${GREEN}✅ Simple clean completed! ✨\n"
 
