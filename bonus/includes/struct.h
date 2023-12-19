@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:50 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 17:44:12 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 18:48:51 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,12 +169,5 @@ typedef struct s_view_params
 	t_vector		beg;
 
 }	t_view_params;
-
-void	set_juicy_params(t_view_params *params, t_vector endpoint,
-	t_vector start, t_vector end);
-void	load_textures_1(t_map *map, t_mlx *mlx);
-void	load_textures_2(t_map *map, t_mlx *mlx);
-void	handle_fight_mode(t_map *map, t_data *new_image);
-void	render_and_display(t_map *map);
 
 #endif

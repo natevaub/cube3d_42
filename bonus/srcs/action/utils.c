@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:41:22 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/19 17:41:34 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 18:47:56 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	handle_fight_mode(t_map *map, t_data *new_image)
 	long	elapsed_time;
 	int		new_index;
 
-	current_time = getCurrentTime();
+	current_time = get_current_time();
 	elapsed_time = current_time - map->attack_start_time;
 	new_index = elapsed_time / DELAY_THRESHOLD;
 	if (new_index != map->fight_index)

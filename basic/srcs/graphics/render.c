@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:43:35 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 17:26:31 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 18:24:11 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ void	update_frame(t_map *map)
 		mlx_put_image_to_window(map->m_mlx.mlx_ptr,
 			map->m_mlx.mlx_win, map->m_mlx.img.img, 0, 0);
 	else
-	{
 		return ;
-	}
 }
 
 void	game_loop(t_map *map)

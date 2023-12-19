@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 17:04:07 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 18:50:11 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@
  *
  * Norme: ✅ , Leak: ✅
  */
-long			getCurrentTime(void);
+long			get_current_time(void);
 void			parse_east_texture(char *line, t_map *map);
 void			parse_west_texture(char *line, t_map *map);
 void			parse_north_texture(char *line, t_map *map);
@@ -211,7 +211,8 @@ void			init_map(t_map *map, char **av);
  */
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int				encode_rgb(int t, int r, int g, int b);
-
+void			set_juicy_params(t_view_params *params, t_vector endpoint,
+					t_vector start, t_vector end);
 /**
  * draw_shapes.c
  *
@@ -220,10 +221,7 @@ int				encode_rgb(int t, int r, int g, int b);
 void			draw_square(int x, int y, int size, t_data *img);
 void			draw_square_walls(int x, int y, int size, t_data *img);
 void			draw_disk(int x, int y, int radius, t_data *img);
-// void			draw_disk(int x, int y, int radius, t_data *img, int color);
 void			draw_line(t_data *img, t_vector start, t_vector end, int color);
-// void			draw_wall_slice(t_data *texture, t_data *img, t_vector endpoint,
-// 					t_vector start, t_vector end);
 void			draw_wall_slice(t_data *texture, t_data *img, t_view_params *p);
 
 /**
@@ -248,6 +246,7 @@ void			draw_open_door(int x, int y, int size, t_data *img);
 void			update_frame(t_map *map);
 int				game_loop_callback(t_map *map);
 void			game_loop(t_map *map);
+void			render_and_display(t_map *map);
 
 /**
  *
