@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_helpers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:00:23 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/18 18:31:20 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/19 18:46:53 by nvaubien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	helper_valid_ceiling_color(char **ceilingValues, t_map *map)
 	i = 0;
 	while (ceilingValues[i] != NULL)
 	{
-		value = atoi(ceilingValues[i]);
+		value = ft_atoi(ceilingValues[i]);
 		if (value < 0 || value > 255)
 		{
 			return (0);
@@ -44,7 +44,7 @@ int	helper_valid_floor_color(char **floorValues, t_map *map)
 	i = 0;
 	while (floorValues[i] != NULL)
 	{
-		value = atoi(floorValues[i]);
+		value = ft_atoi(floorValues[i]);
 		if (value < 0 || value > 255)
 		{
 			return (0);
