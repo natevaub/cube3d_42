@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:50 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/20 13:30:45 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 14:14:17 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_vector
 	float	y;
 }	t_vector;
 
+
 typedef enum	e_sound_type
 {
 	NO_SOUND,
@@ -60,7 +61,7 @@ typedef enum	e_sound_type
 	SOUND_FART,
 	SOUND_DOOR,
 	SOUND_STEPS,
-	SOUND_VOICE,
+	SOUND_VOICE
 } t_sound_type;
 
 typedef struct	s_sounds

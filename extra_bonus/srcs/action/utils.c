@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:41:22 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/20 13:57:26 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:28:35 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,10 @@ void	handle_fight_mode(t_map *map)
 	}
 }
 
-int vectors_are_equal(t_vector vec1, t_vector vec2) {
-    return (vec1.x == vec2.x) && (vec1.y == vec2.y);
-}
-
 void	render_and_display(t_map *map)
 {
 	t_vector	old_pos;
 	t_data		new_image;
-	time_t current_time = get_current_time();
-	static int first_play = 0;
 
 	old_pos = map->player_position;
 	new_image.img = mlx_new_image(map->m_mlx.mlx_ptr, SCREEN_WIDTH,
@@ -55,38 +49,11 @@ void	render_and_display(t_map *map)
 	draw_minimap(map, &new_image);
 	draw_player(map, &new_image);
 	if (!map->fight_mode)
-	{
-		if (vectors_are_equal(old_pos, map->player_position))
-		{
-			if (current_time - map->last_position_change > rand() % 10000)
-			{
-                if (!map->sounds.playing)
-				{
-					first_play = 1;
-                    map->sounds.type = SOUND_FART;
-                    // sound_play(map->sounds.type);
-                    map->sounds.playing = true;
-                }
-			}
-			if (first_play)
-			{
-				map->sounds.type = SOUND_VOICE;
-				first_play = 0;
-			}
-		}
 		draw_hand(map, &new_image);
-	}
 	else
 	{
-		draw_hand(map, &new_image);
 		handle_fight_mode(map);
-	}
-	if ((map->sounds.type && !map->sounds.playing) || first_play)
-	{
-		sound_play(map->sounds.type);
-		map->sounds.playing = true;
-		if (first_play)
-			first_play = 0;
+		draw_hand(map, &new_image);
 	}
 	if (map->m_mlx.img.img)
 		mlx_destroy_image(map->m_mlx.mlx_ptr, map->m_mlx.img.img);

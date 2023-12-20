@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:53:16 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/20 13:16:39 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 14:44:38 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void	attack(t_map *map)
 	map->fight_index = 0;
 	map->fight_mode = 1;
 	map->sounds.type = SOUND_PUNCH;
+	sound_play(map->sounds.type);
 }
