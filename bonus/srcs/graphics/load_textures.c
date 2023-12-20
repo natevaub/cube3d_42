@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:21:05 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 18:43:53 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 11:26:15 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	load_single_texture(t_mlx *mlx, char *file_path, t_data **texture)
 
 	size = 1024;
 	*texture = ft_gc_malloc(sizeof(t_data));
+	if (!*texture)
+		return ;
 	(*texture)->img = mlx_xpm_file_to_image(mlx->mlx_ptr, file_path, &size,
 			&size);
 	(*texture)->addr = mlx_get_data_addr((*texture)->img,

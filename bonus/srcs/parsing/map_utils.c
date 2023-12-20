@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:01:23 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 07:14:50 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 11:26:25 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*front_trim(char *line)
 	while (j >= 0 && (line[j] == ' ' || line[j] == '\n'))
 		j--;
 	new_line = ft_gc_malloc(sizeof(char) * (j + 2));
-	if (new_line == NULL)
+	if (!new_line)
 		return (NULL);
 	i = 0;
 	while (i <= j)

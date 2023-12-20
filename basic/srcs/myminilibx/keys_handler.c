@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 12:13:03 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/19 17:50:27 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/20 11:25:11 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	key_press(int keycode, t_map *map)
 	t_keycode_helper	*h;
 
 	h = ft_gc_malloc(sizeof(t_keycode_helper));
+	if (!h)
+		return (0);
 	handle_wasd(keycode, map, h);
 	handle_arrows(keycode, map);
 	handle_esc(keycode);

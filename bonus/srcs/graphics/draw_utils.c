@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 13:11:15 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/19 17:10:10 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 11:26:00 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	draw_wall_slice(t_data *texture, t_data *img,
 	end = p->end;
 	endpoint = p->endpoint;
 	params = ft_gc_malloc(sizeof(t_view_params));
+	if (!params)
+		return ;
 	set_juicy_params(params, endpoint, start, end);
 	i = -1;
 	while (++i <= params->step)

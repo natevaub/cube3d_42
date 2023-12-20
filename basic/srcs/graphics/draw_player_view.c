@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:46:43 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 13:52:46 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 11:24:17 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	draw_view(t_map *map, t_data *img)
 
 	texture = NULL;
 	params = ft_gc_malloc(sizeof(t_view_params));
+	if (!params)
+		return ;
 	draw_floor_ceiling(map, img);
 	set_view_params(params, map);
 	i = -1;

@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 20:39:59 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 12:16:04 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -351,7 +351,6 @@ void			parse_door_texture(char *line, t_map *map);
  *
  * Norme: ✅ , Leak: ✅
  */
-void			sound_play(char *path);
-void			plays_sounds(int punch_sound);
+void			sound_play(t_sound_type type);
 
 #endif

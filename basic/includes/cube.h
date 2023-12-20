@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvaubien <nvaubien@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 17:49:47 by nvaubien         ###   ########.fr       */
+/*   Updated: 2023/12/20 11:44:37 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -346,5 +346,7 @@ int				win_close_key(t_mlx *m_mlx);
 void			event_manager(t_map *map);
 int				key_release(int keycode, t_map *map);
 int				win_close_click(void);
+
+void			sound_play(char *path);
 
 #endif

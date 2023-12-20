@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:50 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 18:48:51 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 12:08:33 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,24 @@ typedef struct s_vector
 	float	x;
 	float	y;
 }	t_vector;
+
+typedef enum	e_sound_type
+{
+	NO_SOUND,
+	SOUND_PUNCH,
+	SOUND_FART,
+	SOUND_DOOR,
+	SOUND_STEPS,
+} t_sound_type;
+
+typedef struct	s_sounds
+{
+	char			*path;
+	pid_t			pid;
+	bool			played;
+	bool			playing;
+	t_sound_type	type;
+}	t_sounds;
 
 typedef struct s_map {
 	int				count_ea;
@@ -100,6 +118,7 @@ typedef struct s_map {
 	int				mouse_y;
 	int				frames;
 	int				start_time;
+	t_sounds		sounds;
 }	t_map;
 
 typedef struct s_intersections
@@ -169,5 +188,15 @@ typedef struct s_view_params
 	t_vector		beg;
 
 }	t_view_params;
+
+typedef struct s_keycode_helper
+{
+	t_vector	perpendicular;
+	t_vector	dir;
+	t_vector	move;
+	t_vector	nwpos;
+	float		epsilon;
+	int			is_moved;
+}	t_keycode_helper;
 
 #endif
