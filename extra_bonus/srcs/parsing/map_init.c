@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:26:10 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/20 14:14:47 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:33:16 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_others(t_map *map)
 	map->ceiling_g = -1;
 	map->ceiling_b = -1;
 	map->ct_door = 0;
-	map->mouse_view = 0;
+	map->mouse_view = 1;
 	map->last_position_change = get_current_time();
 }
 

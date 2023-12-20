@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 00:23:48 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/20 13:16:31 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:34:46 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	key_release(int keycode, t_map *map)
 
 void	event_manager(t_map *map)
 {
+	mlx_mouse_hide(map->m_mlx.mlx_win);
 	mlx_hook(map->m_mlx.mlx_win, ON_KEYPRESS, 1L << 0, key_press, map);
 	mlx_hook(map->m_mlx.mlx_win, ON_KEYUP, 1L << 1, key_release, map);
 	mlx_mouse_hook(map->m_mlx.mlx_win, mouse_press, map);

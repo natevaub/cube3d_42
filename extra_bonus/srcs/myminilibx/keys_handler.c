@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 12:13:03 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/20 13:45:25 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:36:17 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void	handle_wasd(int kc, t_map *map, t_keycode_helper *h)
 	{
 		h->is_moved = 1;
 		if (kc == LINUX_W || kc == MAC_W)
-			h->move = mul_scalar(h->dir, 0.1);
+			h->move = mul_scalar(h->dir, map->speed);
 		if (kc == LINUX_A || kc == MAC_A)
-			h->move = mul_scalar(h->perpendicular, -0.1);
+			h->move = mul_scalar(h->perpendicular, -map->speed);
 		if (kc == LINUX_S || kc == MAC_S)
-			h->move = mul_scalar(h->dir, -0.1);
+			h->move = mul_scalar(h->dir, -map->speed);
 		if (kc == LINUX_D || kc == MAC_D)
-			h->move = mul_scalar(h->perpendicular, 0.1);
+			h->move = mul_scalar(h->perpendicular, map->speed);
 	}
 	if (h->is_moved)
 	{
