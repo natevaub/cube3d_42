@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:41:22 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/20 12:19:33 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 13:13:38 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ void	render_and_display(t_map *map)
 	draw_player(map, &new_image);
 	if (!map->fight_mode)
 	{
-		// if (vectors_are_equal(old_pos, map->player_position))
-			// map->sounds.type = SOUND_FART;
+		if (!vectors_are_equal(old_pos, map->player_position))
+		{
+			map->sounds.type = SOUND_FART;
+		}
 		draw_hand(map, &new_image);
 	}
 	else
