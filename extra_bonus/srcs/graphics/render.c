@@ -12,12 +12,12 @@
 
 #include "cube.h"
 
-void	draw_intersections(t_map *map, t_data *img)
+void draw_intersections(t_map *map, t_data *img)
 {
-	int				i;
-	t_intersections	intersections;
-	t_vector		mapped;
-	t_vector		v;
+	int i;
+	t_intersections intersections;
+	t_vector mapped;
+	t_vector v;
 
 	v = map->direction;
 	intersections = compute_intersections(map->player_position, v, map);
@@ -29,16 +29,27 @@ void	draw_intersections(t_map *map, t_data *img)
 	}
 }
 
-void	update_frame(t_map *map)
+void update_frame(t_map *map)
 {
 	if (map->m_mlx.img.img)
+	{
+		printf("main\n");
 		mlx_put_image_to_window(map->m_mlx.mlx_ptr,
-			map->m_mlx.mlx_win, map->m_mlx.img.img, 0, 0);
+								map->m_mlx.mlx_win, map->m_mlx.img.img, 0, 0);
+	}
+
+	printf("Minimap img: %p\n", map->m_mlx.minimap.img);
+	if (map->m_mlx.minimap.img)
+	{
+		printf("minimap\n");
+		mlx_put_image_to_window(map->m_mlx.mlx_ptr,
+								map->m_mlx.mlx_win, map->m_mlx.minimap.img, 400, 400);
+	}
 	else
-		return ;
+		return;
 }
 
-void	game_loop(t_map *map)
+void game_loop(t_map *map)
 {
 	map->frames = 0;
 	map->start_time = (int)time(NULL);
@@ -48,7 +59,7 @@ void	game_loop(t_map *map)
 	mlx_loop(map->m_mlx.mlx_ptr);
 }
 
-int	game_loop_callback(t_map *map)
+int game_loop_callback(t_map *map)
 {
 	render_and_display(map);
 	return (0);
