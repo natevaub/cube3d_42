@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/20 12:16:04 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 13:43:20 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -321,7 +321,7 @@ int				mouse_press(int keycode, int x, int y, t_map *map);
 int				key_press(int keycode, t_map *map);
 int				win_close_click(void);
 int				win_close_key(t_mlx *m_mlx);
-void			handle_wasd(int keycode, t_map *map);
+void			handle_wasd(int keycode, t_map *map, t_keycode_helper *helper);
 void			handle_arrows(int keycode, t_map *map);
 void			handle_esc(int keycode);
 

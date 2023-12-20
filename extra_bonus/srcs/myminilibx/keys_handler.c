@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 12:13:03 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/19 20:42:47 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 13:45:25 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,37 @@ void	handle_arrows(int keycode, t_map *map)
 		map->direction = normalize(rotate(map->direction, -2));
 }
 
-void	handle_wasd(int keycode, t_map *map)
+void	handle_wasd(int kc, t_map *map, t_keycode_helper *h)
 {
-	t_vector	move;
-	t_vector	new_position;
-
-	move = (t_vector){0, 0};
-	if (keycode == LINUX_W || keycode == MAC_W)
-		move = mul_scalar(normalize(map->direction), map->speed);
-	else if (keycode == LINUX_S || keycode == MAC_S)
-		move = mul_scalar(normalize(map->direction), -map->speed);
-	else if (keycode == LINUX_D || keycode == MAC_D)
-		move = mul_scalar(normalize((t_vector){-map->direction.y,
-					map->direction.x}), map->speed);
-	else if (keycode == LINUX_A || keycode == MAC_A)
-		move = mul_scalar(normalize((t_vector){map->direction.y,
-					-map->direction.x}), map->speed);
-	new_position = add(map->player_position, move);
-	if (map->map[(int)new_position.y][(int)new_position.x] != '1'
-		&& map->map[(int)new_position.y][(int)new_position.x] != 'D')
-		map->player_position = new_position;
+	normalize((t_vector){.x = -map->direction.y, .y = map->direction.x});
+	h->perpendicular.x = -map->direction.y;
+	h->perpendicular.y = map->direction.x;
+	h->dir = normalize(map->direction);
+	h->is_moved = 0;
+	if (kc == MAC_A || kc == MAC_D || kc == MAC_W || kc == MAC_S || kc == 0)
+	{
+		h->is_moved = 1;
+		if (kc == LINUX_W || kc == MAC_W)
+			h->move = mul_scalar(h->dir, 0.1);
+		if (kc == LINUX_A || kc == MAC_A)
+			h->move = mul_scalar(h->perpendicular, -0.1);
+		if (kc == LINUX_S || kc == MAC_S)
+			h->move = mul_scalar(h->dir, -0.1);
+		if (kc == LINUX_D || kc == MAC_D)
+			h->move = mul_scalar(h->perpendicular, 0.1);
+	}
+	if (h->is_moved)
+	{
+		h->epsilon = 0.01;
+		h->nwpos = add(map->player_position,
+				mul_scalar(h->move, 1 + h->epsilon));
+		if (map->map[(int)h->nwpos.y][(int)h->nwpos.x] != '1' &&
+				map->map[(int)h->nwpos.y][(int)h->nwpos.x] != 'D')
+		{
+			map->player_position = h->nwpos;
+			map->last_position_change = get_current_time();
+		}
+	}
 }
 
 void	handle_esc(int keycode)
@@ -50,8 +61,13 @@ void	handle_esc(int keycode)
 
 int	key_press(int keycode, t_map *map)
 {
+	t_keycode_helper *h;
+
+	h = malloc(sizeof(t_keycode_helper));
+	if (!h)
+		exit(0);
 	handle_speed(keycode, map);
-	handle_wasd(keycode, map);
+	handle_wasd(keycode, map, h);
 	handle_arrows(keycode, map);
 	handle_esc(keycode);
 	if (keycode == LINUX_M || keycode == MAC_M)

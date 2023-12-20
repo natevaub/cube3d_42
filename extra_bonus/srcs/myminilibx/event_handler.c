@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 00:23:48 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/20 12:12:18 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 13:16:31 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	mouse_press(int keycode, int x, int y, t_map *map)
 	if (keycode == MOUSE_LEFT)
 	{
 		attack(map);
-		map->sounds.type = SOUND_PUNCH;
 	}
 	if (keycode == MOUSE_RIGHT)
 		open_door(map);

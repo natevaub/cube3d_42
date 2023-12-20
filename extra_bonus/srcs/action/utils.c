@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:41:22 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/20 13:13:38 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 13:41:58 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	render_and_display(t_map *map)
 {
 	t_vector	old_pos;
 	t_data		new_image;
+	time_t current_time = get_current_time();
+	static int first_play = 0;
 
 	old_pos = map->player_position;
 	new_image.img = mlx_new_image(map->m_mlx.mlx_ptr, SCREEN_WIDTH,
@@ -54,9 +56,24 @@ void	render_and_display(t_map *map)
 	draw_player(map, &new_image);
 	if (!map->fight_mode)
 	{
-		if (!vectors_are_equal(old_pos, map->player_position))
+		if (vectors_are_equal(old_pos, map->player_position))
 		{
-			map->sounds.type = SOUND_FART;
+			if (current_time - map->last_position_change > rand() % 10000)
+			{
+                if (!map->sounds.playing)
+				{
+					first_play = 1;
+                    map->sounds.type = SOUND_FART;
+                    sound_play(map->sounds.type);
+                    map->sounds.playing = true;
+                }
+			}
+			if (first_play)
+			{
+				map->sounds.type = SOUND_VOICE;
+			// 	sound_play(map->sounds.type);
+				first_play = 0;
+			}
 		}
 		draw_hand(map, &new_image);
 	}
@@ -65,13 +82,13 @@ void	render_and_display(t_map *map)
 		draw_hand(map, &new_image);
 		handle_fight_mode(map);
 	}
-	if (map->sounds.type && !map->sounds.playing)
+	if ((map->sounds.type && !map->sounds.playing) || first_play)
 	{
 		sound_play(map->sounds.type);
 		map->sounds.playing = true;
+		if (first_play)
+			first_play = 0;
 	}
-	// if (fart_sound)
-	// 	sound_play("sounds/farts/fart01.mp3");
 	if (map->m_mlx.img.img)
 		mlx_destroy_image(map->m_mlx.mlx_ptr, map->m_mlx.img.img);
 	map->m_mlx.img = new_image;

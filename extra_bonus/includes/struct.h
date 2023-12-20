@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:50 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/20 12:08:33 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 13:30:45 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef enum	e_sound_type
 	SOUND_FART,
 	SOUND_DOOR,
 	SOUND_STEPS,
+	SOUND_VOICE,
 } t_sound_type;
 
 typedef struct	s_sounds
@@ -94,6 +95,8 @@ typedef struct s_map {
 	struct s_data	*texture_door;
 	int				fight_mode_counter;
 	time_t			attack_start_time;
+	time_t			curr_time;
+	time_t			last_position_change;
 	int				count_floor;
 	int				count_ceiling;
 	int				floor_r;

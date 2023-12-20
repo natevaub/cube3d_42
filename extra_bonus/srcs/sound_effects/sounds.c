@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 07:17:15 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/20 12:18:43 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 13:31:45 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	sound_play(t_sound_type type)
 		play_sound("sounds/punch/punch01.mp3");
 	else if (type == SOUND_FART)
 		play_sound("sounds/farts/fart01.mp3");
+	else if (type == SOUND_VOICE)
+		play_sound("sounds/voices/its-terrible.flac");
 }
 // {
 // 	pid_t pid = fork();
