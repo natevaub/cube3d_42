@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:41:22 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/20 13:41:58 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/20 13:57:26 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,13 @@ void	render_and_display(t_map *map)
 				{
 					first_play = 1;
                     map->sounds.type = SOUND_FART;
-                    sound_play(map->sounds.type);
+                    // sound_play(map->sounds.type);
                     map->sounds.playing = true;
                 }
 			}
 			if (first_play)
 			{
 				map->sounds.type = SOUND_VOICE;
-			// 	sound_play(map->sounds.type);
 				first_play = 0;
 			}
 		}
