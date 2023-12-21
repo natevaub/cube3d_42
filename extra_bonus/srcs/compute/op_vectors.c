@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 19:34:24 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/16 18:30:40 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:28:42 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_vector	map_vec_adjust(t_vector v, t_map *m)
 
 	screen.x = (v.x / m->mapping.from_width) * m->mapping.to_width;
 	screen.y = (v.y / m->mapping.from_height) * m->mapping.to_height;
-	screen.x += SCREEN_WIDTH / 2 - (m->columns * MAP_SCALE) / 2;
+	screen.x += 10;
 	screen.y += 10;
 	return (screen);
 }

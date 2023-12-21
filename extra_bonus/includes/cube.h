@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/21 09:04:25 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:29:33 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@
 // #define MINIMAP_HEIGHT 200
 #define GAME_WIDTH 500
 #define GAME_HEIGHT 500
-#define MAP_SCALE 10
+#define MAP_SCALE 5
 #define FOV 66
 #define DELAY_THRESHOLD 50
 

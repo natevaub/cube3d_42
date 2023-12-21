@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/21 09:12:29 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:37:55 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void draw_minimap(t_map *map, t_data *img)
 
 	float player_x = map->player_position.x;
 	float player_y = map->player_position.y;
-	int minimap_half_viewport = 5;
+	int minimap_half_viewport = MAP_SCALE;
 	float start_x = player_x - minimap_half_viewport;
 	float end_x = player_x + minimap_half_viewport;
 	float start_y = player_y - minimap_half_viewport;
@@ -97,19 +97,13 @@ void draw_minimap(t_map *map, t_data *img)
 
 			// if point is inside of map, draw a block
 			if (map->map[yyy][xxx] == '1')
-			{
 				my_mlx_pixel_put(&map->m_mlx.minimap, i, j, 0xFF0000);
-			}
 			else
-			{
 				my_mlx_pixel_put(&map->m_mlx.minimap, i, j, 0x00FF00);
-			}
 
 			// draw border, if epsilon close to an edge of a square in the map, draw a border
 			if (xx - (int)xx < 0.1 || xx - (int)xx > 0.9 || yy - (int)yy < 0.1 || yy - (int)yy > 0.9)
-			{
 				my_mlx_pixel_put(&map->m_mlx.minimap, i, j, 0x0000FF);
-			}
 
 			// float map_x = player_x
 
@@ -124,35 +118,11 @@ void draw_minimap(t_map *map, t_data *img)
 
 	// Draw the player at the center of the minimap with a disk
 	draw_disk(MINIMAP_WIDTH / 2, MINIMAP_HEIGHT / 2, 7, &map->m_mlx.minimap);
-	// Draw a line in the direction of the player
 	t_vector direction = normalize(map->direction);
 	t_vector middle_position = (t_vector){.x = MINIMAP_WIDTH / 2, .y = MINIMAP_HEIGHT / 2};
 	t_vector endpoint = add(middle_position, mul_scalar(direction, 20));
 
 	draw_line(&map->m_mlx.minimap, middle_position, endpoint, 0x0000FF);
-
-	// start = (t_vector){.x = SCREEN_WIDTH / 2 - (map->columns * MAP_SCALE) / 2,
-	// 				   .y = 10};
-	// size = MAP_SCALE;
-	// i = -1;
-	// while (++i < map->rows)
-	// {
-	// 	j = -1;
-	// 	while (++j < map->columns)
-	// 	{
-	// 		if (map->map[i][j] == '1')
-	// 			draw_square_walls(start.x, start.y, size, img);
-	// 		else if (map->map[i][j] == 'D')
-	// 			draw_door(start.x, start.y, size, img);
-	// 		else if (map->map[i][j] == 'O')
-	// 			draw_open_door(start.x, start.y, size, img);
-	// 		else
-	// 			draw_square(start.x, start.y, size, img);
-	// 		start.x += MAP_SCALE;
-	// 	}
-	// 	start.x = SCREEN_WIDTH / 2 - (map->columns * MAP_SCALE) / 2;
-	// 	start.y += MAP_SCALE;
-	// }
 }
 
 void draw_player(t_map *map, t_data *img)

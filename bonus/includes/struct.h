@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:50 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 18:48:51 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:51:33 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,12 @@ typedef struct s_view_params
 	t_vector		endpoint;
 	t_vector		dist;
 	t_vector		beg;
-
 }	t_view_params;
+
+typedef struct s_minimap_helper
+{
+	t_vector	start;
+	t_vector	pos;
+}	t_minimap_helper;
 
 #endif

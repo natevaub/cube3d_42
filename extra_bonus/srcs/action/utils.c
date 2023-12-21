@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:41:22 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/20 12:19:33 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:31:25 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	render_and_display(t_map *map)
 	mlx_clear_window(map->m_mlx.mlx_ptr, map->m_mlx.mlx_win);
 	draw_view(map, &new_image);
 	draw_minimap(map, &new_image);
-	draw_player(map, &new_image);
+	// draw_player(map, &new_image);
 	if (!map->fight_mode)
 	{
 		// if (vectors_are_equal(old_pos, map->player_position))

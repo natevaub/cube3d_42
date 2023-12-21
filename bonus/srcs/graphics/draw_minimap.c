@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 18:32:40 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:50:28 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,30 @@
 
 void	draw_minimap(t_map *map, t_data *img)
 {
-	t_vector	start;
-	int			size;
-	int			i;
-	int			j;
+	t_minimap_helper	helper;
+	int					size;
 
-	start = (t_vector){.x = SCREEN_WIDTH / 2 - (map->columns * MAP_SCALE) / 2,
-		.y = 10};
+	helper.start = (t_vector){.x = SCREEN_WIDTH / 2
+		- (map->columns * MAP_SCALE) / 2, .y = 10};
 	size = MAP_SCALE;
-	i = -1;
-	while (++i < map->rows)
+	helper.pos.x = -1;
+	while (++helper.pos.x < map->rows)
 	{
-		j = -1;
-		while (++j < map->columns)
+		helper.pos.y = -1;
+		while (++helper.pos.y < map->columns)
 		{
-			if (map->map[i][j] == '1')
-				draw_square_walls(start.x, start.y, size, img);
-			else if (map->map[i][j] == 'D')
-				draw_door(start.x, start.y, size, img);
-			else if (map->map[i][j] == 'O')
-				draw_open_door(start.x, start.y, size, img);
+			if (map->map[(int) helper.pos.x][(int) helper.pos.y] == '1')
+				draw_square_walls(helper.start.x, helper.start.y, size, img);
+			else if (map->map[(int) helper.pos.x][(int) helper.pos.y] == 'D')
+				draw_door(helper.start.x, helper.start.y, size, img);
+			else if (map->map[(int) helper.pos.x][(int) helper.pos.y] == 'O')
+				draw_open_door(helper.start.x, helper.start.y, size, img);
 			else
-				draw_square(start.x, start.y, size, img);
-			start.x += MAP_SCALE;
+				draw_square(helper.start.x, helper.start.y, size, img);
+			helper.start.x += MAP_SCALE;
 		}
-		start.x = SCREEN_WIDTH / 2 - (map->columns * MAP_SCALE) / 2;
-		start.y += MAP_SCALE;
+		helper.start.x = SCREEN_WIDTH / 2 - (map->columns * MAP_SCALE) / 2;
+		helper.start.y += MAP_SCALE;
 	}
 }
 
