@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 13:09:16 by rrouille          #+#    #+#             */
-/*   Updated: 2023/12/19 17:42:51 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:12:45 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,9 @@ void	draw_square_walls(int x, int y, int size, t_data *img)
 		while (j < size)
 		{
 			if (i == size - 1 || i == 0 || j == size - 1 || j == 0)
-			{
 				my_mlx_pixel_put(img, x + i, y + j, WHITE);
-			}
 			else
-			{
 				my_mlx_pixel_put(img, x + i, y + j, DARK_GRAY);
-			}
 			j++;
 		}
 		i++;

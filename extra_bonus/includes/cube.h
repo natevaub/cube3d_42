@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:28:47 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/20 12:16:04 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:04:25 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@
 
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 1024
-#define MINIMAP_WIDTH 200
-#define MINIMAP_HEIGHT 200
-#define MINIMAP_WIDTH 200
-#define MINIMAP_HEIGHT 200
+#define MINIMAP_WIDTH 150
+#define MINIMAP_HEIGHT 150
+// #define MINIMAP_WIDTH 200
+// #define MINIMAP_HEIGHT 200
 #define GAME_WIDTH 500
 #define GAME_HEIGHT 500
 #define MAP_SCALE 10

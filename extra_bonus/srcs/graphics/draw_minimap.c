@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:41:26 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 18:32:40 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:12:29 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void draw_minimap(t_map *map, t_data *img)
 	// int *data = (int *)mlx_get_data_addr(img, map->m_mlx.img.bits_per_pixel, map->m_mlx.img.line_length, map->m_mlx.img.endian);
 	// map->
 
+	(void)img;
 	// # Make miimap red
 	for (int y = 0; y < MINIMAP_HEIGHT; y++)
 	{
@@ -61,11 +62,11 @@ void draw_minimap(t_map *map, t_data *img)
 		}
 	}
 
-	int square_size = 5;
+	// int square_size = 5;
 
 	float player_x = map->player_position.x;
 	float player_y = map->player_position.y;
-	int minimap_half_viewport = 2;
+	int minimap_half_viewport = 5;
 	float start_x = player_x - minimap_half_viewport;
 	float end_x = player_x + minimap_half_viewport;
 	float start_y = player_y - minimap_half_viewport;
@@ -122,7 +123,7 @@ void draw_minimap(t_map *map, t_data *img)
 	}
 
 	// Draw the player at the center of the minimap with a disk
-	draw_disk(MINIMAP_WIDTH / 2, MINIMAP_HEIGHT / 2, 20, &map->m_mlx.minimap);
+	draw_disk(MINIMAP_WIDTH / 2, MINIMAP_HEIGHT / 2, 7, &map->m_mlx.minimap);
 	// Draw a line in the direction of the player
 	t_vector direction = normalize(map->direction);
 	t_vector middle_position = (t_vector){.x = MINIMAP_WIDTH / 2, .y = MINIMAP_HEIGHT / 2};
@@ -188,18 +189,14 @@ void draw_floor_ceiling(t_map *map, t_data *img)
 	{
 		j = -1;
 		while (++j < SCREEN_HEIGHT / 2)
-		{
 			my_mlx_pixel_put(img, i, j, encode_rgb(0, map->ceiling_r, map->ceiling_g, map->ceiling_b));
-		}
 	}
 	i = -1;
 	while (++i < SCREEN_WIDTH)
 	{
 		j = SCREEN_HEIGHT / 2 - 1;
 		while (++j < SCREEN_HEIGHT)
-		{
 			my_mlx_pixel_put(img, i, j, encode_rgb(0, map->floor_r, map->floor_g, map->floor_b));
-		}
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: rrouille <rrouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 06:43:35 by nvaubien          #+#    #+#             */
-/*   Updated: 2023/12/19 17:41:13 by rrouille         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:13:34 by rrouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void update_frame(t_map *map)
 	{
 		printf("minimap\n");
 		mlx_put_image_to_window(map->m_mlx.mlx_ptr,
-								map->m_mlx.mlx_win, map->m_mlx.minimap.img, 400, 400);
+								map->m_mlx.mlx_win, map->m_mlx.minimap.img, 10, 10);
 	}
 	else
 		return;
